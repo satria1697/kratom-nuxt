@@ -5,15 +5,13 @@ module.exports = {
     extend: {
       colors: {
         main: {
-          DEFAULT: "#74723e"
-        }
-      }
+          DEFAULT: '#74723e',
+        },
+      },
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [
-    require('@tailwindcss/forms')
-  ],
+  plugins: [require('@tailwindcss/forms')],
 }
