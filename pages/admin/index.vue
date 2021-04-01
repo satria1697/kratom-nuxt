@@ -1,11 +1,10 @@
 <template>
   <div>
-    <navbar></navbar>
     <form-kratom
       v-if="modal.kratom"
       :id="id"
       @close-modal="handleModal(0)"
-    ></form-kratom>
+    />
     <div v-if="!kratoms.length" class="container mx-auto w-screen">
       <span class="text-lg text-center animate-pulse">Loading Data</span>
     </div>
@@ -21,11 +20,15 @@
       <table class="w-full">
         <thead class="text-left">
           <tr class="border-b-2 text-lg">
-            <th class="w-1/12">No</th>
+            <th class="w-1/12">
+              No
+            </th>
             <th>Nama</th>
             <th>Price</th>
             <th>Stock</th>
-            <th class="w-2/12">Action</th>
+            <th class="w-2/12">
+              Action
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -63,19 +66,19 @@
 import FormKratom from '~/components/admin/FormKratom'
 export default {
   components: {
-    FormKratom,
+    FormKratom
   },
-  data() {
+  data () {
     return {
       kratoms: [],
       modal: {
-        kratom: false,
+        kratom: false
       },
-      id: 0,
+      id: 0
     }
   },
-  created() {
-    this.$axios.get('api/kratom').then((res) => {
+  created () {
+    this.$axios.get('/kratom').then((res) => {
       const { data } = res
       if (data.success) {
         this.kratoms = data.data
@@ -83,15 +86,15 @@ export default {
     })
   },
   methods: {
-    handleModal(payload) {
+    handleModal (payload) {
       if (payload >= 0 && !this.modal.kratom) {
         this.id = payload
       }
       this.modal.kratom = !this.modal.kratom
     },
-    handleDelete(payload) {
+    handleDelete (payload) {
       this.$axios
-        .get(`api/kratom/${payload}`)
+        .get(`/kratom/${payload}`)
         .then((res) => {
           const { data } = res
           if (data.success) {
@@ -101,7 +104,7 @@ export default {
         .catch((err) => {
           console.log(err)
         })
-    },
-  },
+    }
+  }
 }
 </script>
