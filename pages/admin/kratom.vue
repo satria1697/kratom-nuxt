@@ -11,13 +11,13 @@
     <div v-else class="container mx-auto w-screen">
       <div class="flex justify-end mb-3">
         <button
-          class="border border-main rounded-md hover:bg-main hover:text-white py-2 px-3 text-xl"
+          class="border border-main rounded-md hover:bg-main hover:text-white py-2 px-3 text-xl mr-3"
           @click="handleModal"
         >
           Tambah Data
         </button>
       </div>
-      <table class="w-full">
+      <table class="w-11/12 mx-auto lg:w-full">
         <thead class="text-left">
           <tr class="border-b-2 text-lg">
             <th class="w-1/12">
@@ -43,13 +43,13 @@
             <td>{{ item.stock }}</td>
             <td>
               <button
-                class="border rounded-md my-2 py-2 px-3 hover:bg-yellow-400 focus:outline-none"
+                class="border border-yellow-400 rounded-md my-2 py-2 px-3 bg-yellow-400 hover:bg-white focus:outline-none hover:text-yellow-400"
                 @click="handleModal(item.id)"
               >
                 Edit
               </button>
               <button
-                class="border rounded-md my-2 py-2 px-3 hover:bg-red-700 focus:outline-none"
+                class="border border-red-700 rounded-md my-2 py-2 px-3 bg-red-700 hover:bg-white focus:outline-none hover:text-red-700"
                 @click="handleDelete(item.id)"
               >
                 Delete

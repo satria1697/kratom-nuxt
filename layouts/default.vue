@@ -1,14 +1,19 @@
 <template>
-  <div>
-    <navbar />
-    <nuxt />
+  <div class="flex flex-col h-screen">
+    <div style="flex: 1 0 auto">
+      <navbar />
+      <nuxt />
+    </div>
+    <Footer />
   </div>
 </template>
 
 <script>
 import jwtDecode from 'jwt-decode'
+import Footer from '~/components/footer'
 
 export default {
+  components: { Footer },
   created () {
     const jwt = this.$cookies.get('jwt_token')
     const token = this.$cookies.get('token')
@@ -23,6 +28,7 @@ export default {
 </script>
 
 <style>
+@import "assets/css/main.css";
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;

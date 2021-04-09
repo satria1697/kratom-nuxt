@@ -1,0 +1,11 @@
+#article-html h1 {
+  font-size: 4rem;
+}
+
+#article-html h2 {
+  font-size: 3rem;
+}
+
+#article-html img {
+  margin: 2rem 0;
+}

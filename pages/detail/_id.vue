@@ -1,54 +1,53 @@
 <template>
-  <div>
-    <div class="container mx-auto">
-      <div v-if="isLoading && !kratom" class="mx-auto">
-        <span class="animate-pulse">Loading Data</span>
-      </div>
-      <div v-else class="flex flex-col lg:flex-row">
-        <div class="w-full lg:w-1/2 mb-3 lg:mb-0">
-          <img
-            :src="
-              kratom.image
-                ? kratom.image
-                : 'https://dummyimage.com/400x400/000/fff'
-            "
-            :alt="kratom.name"
-          >
-        </div>
-        <div
-          class="flex flex-col border-2 rounded-md w-full mx-5 lg:w-1/2 p-4 h-full"
+  <div class="container mx-auto w-screen">
+    <div v-if="isLoading && !kratom" class="mx-auto">
+      <span class="animate-pulse">Loading Data</span>
+    </div>
+    <div v-else class="flex flex-col lg:flex-row">
+      <div class="w-11/12 mx-auto lg:w-1/2 mb-3 lg:mb-0">
+        <img
+          :src="
+            kratom.image
+              ? kratom.image
+              : 'https://dummyimage.com/400x400/000/fff'
+          "
+          :alt="kratom.name"
         >
-          <span class="text-3xl text-main font-bold">{{ kratom.name }}</span>
-          <span class="text-2xl">USD {{ kratom.price }}</span>
-          <span class="font-semibold text-lg">{{ kratom.brief }}</span>
-          <span class="text-lg">{{ kratom.description }}</span>
-          <div>
-            <div class="flex mb-3">
-              <button
-                class="px-2 bg-main text-white hover:opacity-80"
-                @click="changeTotal('minus')"
-              >
-                -
-              </button>
-              <input
-                v-model="total"
-                class="focus:outline-none p-0.5"
-                style="width: 50px"
-                type="number"
-                @change="changeTotal"
-              >
-              <button
-                class="px-2 bg-main text-white hover:opacity-80"
-                @click="changeTotal('plus')"
-              >
-                +
-              </button>
-              <span class="my-auto ml-4">{{ kratom.stock }} left</span>
-            </div>
-            <button class="py-2 px-3 bg-main text-white rounded-md" @click="sendCart()">
-              Add to Cart
+      </div>
+      <div
+        class="flex flex-col mx-auto lg:mx-3 w-11/12 lg:w-1/2 p-4 h-full"
+      >
+        <span class="text-3xl text-main font-bold">{{ kratom.name }}</span>
+        <span class="text-2xl">USD {{ kratom.price }}</span>
+        <span class="font-semibold text-lg">{{ kratom.brief }}</span>
+        <span class="text-lg">{{ kratom.description }}</span>
+        <div class="border-2 rounded-md py-3 px-4">
+          <span class="font-semibold text-xl">Set Amount</span>
+          <div class="flex mb-3">
+            <button
+              class="px-2 bg-main text-white hover:opacity-80"
+              @click="changeTotal('minus')"
+            >
+              -
             </button>
+            <input
+              v-model="total"
+              class="focus:outline-none px-2 py-1"
+              style="width: 50px"
+              type="number"
+              @change="changeTotal"
+            >
+            <button
+              class="px-2 bg-main text-white hover:opacity-80"
+              @click="changeTotal('plus')"
+            >
+              +
+            </button>
+            <span class="my-auto ml-4">{{ kratom.stock }} left</span>
           </div>
+          <button class="py-2 px-3 bg-main text-white rounded-md" @click="sendCart()">
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>

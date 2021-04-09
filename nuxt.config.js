@@ -7,7 +7,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -29,7 +29,6 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    '@nuxt/content',
     '@nuxtjs/auth-next',
     'cookie-universal-nuxt',
     ['vue-toastification/nuxt', {
@@ -82,8 +81,11 @@ export default {
   build: {},
   // server: {
   //   host: '192.168.100.140'
-  // }
+  // },
   env: {
     JWT_SECRET: 'bvMp8EzdcXZjUn0f5K3vOCblCL6xoRk4'
+  },
+  tailwindcss: {
+    jit: true
   }
 }

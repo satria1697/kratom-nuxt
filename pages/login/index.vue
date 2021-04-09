@@ -1,8 +1,8 @@
 <template>
-  <div class="w-screen h-screen flex items-center justify-center">
+  <div class="w-screen h-screen flex lg:items-center justify-center">
     <div
-      class="flex flex-col border-2 rounded-md p-6 mx-10"
-      style="width: 400px; min-width: 300px"
+      class="flex flex-col border-2 rounded-md p-6 mx-10 lg:mx-0"
+      style="width: 400px; min-width: 300px; height: 350px; min-height: 350px"
     >
       <div class="flex justify-between">
         <span class="text-3xl mb-3">Login</span>

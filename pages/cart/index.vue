@@ -2,7 +2,7 @@
   <div v-if="!cart" class="flex justify-center items-center w-3/4 mx-auto">
     <div v-if="!token" class="flex flex-col w-full">
       <span class="text-4xl font-semibold mb-3 mx-auto">Login to add cart</span>
-      <button class="w-1/3 mx-auto bg-main py-2 px-3 text-white border border-main hover:bg-white hover:text-main rounded-md " @click="goTo('login')">
+      <button class="w-2/3 lg:w-1/3 mx-auto bg-main py-2 px-3 text-white border border-main hover:bg-white hover:text-main rounded-md " @click="goTo('login')">
         Go To Login Page
       </button>
     </div>
@@ -14,9 +14,9 @@
       <div v-if="!cart.cart.length" class="flex justify-center items-center">
         <span class="text-4xl">No Cart</span>
       </div>
-      <div v-for="(opt, idx) in cart.cart" v-else :key="idx" class="mb-3 flex border-2 border-main rounded-lg p-14">
-        <img class="w-1/6" :src="opt.kratom.image ? opt.kratom.image : 'https://dummyimage.com/400x400/000/fff'" :alt="opt.kratom.name">
-        <div class="w-2/3 flex flex-col ml-3">
+      <div v-for="(opt, idx) in cart.cart" v-else :key="idx" class="mb-3 flex lg:flex-row flex-col border-2 border-main rounded-lg p-14">
+        <img class="w-full lg:w-1/6" :src="opt.kratom.image ? opt.kratom.image : 'https://dummyimage.com/400x400/000/fff'" :alt="opt.kratom.name">
+        <div class="w-full lg:w-2/3 flex flex-col ml-3">
           <span class="text-2xl font-semibold">{{ opt.kratom.name }}</span>
           <span>{{ opt.kratom.description }}</span>
           <div class="flex mt-auto">
@@ -42,6 +42,11 @@
             <span class="my-auto ml-4">{{ opt.kratom.stock }} left</span>
           </div>
         </div>
+      </div>
+      <div class="flex justify-end">
+        <button class="py-2 px-3 bg-main rounded-md text-white" @click="handleCheckout">
+          Checkout
+        </button>
       </div>
     </div>
   </div>
@@ -92,6 +97,18 @@ export default {
     },
     goTo (payload) {
       this.$router.push({ name: payload })
+    },
+    handleCheckout () {
+      const payload = {
+        jwt: this.$store.state.jwt
+      }
+      this.$axios.post('/kratom/cart/checkout', payload, {
+        headers: {
+          Authorization: `Bearer ${this.$store.state.token}`
+        }
+      }).then((res) => {
+        console.log(res)
+      })
     }
   }
 }

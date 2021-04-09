@@ -1,11 +1,11 @@
 <template>
   <div class="container w-screen mx-auto">
-    <div v-if="isLoading" class="" />
-    <div v-else class="mt-2 flex lg:flex-row flex-col flex-wrap gap-4">
+    <img class="mx-auto mb-2 lg:w-1/4 w-2/3" :src="require('../assets/png/logo.png')">
+    <div class="grid lg:grid-cols-4 lg:gap-10 lg:flex-row mx-auto w-full">
       <div
         v-for="(item, idx) in kratoms"
         :key="idx"
-        class="mb-4 lg:mb-0 mx-auto p-8 border-2 w-2/3 lg:w-1/4 flex flex-col rounded-lg"
+        class="shadow-2xl mb-4 lg:mb-0 p-8 mx-auto w-3/4 lg:w-full flex flex-col rounded-lg bg-main hover:bg-main-light transition-colors"
       >
         <div class="cursor-pointer" @click="goTo(item.id)">
           <img
@@ -15,7 +15,7 @@
             alt="kratom image"
           >
         </div>
-        <span class="mx-auto text-main text-2xl mt-auto">{{ item.name }}</span>
+        <span class="mx-auto text-white text-2xl mt-auto">{{ item.name }}</span>
         <span class="mx-auto font-semibold">USD {{ item.price }}</span>
       </div>
     </div>
