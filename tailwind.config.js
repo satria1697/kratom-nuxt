@@ -9,6 +9,9 @@ module.exports = {
           DEFAULT: '#74723e',
           dark: '#424124'
         }
+      },
+      fontFamily: {
+        helvetica: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif']
       }
     }
   },

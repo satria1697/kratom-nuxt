@@ -1,26 +1,32 @@
 <template>
   <div class="container mx-auto w-screen">
-    <div v-if="isLoading && !kratom" class="mx-auto">
+    <div v-if="isLoading && !goods" class="mx-auto">
       <span class="animate-pulse">Loading Data</span>
     </div>
     <div v-else class="flex flex-col lg:flex-row">
       <div class="w-11/12 mx-auto lg:w-1/2 mb-3 lg:mb-0">
         <img
           :src="
-            kratom.image
-              ? kratom.image
-              : 'https://dummyimage.com/400x400/000/fff'
+            goods.image
+              ? goods.image
+              : 'https://dummyimage.com/600x400/000/fff'
           "
-          :alt="kratom.name"
+          :alt="goods.name"
         >
       </div>
       <div
         class="flex flex-col mx-auto lg:mx-3 w-11/12 lg:w-1/2 p-4 h-full"
       >
-        <span class="text-3xl text-main font-bold">{{ kratom.name }}</span>
-        <span class="text-2xl">USD {{ kratom.price }}</span>
-        <span class="font-semibold text-lg">{{ kratom.brief }}</span>
-        <span class="text-lg">{{ kratom.description }}</span>
+        <div class="flex justify-between">
+          <span class="text-3xl text-main font-bold">{{ goods.name }}</span>
+          <div class="text-md bg-main rounded-full px-2 flex">
+            <span class="text-white my-auto items-center">{{ goods.category.name }}</span>
+          </div>
+        </div>
+
+        <span class="text-2xl">USD {{ goods.price }}</span>
+        <span class="font-semibold text-lg">{{ goods.brief }}</span>
+        <span class="text-lg">{{ goods.description }}</span>
         <div class="border-2 rounded-md py-3 px-4">
           <span class="font-semibold text-xl">Set Amount</span>
           <div class="flex mb-3">
@@ -43,7 +49,7 @@
             >
               +
             </button>
-            <span class="my-auto ml-4">{{ kratom.stock }} left</span>
+            <span class="my-auto ml-4">{{ goods.stock }} left</span>
           </div>
           <button class="py-2 px-3 bg-main text-white rounded-md" @click="sendCart()">
             Add to Cart
@@ -57,14 +63,14 @@
 <script>
 export default {
   async asyncData ({ params, $axios }) {
-    const res = await $axios.$get(`/kratom/${params.id}`)
+    const res = await $axios.$get(`/goods/${params.id}`)
     const { data } = res
-    return { kratom: data }
+    return { goods: data }
   },
   data () {
     return {
       isLoading: false,
-      kratom: null,
+      goods: null,
       total: 0
     }
   },
@@ -76,8 +82,8 @@ export default {
   methods: {
     changeTotal (payload) {
       if (payload === 'plus') {
-        if (this.total >= this.kratom.stock) {
-          this.total = Number(this.kratom.stock)
+        if (this.total >= this.goods.stock) {
+          this.total = Number(this.goods.stock)
         } else {
           this.total += 1
         }
@@ -94,12 +100,12 @@ export default {
         this.goTo('login')
       } else if (this.total) {
         const payload = {
-          id: this.kratom.id,
+          id: this.goods.id,
           buying: this.total,
           status: 2,
           jwt: this.$store.state.jwt
         }
-        this.$axios.post('/kratom/cart', payload, {
+        this.$axios.post('/goods/cart', payload, {
           headers: {
             Authorization: `Bearer ${this.$store.state.token}`
           }

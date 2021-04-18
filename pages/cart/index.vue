@@ -14,11 +14,14 @@
       <div v-if="!cart.cart.length" class="flex justify-center items-center">
         <span class="text-4xl">No Cart</span>
       </div>
-      <div v-for="(opt, idx) in cart.cart" v-else :key="idx" class="mb-3 flex lg:flex-row flex-col border-2 border-main rounded-lg p-14">
-        <img class="w-full lg:w-1/6" :src="opt.kratom.image ? opt.kratom.image : 'https://dummyimage.com/400x400/000/fff'" :alt="opt.kratom.name">
+      <div v-for="(opt, idx) in cart.cart" v-else :key="idx" class="group mb-3 flex lg:flex-row flex-col border-2 border-main rounded-lg p-14">
+        <img class="w-full lg:w-1/6" :src="opt.goods.image ? opt.goods.image : 'https://dummyimage.com/600x400/000/fff'" :alt="opt.goods.name">
         <div class="w-full lg:w-2/3 flex flex-col ml-3">
-          <span class="text-2xl font-semibold">{{ opt.kratom.name }}</span>
-          <span>{{ opt.kratom.description }}</span>
+          <div>
+            <span class="text-2xl font-semibold">{{ opt.goods.name }}</span>
+            <span class="opacity-0 group-hover:opacity-100 group-hover:bg-red-600 border group-hover:border-red-600 rounded-lg text-white group-hover:px-4 cursor-pointer" @click="handleDelete(opt)">Delete</span>
+          </div>
+          <span>{{ opt.goods.description }}</span>
           <div class="flex mt-auto">
             <button
               class="px-2 bg-main text-white hover:opacity-80"
@@ -39,13 +42,16 @@
             >
               +
             </button>
-            <span class="my-auto ml-4">{{ opt.kratom.stock }} left</span>
+            <span class="my-auto ml-4">{{ opt.goods.stock }} left</span>
           </div>
         </div>
       </div>
       <div class="flex justify-end">
-        <button class="py-2 px-3 bg-main rounded-md text-white" @click="handleCheckout">
+        <button v-if="cart.cart.length" class="py-2 px-3 bg-main rounded-md text-white" @click="handleCheckout">
           Checkout
+        </button>
+        <button v-else class="py-2 px-3 bg-main rounded-md text-white" @click="goTo('index')">
+          See our product
         </button>
       </div>
     </div>
@@ -66,10 +72,15 @@ export default {
   },
   mounted () {
     if (this.token) {
+      this.init()
+    }
+  },
+  methods: {
+    init () {
       const payload = {
         jwt: this.$store.state.jwt
       }
-      this.$axios.post('/kratom/cart/find', payload, {
+      this.$axios.post('/goods/cart/find', payload, {
         headers: {
           Authorization: `Bearer ${this.$store.state.token}`
         }
@@ -77,13 +88,11 @@ export default {
         const { data } = res
         this.cart = data.data
       })
-    }
-  },
-  methods: {
+    },
     changeTotal (data, payload) {
       if (payload === 'plus') {
-        if (data.buying >= data.kratom.stock) {
-          data.buying = Number(data.kratom.stock)
+        if (data.buying >= data.goods.stock) {
+          data.buying = Number(data.goods.stock)
         } else {
           data.buying += 1
         }
@@ -102,12 +111,22 @@ export default {
       const payload = {
         jwt: this.$store.state.jwt
       }
-      this.$axios.post('/kratom/cart/checkout', payload, {
+      this.$axios.post('/goods/cart/checkout', payload, {
         headers: {
           Authorization: `Bearer ${this.$store.state.token}`
         }
       }).then((res) => {
         console.log(res)
+      })
+    },
+    handleDelete (payload) {
+      this.$axios.delete(`/goods/cart/${payload.id}`, {
+        headers: {
+          Authorization: `Bearer ${this.$store.state.token}`
+        }
+      }).then(() => {
+        this.$toast.success('Cart item deleted')
+        this.init()
       })
     }
   }

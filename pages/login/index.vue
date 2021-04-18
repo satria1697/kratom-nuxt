@@ -1,8 +1,8 @@
 <template>
-  <div class="w-screen h-screen flex lg:items-center justify-center">
+  <div class="h-screen flex lg:items-center justify-center">
     <div
       class="flex flex-col border-2 rounded-md p-6 mx-10 lg:mx-0"
-      style="width: 400px; min-width: 300px; height: 350px; min-height: 350px"
+      style="width: 400px; min-width: 300px; height: 380px; min-height: 350px"
     >
       <div class="flex justify-between">
         <span class="text-3xl mb-3">Login</span>
@@ -22,9 +22,10 @@
       >
         {{ isLoading ? 'Logging in' : 'Login' }}
       </button>
-      <button class="bg-red-600 border border-red-600 text-white py-2 px-3 rounded-md hover:bg-white hover:text-red-600 transition-colors">
+      <button class="mb-3 bg-red-600 border border-red-600 text-white py-2 px-3 rounded-md hover:bg-white hover:text-red-600 transition-colors">
         Login via Google
       </button>
+      <span class="mx-auto">Not registered? <span class="underline hover:no-underline text-blue-700 cursor-pointer" @click="$router.push({name: 'register'})">Click Here!</span></span>
     </div>
   </div>
 </template>
@@ -52,7 +53,7 @@ export default {
             email: this.login.email,
             password: this.login.password
           })
-          .then((res) => {
+          .then(async (res) => {
             const { data } = res
             if (data.success) {
               this.$cookies.set('token', data.data.token, {
@@ -62,10 +63,14 @@ export default {
                 maxAge: 60 * 60 * 24 * 2
               })
               const decode = jwtDecode(data.data.jwt)
-              this.$store.commit('setToken', data.data.token)
-              this.$store.commit('setJwt', data.data.jwt)
-              this.$store.commit('setUserInfo', decode)
-              this.$router.push({ name: 'index' })
+              await this.$store.commit('setToken', data.data.token)
+              await this.$store.commit('setJwt', data.data.jwt)
+              await this.$store.commit('setUserInfo', decode)
+              if (this.$store.state.userInfo.level <= 3) {
+                await this.$router.push({ name: 'admin-goods' })
+              } else {
+                await this.$router.push({ name: 'index' })
+              }
             }
             this.isLoading = false
           })
