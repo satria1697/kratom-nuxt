@@ -1,6 +1,11 @@
 <template>
   <div class="container w-screen mx-auto">
     <img class="mx-auto mb-2 lg:w-1/4 w-2/3" alt="Logo-image" :src="require('../assets/png/logo.png')">
+    <select v-model="selectedCategory" class="rounded-md mb-3" @change="getGoods">
+      <option v-for="(item, index) in category" :key="index" :value="item">
+        {{ item.name }}
+      </option>
+    </select>
     <div class="grid lg:grid-cols-4 lg:gap-10 lg:flex-row mx-auto w-full">
       <div
         v-for="(item, idx) in goods"
@@ -23,6 +28,7 @@
 </template>
 
 <script>
+import qs from 'qs'
 export default {
   async asyncData ({ $axios }) {
     const res = await $axios.$get('/goods')
@@ -32,12 +38,42 @@ export default {
   data () {
     return {
       goods: [],
+      category: [{
+        id: 0,
+        name: 'All'
+      }],
+      selectedCategory: null,
       isLoading: false
     }
   },
+  created () {
+    this.init()
+  },
   methods: {
+    init () {
+      this.$axios.get('goods/category').then((res) => {
+        const { data } = res
+        data.data.forEach((val) => {
+          this.category.push(val)
+        })
+        this.selectedCategory = this.category[0]
+      })
+    },
     goTo (idx) {
       this.$router.push({ name: 'detail-id', params: { id: idx } })
+    },
+    getGoods () {
+      if (this.selectedCategory.id) {
+        this.$axios.get(`/goods?${qs.stringify({ category: this.selectedCategory.id })}`).then((res) => {
+          const { data } = res
+          this.goods = data.data
+        })
+      } else {
+        this.$axios.get('/goods').then((res) => {
+          const { data } = res
+          this.goods = data.data
+        })
+      }
     }
   }
 }
