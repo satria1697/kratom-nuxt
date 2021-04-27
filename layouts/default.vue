@@ -18,10 +18,10 @@ export default {
     const jwt = this.$cookies.get('jwt_token')
     const token = this.$cookies.get('token')
     if (jwt && token) {
-      const payload = jwtDecode(this.$cookies.get('jwt_token'))
+      const payload = jwtDecode(jwt)
       this.$store.commit('setUserInfo', payload)
-      this.$store.commit('setToken', this.$cookies.get('token'))
-      this.$store.commit('setJwt', this.$cookies.get('jwt_token'))
+      this.$store.commit('setToken', token)
+      this.$store.commit('setJwt', jwt)
     }
   }
 }

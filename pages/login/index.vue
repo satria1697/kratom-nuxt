@@ -74,10 +74,17 @@ export default {
             }
             this.isLoading = false
           })
-          .catch(() => {
-            this.$toast.error('Failed Login', {
-              timeout: 2000
-            })
+          .catch((err) => {
+            const { data } = err.response
+            if (data.message === 'email-not-verified') {
+              this.$toast.error('Email Not Verified', {
+                timeout: 2000
+              })
+            } else {
+              this.$toast.error('Failed Login', {
+                timeout: 2000
+              })
+            }
             this.isLoading = false
           })
       }

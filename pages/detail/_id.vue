@@ -3,7 +3,7 @@
     <div v-if="isLoading && !goods" class="mx-auto">
       <span class="animate-pulse">Loading Data</span>
     </div>
-    <div v-else class="flex flex-col lg:flex-row">
+    <div v-else-if="goods" class="flex flex-col lg:flex-row">
       <div class="w-11/12 mx-auto lg:w-1/2 mb-3 lg:mb-0">
         <img
           :src="
@@ -113,8 +113,6 @@ export default {
           if (res.status === 200) {
             this.goTo('cart')
           }
-        }).catch((err) => {
-          console.log(err)
         })
       } else {
         this.$toast.error('Total item cant empty')

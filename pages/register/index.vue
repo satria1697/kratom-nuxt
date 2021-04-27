@@ -49,7 +49,7 @@ export default {
         password: this.register.password
       }
       this.$axios.post('/register', payload).then(() => {
-        this.$router.push({ name: 'login' })
+        this.$router.push({ name: 'register-verification', params: { email: this.register.email } })
       }).finally(() => {
         this.isLoading = false
       })
