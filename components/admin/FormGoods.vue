@@ -162,20 +162,21 @@ export default {
         stock: this.goods.stock.toString(),
         image: this.goods.image,
         brief: this.goods.brief,
-        categoryId: this.goods.category.id
+        categoryId: this.goods.category.id,
+        jwt: this.$store.state.jwt
       }
 
       let res
       if (this.id === 0) {
         res = await this.$axios.post('/goods', payload, {
           headers: {
-            Authorization: 'Bearer ' + this.$cookies.get('token')
+            Authorization: 'Bearer ' + this.$store.state.token
           }
         })
       } else if (this.id > 0) {
         res = await this.$axios.post(`/goods/${this.id}`, payload, {
           headers: {
-            Authorization: 'Bearer ' + this.$cookies.get('token')
+            Authorization: 'Bearer ' + this.$store.state.token
           }
         })
       }
@@ -210,14 +211,13 @@ export default {
       img.src = url
       img.onload = () => {
         URL.revokeObjectURL(img.src)
-        console.log(img)
         const canvas = document.createElement('canvas')
         const ctx = canvas.getContext('2d')
         canvas.width = img.width
         canvas.height = img.height
         if (ctx) {
           ctx.drawImage(img, 0, 0)
-          this.goods.image = canvas.toDataURL('image/png')
+          this.goods.image = canvas.toDataURL('image/jpg')
         }
       }
     }

@@ -31,6 +31,7 @@
           <div
             v-else-if="token !== null && userInfo && userInfo.level >= 3"
             class="mr-3 lg:mr-6 cursor-pointer"
+            @click="goTo('profile')"
           >
             <img class="w-6 lg:w-8" :src="require('../assets/svg/profile-user.svg')">
           </div>

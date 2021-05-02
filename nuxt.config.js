@@ -80,7 +80,7 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
   // server: {
-  //   host: '127.0.0.1'
+  //  host: '192.168.100.140'
   // },
   env: {
     JWT_SECRET: 'bvMp8EzdcXZjUn0f5K3vOCblCL6xoRk4'

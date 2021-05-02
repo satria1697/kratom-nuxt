@@ -88,7 +88,8 @@ export default {
         text: this.article.text,
         show: this.article.show ? 1 : 0,
         brief: this.article.brief,
-        image: this.article.image
+        image: this.article.image,
+        jwt: this.$store.state.jwt
       }
       if (this.$route.params.slug === 'add') {
         this.$axios.post('/article', payload, {
@@ -122,7 +123,7 @@ export default {
         canvas.height = img.height
         if (ctx) {
           ctx.drawImage(img, 0, 0)
-          this.article.image = canvas.toDataURL('image/png')
+          this.article.image = canvas.toDataURL('image/jpg')
         }
       }
     }

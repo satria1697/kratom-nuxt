@@ -110,7 +110,7 @@ export default {
     },
     handleDelete (payload) {
       this.$axios
-        .delete(`/goods/${payload}`, {
+        .delete(`/goods/${payload}`, { jwt: this.$store.state.jwt }, {
           headers: {
             Authorization: `Bearer ${this.$store.state.token}`
           }
