@@ -14,7 +14,7 @@
     <div class="flex gap-x-10 w-3/4">
       <div class="flex flex-col mb-3 w-1/2">
         <span>Email</span>
-        <input v-model="profile.email" class="rounded-md" type="text">
+        <input v-model="profile.email" disabled class="rounded-md bg-gray-300" type="text">
       </div>
       <div class="flex flex-col mb-3 w-1/2">
         <span>Position</span>
@@ -28,20 +28,56 @@
       </div>
       <div class="w-1/2" />
     </div>
+    <div class="flex w-full">
+      <div class="flex mb-3">
+        <button class="py-2 px-3 rounded-md w-full" :class="isLoading ? 'bg-white text-main' : 'bg-main text-white'" @click="handleUpdate">
+          Update
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'SettingBar',
+  props: {
+    user: {
+      type: Object,
+      required: true
+    }
+  },
   data () {
     return {
       profile: {
-        name: '',
-        company: '',
-        email: '',
-        position: '',
+        name: this.user.profile.name || '',
+        company: this.user.profile.company || '',
+        email: this.user.email || '',
+        position: this.user.profile.position || '',
         password: ''
+      },
+      isLoading: false
+    }
+  },
+  methods: {
+    async handleUpdate () {
+      this.isLoading = true
+      const payload = {
+        name: this.profile.name,
+        email: this.profile.email,
+        position: this.profile.position,
+        company: this.profile.company,
+        jwt: this.$store.state.jwt
+      }
+      const res = await this.$axios.post(`/profile/${this.user.id}`, payload, {
+        headers: {
+          Authorization: `Bearer ${this.$store.state.token}`
+        }
+      })
+      const { data } = res
+      if (data.success) {
+        this.$emit('get-data')
+        this.isLoading = false
       }
     }
   }

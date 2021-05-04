@@ -7,8 +7,8 @@
         </div>
       </div>
       <div class="w-3/4">
-        <profile-bar v-if="sidebar.profile" />
-        <setting-bar v-if="sidebar.setting" />
+        <profile-bar v-if="sidebar.profile" :user="user" />
+        <setting-bar v-if="sidebar.setting" :user="user" @get-data="init" />
         <verification-bar v-if="sidebar.verification" />
       </div>
     </div>
@@ -39,13 +39,25 @@ export default {
         profile: false,
         verification: false,
         setting: false
-      }
+      },
+      user: {}
     }
   },
-  mounted () {
+  computed: {
+    userId () {
+      return this.$store.state.userInfo.id
+    }
+  },
+  async mounted () {
+    await this.init()
     this.sidebar.profile = true
   },
   methods: {
+    async init () {
+      const res = await this.$axios.get(`/profile/${this.userId}`)
+      const { data } = res
+      this.user = data.data
+    },
     openSidebar (payload) {
       for (const sb in this.sidebar) {
         this.sidebar[sb] = false
