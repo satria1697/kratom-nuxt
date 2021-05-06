@@ -51,7 +51,11 @@ export default {
       this.$axios.post('/register', payload).then(() => {
       }).finally(() => {
         this.isLoading = false
+        this.goTo('register-done')
       })
+    },
+    goTo (payload) {
+      this.$router.push(payload)
     }
   }
 }

@@ -9,7 +9,7 @@
       <div class="w-3/4">
         <profile-bar v-if="sidebar.profile" :user="user" />
         <setting-bar v-if="sidebar.setting" :user="user" @get-data="init" />
-        <verification-bar v-if="sidebar.verification" />
+        <verification-bar v-if="sidebar.verification" :user="user" @get-data="init" />
       </div>
     </div>
   </div>
