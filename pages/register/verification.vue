@@ -1,10 +1,10 @@
 <template>
   <div class="h-screen flex lg:items-center justify-center">
     <div
-      class="flex flex-col border-2 rounded-md p-6 mx-10 lg:mx-0"
-      style="width: 100%; min-width: 100px; height: 100%; max-height: 150px"
+      class="flex flex-col border-2 max-w-xs rounded-md p-6 mx-10 lg:mx-0"
+      style="width: 100%; height: 100%; max-height: 150px"
     >
-      <span class="animate-pulse mx-auto">Your Email is being verified</span>
+      <span class="animate-pulse text-center text-xl mt-6">Your Email is being verified... <br>Please wait</span>
     </div>
   </div>
 </template>
