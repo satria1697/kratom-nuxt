@@ -3,16 +3,34 @@
     <span class="text-2xl font-semibold mb-3">Verification</span>
     <div class="flex gap-x-10 w-3/4">
       <div class="flex flex-col mb-3 w-1/2">
-        <span>Company ID</span>
-        <input class="rounded-md" type="file" accept="image/jpeg, image/png" @change="handleImage($event, 'companycard')">
-        <img v-if="verification.company_card" :src="verification.company_card" alt="companyCard">
+        <div class="flex mb-3">
+          <div class="relative my-auto">
+            <input class="absolute w-8 opacity-0 z-10" title="upload" type="file" accept="image/jpeg, image/png" @change="handleImage($event, 'companycard')">
+            <div class="absolute w-8">
+              <img :src="require('../../assets/svg/upload.svg')" alt="upload">
+            </div>
+            <div class="ml-9 my-auto">
+              <span>Company Card</span>
+            </div>
+          </div>
+        </div>
         <span class="bg-main rounded-full py-2 px-3 my-4 text-white">{{ verification.company_status.description }}</span>
+        <img v-if="verification.company_card" :src="verification.company_card" alt="companyCard">
       </div>
       <div class="flex flex-col mb-3 w-1/2">
-        <span>ID Card</span>
-        <input class="rounded-md" type="file" accept="image/jpeg, image/png" @change="handleImage($event, 'idcard')">
-        <img v-if="verification.id_card" :src="verification.id_card" alt="idCard">
+        <div class="flex mb-3">
+          <div class="relative my-auto">
+            <input class="absolute w-8 opacity-0 z-10" title="upload" type="file" accept="image/jpeg, image/png" @change="handleImage($event, 'idcard')">
+            <div class="absolute w-8">
+              <img :src="require('../../assets/svg/upload.svg')" alt="upload">
+            </div>
+            <div class="ml-9 my-auto">
+              <span>ID Card</span>
+            </div>
+          </div>
+        </div>
         <span class="bg-main rounded-full py-2 px-3 my-4 text-white">{{ verification.id_status.description }}</span>
+        <img v-if="verification.id_card" :src="verification.id_card" alt="idCard">
       </div>
     </div>
     <div class="flex gap-x-10 w-3/4">
@@ -23,7 +41,7 @@
       <div class="w-1/2" />
     </div>
     <button class="bg-main rounded-full py-2 px-3 my-4 text-white rounded-md" @click="handleUpload">
-      Upload
+      Submit
     </button>
   </div>
 </template>
