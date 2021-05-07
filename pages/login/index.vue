@@ -15,17 +15,12 @@
       <input v-model="login.email" class="rounded-md mb-3" type="email" @keyup.enter="handleLogin">
       <span class="mb-1">Password</span>
       <input v-model="login.password" class="rounded-md mb-3" type="password" @keyup.enter="handleLogin">
-      <button
-        :disabled="isLoading"
-        class="mb-3 bg-main border border-main text-white py-2 px-3 rounded-md hover:bg-white hover:text-main transition-colors"
-        @click="handleLogin"
-      >
-        {{ isLoading ? 'Logging in' : 'Login' }}
-      </button>
-      <button class="mb-3 bg-red-600 border border-red-600 text-white py-2 px-3 rounded-md hover:bg-white hover:text-red-600 transition-colors">
-        Login via Google
-      </button>
-      <span class="mx-auto">Not registered? <span class="underline hover:no-underline text-blue-700 cursor-pointer" @click="$router.push({name: 'register'})">Click Here!</span></span>
+      <krt-button
+        :text="isLoading ? 'Logging in' : 'Login'"
+        :is-loading="isLoading"
+        @onClick="handleLogin"
+      />
+      <krt-button text="Register" @onClick="$router.push({name: 'register'})" />
     </div>
   </div>
 </template>
@@ -46,8 +41,10 @@ export default {
   methods: {
     async handleLogin () {
       this.isLoading = true
-      if (this.login.email !== '' && this.login.password !== '') {
-        // await this.$auth.loginWith('laravelPassport')
+      if (!this.login.email || !this.login.password) {
+        this.$toast.error('Please fill email and password')
+        this.isLoading = false
+      } else {
         await this.$axios
           .post('/login', {
             email: this.login.email,
