@@ -52,11 +52,13 @@
       </div>
       <div class="w-1/2" />
     </div>
-    <krt-button text="Submit" @onClick="handleUpload" />
+    <krt-button text="Submit" @on-click="handleUpload" />
   </div>
 </template>
 
 <script>
+import { imgToBase64 } from '~/lib/misc/helper'
+
 export default {
   name: 'VerificationBar',
   props: {
@@ -82,22 +84,9 @@ export default {
         console.log(res)
       })
     },
-    handleImage (e, payload) {
-      const url = URL.createObjectURL(e.target.files[0])
-      const img = new Image()
-      img.src = url
-      img.onload = () => {
-        URL.revokeObjectURL(img.src)
-        const canvas = document.createElement('canvas')
-        const ctx = canvas.getContext('2d')
-        canvas.width = img.width
-        canvas.height = img.height
-        if (ctx) {
-          ctx.drawImage(img, 0, 0)
-          const base64 = canvas.toDataURL('image/png')
-          if (payload === 'idcard') { this.verification.id_card = base64 } else if (payload === 'companycard') { this.verification.company_card = base64 }
-        }
-      }
+    async handleImage (e, payload) {
+      const base64 = await imgToBase64(e)
+      if (payload === 'idcard') { this.verification.id_card = base64 } else if (payload === 'companycard') { this.verification.company_card = base64 }
     }
   }
 }

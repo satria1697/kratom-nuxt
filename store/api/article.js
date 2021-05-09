@@ -1,12 +1,16 @@
 import { article } from '~/lib/misc/endpoints'
 
 export const state = () => ({
-  articles: []
+  articles: [],
+  article: null
 })
 
 export const mutations = {
   setArticlesData (state, payload) {
     state.articles = payload
+  },
+  setArticleData (state, payload) {
+    state.article = payload
   }
 }
 
@@ -14,7 +18,11 @@ export const actions = {
   async getArticles ({ commit }) {
     const res = await this.$axios.$get(article())
     const { data } = res
-    console.log(data)
     commit('setArticlesData', data)
+  },
+  async postArticle ({ commit, dispatch }, payload) {
+    dispatch('setHeader', null, { root: true })
+    const res = await this.$axios.$post(article(payload.slug), payload)
+    return res.data
   }
 }

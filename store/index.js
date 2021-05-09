@@ -15,3 +15,9 @@ export const mutations = {
     state.jwt = payload
   }
 }
+
+export const actions = {
+  setHeader ({ state }) {
+    this.$axios.setHeader('Authorization', `Bearer ${state.token}`)
+  }
+}

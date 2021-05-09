@@ -68,6 +68,7 @@
 
 <script>
 import SimpleMde from '~/components/SimpleMde'
+import { imgToBase64 } from '~/lib/misc/helper'
 export default {
   components: { SimpleMde },
   middleware: 'admin',
@@ -103,7 +104,7 @@ export default {
     },
     onSubmit () {
       this.isLoading = true
-      const payload = {
+      let payload = {
         title: this.article.title,
         text: this.article.text,
         show: this.article.show ? 1 : 0,
@@ -112,40 +113,16 @@ export default {
         jwt: this.$store.state.jwt
       }
       if (this.$route.params.slug === 'add') {
-        this.$axios.post('/article', payload, {
-          headers: {
-            Authorization: `Bearer ${this.$store.state.token}`
-          }
-        }).finally(() => {
-          this.handleClear()
-          this.isLoading = false
-        })
+        payload = { ...payload, slug: '' }
+        this.$store.dispatch('api/article/postArticle', payload)
       } else {
-        this.$axios.post(`/article/${this.$route.params.slug}`, payload, {
-          headers: {
-            Authorization: `Bearer ${this.$store.state.token}`
-          }
-        }).finally(() => {
-          this.handleClear()
-          this.isLoading = false
-        })
+        payload = { ...payload, slug: this.article.slug }
+        this.$store.dispatch('api/article/postArticle', payload)
       }
+      this.isLoading = false
     },
-    handleImage (e) {
-      const url = URL.createObjectURL(e.target.files[0])
-      const img = new Image()
-      img.src = url
-      img.onload = () => {
-        URL.revokeObjectURL(img.src)
-        const canvas = document.createElement('canvas')
-        const ctx = canvas.getContext('2d')
-        canvas.width = img.width
-        canvas.height = img.height
-        if (ctx) {
-          ctx.drawImage(img, 0, 0)
-          this.article.image = canvas.toDataURL('image/jpg')
-        }
-      }
+    async handleImage (e) {
+      this.article.image = await imgToBase64(e)
     }
   }
 }

@@ -102,6 +102,8 @@
 </template>
 
 <script>
+import { imgToBase64 } from '~/lib/misc/helper'
+
 export default {
   props: {
     id: {
@@ -154,7 +156,7 @@ export default {
     },
     async submit () {
       this.isLoading = true
-      const payload = {
+      let payload = {
         id: this.id,
         name: this.goods.name,
         description: this.goods.description,
@@ -168,17 +170,11 @@ export default {
 
       let res
       if (this.id === 0) {
-        res = await this.$axios.post('/goods', payload, {
-          headers: {
-            Authorization: 'Bearer ' + this.$store.state.token
-          }
-        })
+        payload = { ...payload, id: '' }
+        res = await this.$store.dispatch('api/goods/postGoods', payload)
       } else if (this.id > 0) {
-        res = await this.$axios.post(`/goods/${this.id}`, payload, {
-          headers: {
-            Authorization: 'Bearer ' + this.$store.state.token
-          }
-        })
+        payload = { ...payload, id: this.id }
+        res = await this.$store.dispatch('api/goods/postGoods', payload)
       }
       this.isLoading = false
       if (res) {
@@ -205,21 +201,8 @@ export default {
         }, 3000)
       }
     },
-    handleImage (e) {
-      const url = URL.createObjectURL(e.target.files[0])
-      const img = new Image()
-      img.src = url
-      img.onload = () => {
-        URL.revokeObjectURL(img.src)
-        const canvas = document.createElement('canvas')
-        const ctx = canvas.getContext('2d')
-        canvas.width = img.width
-        canvas.height = img.height
-        if (ctx) {
-          ctx.drawImage(img, 0, 0)
-          this.goods.image = canvas.toDataURL('image/jpg')
-        }
-      }
+    async handleImage (e) {
+      this.goods.image = await imgToBase64(e)
     }
   }
 }
