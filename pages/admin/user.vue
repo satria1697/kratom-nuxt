@@ -65,9 +65,8 @@ export default {
   },
   methods: {
     async init () {
-      const res = await this.$axios.get('/profile')
-      const { data } = res
-      this.users = data.data
+      await this.$store.dispatch('api/profile/getProfiles')
+      this.users = this.$store.state.api.profile.profiles
     },
     handleButton (payload) {
       this.$router.push({ name: 'admin-add-user-detail', params: { payload } })

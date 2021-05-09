@@ -30,9 +30,6 @@ export default {
     await store.dispatch('api/article/getArticles')
     return { articles: store.state.api.article.articles }
   },
-  mounted () {
-    console.log(this.$store.state)
-  },
   methods: {
     convertTime (payload) {
       return dayjs(payload).format('dddd, DD/MMMM/YYYY HH:mm')

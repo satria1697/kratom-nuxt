@@ -54,9 +54,8 @@ export default {
   },
   methods: {
     async init () {
-      const res = await this.$axios.get(`/profile/${this.userId}`)
-      const { data } = res
-      this.user = data.data
+      await this.$store.dispatch('api/profile/getProfileById', this.userId)
+      this.user = this.$store.state.api.profile.profile
     },
     openSidebar (payload) {
       for (const sb in this.sidebar) {

@@ -132,6 +132,7 @@ export default {
     }
   },
   created () {
+    console.log(this.$store)
     this.$axios.get('goods/category').then((res) => {
       const { data } = res
       this.categories = data.data

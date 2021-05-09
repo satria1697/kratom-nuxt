@@ -20,6 +20,11 @@ export const actions = {
     const { data } = res
     commit('setArticlesData', data)
   },
+  async getArticleById ({ commit }, id) {
+    const res = await this.$axios.$get(article(id))
+    const { data } = res
+    commit('setArticle', data)
+  },
   async postArticle ({ commit, dispatch }, payload) {
     dispatch('setHeader', null, { root: true })
     const res = await this.$axios.$post(article(payload.slug), payload)
