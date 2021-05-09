@@ -5,7 +5,7 @@ export const state = () => ({
   good: null
 })
 
-export const mutation = {
+export const mutations = {
   setGoodsData (state, payload) {
     state.goods = payload
   },
@@ -14,9 +14,9 @@ export const mutation = {
   }
 }
 
-export const action = {
+export const actions = {
   async postGoods ({ commit, dispatch }, payload) {
-    dispatch('api/setHeader')
+    dispatch('setHeader', null, { root: true })
     const res = await this.$axios.post(goods(payload.id), payload)
     return res.data
   },

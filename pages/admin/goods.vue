@@ -91,7 +91,7 @@ export default {
     async init () {
       this.isLoading = true
       await this.$store.dispatch('api/goods/getGoodsData')
-      this.goods = this.$store.state.api.good.goods
+      this.goods = this.$store.state.api.goods.goods
       this.isLoading = false
     },
     handleModal (payload) {

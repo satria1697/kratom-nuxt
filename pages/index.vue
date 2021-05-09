@@ -46,7 +46,7 @@ export default {
     }
   },
   created () {
-    console.log(this.$store)
+    console.log(this.$store.dispatch('api/goods/getGoodsData'))
     this.init()
   },
   methods: {
