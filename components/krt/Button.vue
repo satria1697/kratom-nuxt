@@ -11,7 +11,11 @@ export default {
       type: String,
       required: true
     },
-    isLoading: Boolean
+    isLoading: Boolean,
+    variant: {
+      type: String,
+      default: 'primary'
+    }
   }
 }
 </script>

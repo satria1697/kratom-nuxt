@@ -30,30 +30,25 @@
         <div class="border-2 rounded-md py-3 px-4">
           <span class="font-semibold text-xl">Set Amount</span>
           <div class="flex mb-3">
-            <button
-              class="px-2 bg-main text-white hover:opacity-80"
-              @click="changeTotal('minus')"
-            >
-              -
-            </button>
+            <krt-button
+              text="-"
+              @onClick="changeTotal('minus')"
+            />
             <input
               v-model="total"
-              class="focus:outline-none px-2 py-1"
-              style="width: 50px"
+              class="focus:outline-none px-2 py-1 w-[50px] h-[42px]"
               type="number"
               @change="changeTotal"
             >
-            <button
-              class="px-2 bg-main text-white hover:opacity-80"
-              @click="changeTotal('plus')"
-            >
-              +
-            </button>
+            <krt-button
+              text="+"
+              @onClick="changeTotal('plus')"
+            />
             <span class="my-auto ml-4">{{ goods.stock }} left</span>
           </div>
-          <button class="py-2 px-3 bg-main text-white rounded-md" @click="sendCart()">
+          <krt-button text="Add to Cart" @onClick="sendCart()">
             Add to Cart
-          </button>
+          </krt-button>
         </div>
       </div>
     </div>
