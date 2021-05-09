@@ -19,10 +19,9 @@
 import MarkdownIt from 'markdown-it'
 const md = new MarkdownIt()
 export default {
-  async asyncData ({ params, $axios }) {
-    const res = await $axios.get(`/article/${params.slug}`)
-    const { data } = res
-    return { article: data.data }
+  async asyncData ({ params, store }) {
+    await store.dispatch('api/article/getArticleById', params.slug)
+    return { article: store.state.api.article.article }
   },
   data () {
     return {

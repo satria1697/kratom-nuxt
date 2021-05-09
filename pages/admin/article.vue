@@ -72,14 +72,11 @@ export default {
     this.init()
   },
   methods: {
-    init () {
+    async init () {
       this.isLoading = true
-      this.$axios.get('/article').then((res) => {
-        const { data } = res
-        this.articles = data.data
-      }).finally(() => {
-        this.isLoading = false
-      })
+      await this.$store.dispatch('api/article/getArticles')
+      this.articles = this.$store.state.api.article.articles
+      this.isLoading = false
     },
     handleDelete (payload) {
       this.$axios.delete(`/article/${payload}`, { jwt: this.$store.state.jwt }, {

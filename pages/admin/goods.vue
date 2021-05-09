@@ -88,16 +88,11 @@ export default {
     this.init()
   },
   methods: {
-    init () {
+    async init () {
       this.isLoading = true
-      this.$axios.get('/goods').then((res) => {
-        const { data } = res
-        if (data.success) {
-          this.goods = data.data
-        }
-      }).finally(() => {
-        this.isLoading = false
-      })
+      await this.$store.dispatch('api/good/getGoods')
+      this.goods = this.$store.state.api.good.goods
+      this.isLoading = false
     },
     handleModal (payload) {
       if (payload >= 0 && !this.modal.goods) {

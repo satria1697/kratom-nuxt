@@ -57,10 +57,9 @@
 
 <script>
 export default {
-  async asyncData ({ params, $axios }) {
-    const res = await $axios.$get(`/goods/${params.id}`)
-    const { data } = res
-    return { goods: data }
+  async asyncData ({ params, store }) {
+    await store.dispatch('api/good/getGoodById', params.id)
+    return { goods: store.state.api.good.good }
   },
   data () {
     return {

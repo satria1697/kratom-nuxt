@@ -30,10 +30,9 @@
 <script>
 import qs from 'qs'
 export default {
-  async asyncData ({ $axios }) {
-    const res = await $axios.$get('/goods')
-    const { data } = res
-    return { goods: data }
+  async asyncData ({ store }) {
+    await store.dispatch('api/good/getGoods')
+    return { goods: store.state.api.good.goods }
   },
   data () {
     return {
@@ -50,29 +49,25 @@ export default {
     this.init()
   },
   methods: {
-    init () {
-      this.$axios.get('goods/category').then((res) => {
-        const { data } = res
-        data.data.forEach((val) => {
-          this.category.push(val)
-        })
-        this.selectedCategory = this.category[0]
+    async init () {
+      await this.$store.dispatch('api/category/getCategory')
+      const res = this.$store.state.api.category.category
+      res.forEach((data) => {
+        this.category.push(data)
       })
+      this.selectedCategory = this.category[0]
     },
     goTo (idx) {
       this.$router.push({ name: 'detail-id', params: { id: idx } })
     },
-    getGoods () {
+    async getGoods () {
       if (this.selectedCategory.id) {
-        this.$axios.get(`/goods?${qs.stringify({ category: this.selectedCategory.id })}`).then((res) => {
-          const { data } = res
-          this.goods = data.data
-        })
+        const res = await this.$axios.get(`/goods?${qs.stringify({ category: this.selectedCategory.id })}`)
+        const { data } = res
+        this.goods = data.data
       } else {
-        this.$axios.get('/goods').then((res) => {
-          const { data } = res
-          this.goods = data.data
-        })
+        await this.$store.dispatch('api/good/getGoods')
+        this.goods = this.$store.state.api.good.goods
       }
     }
   }
