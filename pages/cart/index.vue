@@ -12,7 +12,12 @@
       <div v-if="!cart.cart.length" class="flex justify-center items-center">
         <span class="text-4xl">No Cart</span>
       </div>
-      <div v-for="(opt, idx) in cart.cart" v-else :key="idx" class="group mb-3 flex lg:flex-row flex-col border-2 border-main rounded-lg p-14">
+      <div
+        v-for="(opt, idx) in cart.cart"
+        v-else
+        :key="idx"
+        class="group mb-3 flex lg:flex-row flex-col border-2 border-main rounded-lg p-14"
+      >
         <img class="w-full lg:w-1/6" :src="opt.goods.image ? opt.goods.image : 'https://dummyimage.com/600x400/000/fff'" :alt="opt.goods.name">
         <div class="w-full lg:w-2/3 flex flex-col ml-3">
           <div>

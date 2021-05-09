@@ -12,9 +12,19 @@
         >Back</span>
       </div>
       <span class="mb-1">Email</span>
-      <input v-model="login.email" class="rounded-md mb-3" type="email" @keyup.enter="handleLogin">
+      <input
+        v-model="login.email"
+        class="rounded-md mb-3"
+        type="email"
+        @keyup.enter="handleLogin"
+      >
       <span class="mb-1">Password</span>
-      <input v-model="login.password" class="rounded-md mb-3" type="password" @keyup.enter="handleLogin">
+      <input
+        v-model="login.password"
+        class="rounded-md mb-3"
+        type="password"
+        @keyup.enter="handleLogin"
+      >
       <krt-button
         :text="isLoading ? 'Logging in' : 'Login'"
         :is-loading="isLoading"

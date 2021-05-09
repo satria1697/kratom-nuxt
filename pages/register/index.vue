@@ -12,11 +12,26 @@
         >Back to login</span>
       </div>
       <span class="mb-1">Name</span>
-      <input v-model="register.name" class="rounded-md mb-3" type="text" @keyup.enter="onSubmit">
+      <input
+        v-model="register.name"
+        class="rounded-md mb-3"
+        type="text"
+        @keyup.enter="onSubmit"
+      >
       <span class="mb-1">Email</span>
-      <input v-model="register.email" class="rounded-md mb-3" type="email" @keyup.enter="onSubmit">
+      <input
+        v-model="register.email"
+        class="rounded-md mb-3"
+        type="email"
+        @keyup.enter="onSubmit"
+      >
       <span class="mb-1">Password</span>
-      <input v-model="register.password" class="rounded-md mb-3" type="password" @keyup.enter="onSubmit">
+      <input
+        v-model="register.password"
+        class="rounded-md mb-3"
+        type="password"
+        @keyup.enter="onSubmit"
+      >
       <krt-button
         :text="isLoading ? 'Registering' : 'Register'"
         :is-loading="isLoading"

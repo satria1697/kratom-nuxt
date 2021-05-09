@@ -5,7 +5,13 @@
       <div class="flex flex-col mb-3 w-1/2">
         <div class="flex mb-3">
           <div class="relative my-auto">
-            <input class="absolute w-8 opacity-0 z-10" title="upload" type="file" accept="image/jpeg, image/png" @change="handleImage($event, 'companycard')">
+            <input
+              class="absolute w-8 opacity-0 z-10"
+              title="upload"
+              type="file"
+              accept="image/jpeg, image/png"
+              @change="handleImage($event, 'companycard')"
+            >
             <div class="absolute w-8">
               <img :src="require('../../assets/svg/upload.svg')" alt="upload">
             </div>
@@ -20,7 +26,13 @@
       <div class="flex flex-col mb-3 w-1/2">
         <div class="flex mb-3">
           <div class="relative my-auto">
-            <input class="absolute w-8 opacity-0 z-10" title="upload" type="file" accept="image/jpeg, image/png" @change="handleImage($event, 'idcard')">
+            <input
+              class="absolute w-8 opacity-0 z-10"
+              title="upload"
+              type="file"
+              accept="image/jpeg, image/png"
+              @change="handleImage($event, 'idcard')"
+            >
             <div class="absolute w-8">
               <img :src="require('../../assets/svg/upload.svg')" alt="upload">
             </div>

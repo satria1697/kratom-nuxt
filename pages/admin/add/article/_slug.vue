@@ -7,7 +7,12 @@
           <span class="text-lg">
             Title
           </span>
-          <input v-model="article.title" class="rounded-md w-full" type="text" placeholder="Input article Title">
+          <input
+            v-model="article.title"
+            class="rounded-md w-full"
+            type="text"
+            placeholder="Input article Title"
+          >
         </div>
         <div class="my-auto w-full lg:w-1/6">
           <input v-model="article.show" type="checkbox">
@@ -18,13 +23,23 @@
         <span class="text-lg">
           Brief
         </span>
-        <input v-model="article.brief" class="rounded-md w-full" type="text" placeholder="Input article brief description">
+        <input
+          v-model="article.brief"
+          class="rounded-md w-full"
+          type="text"
+          placeholder="Input article brief description"
+        >
       </div>
       <div
         class="flex flex-col mb-3"
       >
         <p>Image</p>
-        <input class="mb-3" type="file" accept="image/jpeg, image/png" @change="handleImage">
+        <input
+          class="mb-3"
+          type="file"
+          accept="image/jpeg, image/png"
+          @change="handleImage"
+        >
         <img
           v-if="article.image !== ''"
           :src="article.image"
@@ -39,7 +54,12 @@
       <button class="rounded-md bg-main hover:bg-white border border-main text-white hover:text-main py-2 px-3 transition-colors w-[150px]" @click="handleClear">
         Clear
       </button>
-      <button :disabled="isLoading" :class="{'cursor-not-allowed': isLoading}" class="rounded-md bg-yellow-400 hover:bg-white border border-yellow-400 text-white hover:text-yellow-400 py-2 px-3 transition-colors w-[150px]" @click="onSubmit">
+      <button
+        :disabled="isLoading"
+        :class="{'cursor-not-allowed': isLoading}"
+        class="rounded-md bg-yellow-400 hover:bg-white border border-yellow-400 text-white hover:text-yellow-400 py-2 px-3 transition-colors w-[150px]"
+        @click="onSubmit"
+      >
         Submit
       </button>
     </div>

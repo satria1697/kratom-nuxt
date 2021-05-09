@@ -14,7 +14,12 @@
     <div class="flex gap-x-10 w-3/4">
       <div class="flex flex-col mb-3 w-1/2">
         <span>Email</span>
-        <input v-model="profile.email" disabled class="rounded-md bg-gray-300" type="text">
+        <input
+          v-model="profile.email"
+          disabled
+          class="rounded-md bg-gray-300"
+          type="text"
+        >
       </div>
       <div class="flex flex-col mb-3 w-1/2">
         <span>Position</span>
