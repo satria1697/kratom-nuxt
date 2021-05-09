@@ -5,14 +5,29 @@
       <span>Loading Data</span>
     </div>
     <template v-else>
-      <div class="flex w-full">
-        <div class="flex flex-col mb-3 w-1/2">
+      <div class="flex w-full mb-3">
+        <div class="flex flex-col w-1/3">
           <span>Name</span>
           <span>{{ user.profile.name || '-' }}</span>
         </div>
-        <div class="flex flex-col mb-3 w-1/2">
+        <div class="flex flex-col w-1/3">
           <span>Email</span>
           <span>{{ user.email || '-' }}</span>
+        </div>
+        <div class="flex flex-col w-1/3">
+          <span>Level</span>
+          <select
+            v-model="user.level.id"
+            class="rounded-md w-1/2"
+          >
+            <option
+              v-for="(item, index) in level"
+              :key="index"
+              :value="item.id"
+            >
+              {{ item.description }}
+            </option>
+          </select>
         </div>
       </div>
       <div class="flex">
@@ -82,7 +97,8 @@ export default {
   data () {
     return {
       user: null,
-      status: []
+      status: [],
+      level: []
     }
   },
   mounted () {
@@ -92,11 +108,19 @@ export default {
     async init () {
       await this.fetchUserData()
       await this.fetchStatusData()
+      await this.fetchLevelData()
     },
     async fetchUserData () {
       const res = await this.$axios.get(`/profile/${this.$route.params.payload}`)
       const { data } = res
       this.user = data.data
+    },
+    async fetchLevelData () {
+      const res = await this.$axios.post('/level', {
+        jwt: this.$store.state.jwt
+      })
+      const { data } = res
+      this.level = data.data
     },
     async  fetchStatusData () {
       const res = await this.$axios.get('/id.verification/status')
@@ -107,13 +131,11 @@ export default {
       const payload = {
         companyCardStatus: this.user.verification.company_card_status,
         idCardStatus: this.user.verification.id_card_status,
+        level: this.user.level.id,
         jwt: this.$store.state.jwt
       }
-      const res = await this.$axios.post(`/id.verification/updateStatus/${this.user.verification.id}`, payload, {
-        Header: {
-          Authorization: `Bearer ${this.$store.state.token}`
-        }
-      })
+      this.$axios.setHeader('Authorization', `Bearer ${this.$store.state.token}`)
+      const res = await this.$axios.post(`/id.verification/updateStatus/${this.user.verification.id}`, payload)
       const { data } = res
       if (data.data) {
         await this.init()

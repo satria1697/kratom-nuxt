@@ -29,42 +29,19 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    '@nuxtjs/auth-next',
     'cookie-universal-nuxt',
     ['vue-toastification/nuxt', {
 
       draggable: false
     }]
   ],
-
-  proxy: {
-    '/backend': {
-      target: 'http://127.0.0.1:8000',
-      pathRewrite: { '^/backend': '/' }
-    }
-  },
-
-  auth: {
-    redirect: {
-      login: '/'
-    },
-    strategies: {
-      laravelPassport: {
-        provider: 'laravel/passport',
-        url: 'http://127.0.0.1:8000',
-        clientId: 'tUyvuyNRhWU7flffv0RTFl9aWz2iE5KTYHL94SXH',
-        clientSecret: 'MX33GCOLQfIqfYlJuPEZ8umcIEWh86zidNnRibSN',
-        redirectUri: 'http://localhost:3000'
-      }
-    }
-  },
-
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     baseURL: 'http://127.0.0.1:8000/api',
     post: {
       'content-type': 'application/x-www-form-urlencoded'
-    }
+    },
+    credentials: true
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
