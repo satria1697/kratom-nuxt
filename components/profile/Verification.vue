@@ -14,7 +14,7 @@
             </div>
           </div>
         </div>
-        <span class="bg-main rounded-full py-2 px-3 my-4 text-white">{{ verification.company_status.description }}</span>
+        <span :style="{'background-color': verification.company_status.color}" class="rounded-full py-2 px-3 my-4 text-white">{{ verification.company_status.description }}</span>
         <img v-if="verification.company_card" :src="verification.company_card" alt="companyCard">
       </div>
       <div class="flex flex-col mb-3 w-1/2">
@@ -29,7 +29,7 @@
             </div>
           </div>
         </div>
-        <span class="bg-main rounded-full py-2 px-3 my-4 text-white">{{ verification.id_status.description }}</span>
+        <span :style="{'background-color': verification.id_status.color}" class="rounded-full py-2 px-3 my-4 text-white">{{ verification.id_status.description }}</span>
         <img v-if="verification.id_card" :src="verification.id_card" alt="idCard">
       </div>
     </div>
@@ -40,9 +40,7 @@
       </div>
       <div class="w-1/2" />
     </div>
-    <button class="bg-main rounded-full py-2 px-3 my-4 text-white rounded-md" @click="handleUpload">
-      Submit
-    </button>
+    <krt-button text="Submit" @onClick="handleUpload" />
   </div>
 </template>
 

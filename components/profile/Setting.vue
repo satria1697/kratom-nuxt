@@ -30,9 +30,9 @@
     </div>
     <div class="flex w-full">
       <div class="flex mb-3">
-        <button class="py-2 px-3 rounded-md w-full" :class="isLoading ? 'bg-white text-main' : 'bg-main text-white'" @click="handleUpdate">
+        <krt-button :text="isLoading ? 'Updating' : 'Update'" :is-loading="isLoading" @onClick="handleUpdate">
           Update
-        </button>
+        </krt-button>
       </div>
     </div>
   </div>
