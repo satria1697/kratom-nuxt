@@ -26,10 +26,12 @@
 <script>
 import dayjs from 'dayjs'
 export default {
-  async asyncData ({ $axios }) {
-    const res = await $axios.get('/article')
-    const { data } = res
-    return { articles: data.data.filter(item => item.show) }
+  async asyncData ({ store }) {
+    await store.dispatch('api/article/getArticles')
+    return { articles: store.state.api.article.articles }
+  },
+  mounted () {
+    console.log(this.$store.state)
   },
   methods: {
     convertTime (payload) {
