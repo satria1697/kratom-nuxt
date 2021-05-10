@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import { goTo } from '~/lib/misc/helper'
+
 export default {
   data () {
     return {
@@ -65,15 +67,14 @@ export default {
           email: this.register.email,
           password: this.register.password
         }
-        this.$axios.post('/register', payload).then(() => {
-        }).finally(() => {
-          this.isLoading = false
+        const res = this.$store.dispatch('api/auth/register', payload)
+        if (res) {
           this.goTo('register/done')
-        })
+        }
       }
     },
     goTo (payload) {
-      this.$router.push(payload)
+      goTo(payload)
     }
   }
 }

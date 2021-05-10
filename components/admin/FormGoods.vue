@@ -131,25 +131,16 @@ export default {
       categories: []
     }
   },
-  created () {
-    console.log(this.$store)
-    this.$axios.get('goods/category').then((res) => {
-      const { data } = res
-      this.categories = data.data
-      this.goods.category = this.categories[0]
-    })
+  async created () {
+    this.isLoading = true
+    await this.$store.dispatch('api/category/getCategory')
+    this.categories = this.$store.state.api.category.category
+    this.goods.category = this.categories[0]
     if (this.id > 0) {
-      this.isLoading = true
-      this.$axios
-        .get('goods/{id}'.replace('{id}', this.id.toString()))
-        .then((res) => {
-          const { data } = res
-          if (data.success) {
-            this.goods = data.data
-          }
-          this.isLoading = false
-        })
+      await this.$store.dispatch('api/goods/getGoodById', this.id)
+      this.goods = JSON.parse(JSON.stringify(this.$store.state.api.goods.good))
     }
+    this.isLoading = false
   },
   methods: {
     closeModal () {

@@ -104,21 +104,12 @@ export default {
       this.modal.goods = !this.modal.goods
     },
     handleDelete (payload) {
-      this.$axios
-        .delete(`/goods/${payload}`, { jwt: this.$store.state.jwt }, {
-          headers: {
-            Authorization: `Bearer ${this.$store.state.token}`
-          }
-        })
-        .then((res) => {
-          const { data } = res
-          if (data.success) {
-            console.log('ok')
-          }
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      const res = this.$store.dispatch('api/goods/deleteGoodById', payload.id)
+      if (res.data) {
+        this.$toast('Data Deleted')
+      } else {
+        this.$toast.error('Something went wrong')
+      }
     }
   }
 }

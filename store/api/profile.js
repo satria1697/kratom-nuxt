@@ -1,8 +1,9 @@
-import { profile } from '~/lib/misc/endpoints'
+import { level, profile } from '~/lib/misc/endpoints'
 
 export const state = () => ({
   profiles: [],
-  profile: []
+  profile: null,
+  level: []
 })
 
 export const mutations = {
@@ -11,6 +12,9 @@ export const mutations = {
   },
   setProfile (state, payload) {
     state.profile = payload
+  },
+  setLevel (state, payload) {
+    state.level = payload
   }
 }
 
@@ -24,5 +28,10 @@ export const actions = {
     const res = await this.$axios.$get(profile(id))
     const { data } = res
     commit('setProfile', data)
+  },
+  async getLevel ({ commit }, payload) {
+    const res = await this.$axios.$post(level(), payload)
+    const { data } = res
+    commit('setLevel', data)
   }
 }

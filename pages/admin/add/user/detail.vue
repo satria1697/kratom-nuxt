@@ -94,12 +94,21 @@
 
 <script>
 export default {
-  data () {
-    return {
-      user: null,
-      status: [],
-      level: []
+  computed: {
+    level () {
+      return this.$store.state.api.profile.level
+    },
+    status () {
+      return this.$store.state.api.userVerification.status
+    },
+    // workaround for skip mutations
+    profile () {
+      return this.$store.state.api.profile.profile
+    },
+    user () {
+      return JSON.parse(JSON.stringify(this.profile))
     }
+    //
   },
   mounted () {
     this.init()
@@ -111,33 +120,27 @@ export default {
       await this.fetchLevelData()
     },
     async fetchUserData () {
-      const res = await this.$axios.get(`/profile/${this.$route.params.payload}`)
-      const { data } = res
-      this.user = data.data
+      await this.$store.dispatch('api/profile/getProfileById', this.$route.params.payload)
     },
     async fetchLevelData () {
-      const res = await this.$axios.post('/level', {
+      const payload = {
         jwt: this.$store.state.jwt
-      })
-      const { data } = res
-      this.level = data.data
+      }
+      await this.$store.dispatch('api/profile/getLevel', payload)
     },
-    async  fetchStatusData () {
-      const res = await this.$axios.get('/id.verification/status')
-      const { data } = res
-      this.status = data.data
+    async fetchStatusData () {
+      await this.$store.dispatch('api/userVerification/getVerificationStatus')
     },
     async handleButton () {
       const payload = {
         companyCardStatus: this.user.verification.company_card_status,
         idCardStatus: this.user.verification.id_card_status,
         level: this.user.level.id,
-        jwt: this.$store.state.jwt
+        jwt: this.$store.state.jwt,
+        id: this.user.verification.id
       }
-      this.$axios.setHeader('Authorization', `Bearer ${this.$store.state.token}`)
-      const res = await this.$axios.post(`/id.verification/updateStatus/${this.user.verification.id}`, payload)
-      const { data } = res
-      if (data.data) {
+      const res = await this.$store.dispatch('api/userVerification/updateVerification', payload)
+      if (res.data) {
         await this.init()
       } else {
         this.$toast.error('cant update status')

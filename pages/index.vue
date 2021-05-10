@@ -28,15 +28,14 @@
 </template>
 
 <script>
-import qs from 'qs'
+import { goTo } from '~/lib/misc/helper'
+
 export default {
   async asyncData ({ store }) {
     await store.dispatch('api/goods/getGoodsData')
-    return { goods: store.state.api.goods.goods }
   },
   data () {
     return {
-      goods: [],
       category: [{
         id: 0,
         name: 'All'
@@ -45,8 +44,12 @@ export default {
       isLoading: false
     }
   },
+  computed: {
+    goods () {
+      return this.$store.state.api.goods.goods
+    }
+  },
   created () {
-    console.log(this.$store.dispatch('api/goods/getGoodsData'))
     this.init()
   },
   methods: {
@@ -58,18 +61,12 @@ export default {
       })
       this.selectedCategory = this.category[0]
     },
-    goTo (idx) {
-      this.$router.push({ name: 'detail-id', params: { id: idx } })
+    goTo (id) {
+      goTo('detail-id', { id })
     },
     async getGoods () {
-      if (this.selectedCategory.id) {
-        const res = await this.$axios.get(`/goods?${qs.stringify({ category: this.selectedCategory.id })}`)
-        const { data } = res
-        this.goods = data.data
-      } else {
-        await this.$store.dispatch('api/goods/getGoodsData')
-        this.goods = this.$store.state.api.goods.goods
-      }
+      const payload = { category: this.selectedCategory.id }
+      await this.$store.dispatch('api/goods/getGoodsData', payload)
     }
   }
 }

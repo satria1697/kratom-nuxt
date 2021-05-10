@@ -36,8 +36,6 @@
 </template>
 
 <script>
-import jwtDecode from 'jwt-decode'
-
 export default {
   data () {
     return {
@@ -55,45 +53,27 @@ export default {
         this.$toast.error('Please fill email and password')
         this.isLoading = false
       } else {
-        await this.$axios
-          .post('/login', {
-            email: this.login.email,
-            password: this.login.password
+        const payload = {
+          email: this.login.email,
+          password: this.login.password
+        }
+        const res = await this.$store.dispatch('api/auth/login', payload)
+        const { data } = res
+        if (res.success) {
+          this.$cookies.set('token', data.token, {
+            maxAge: 60 * 60 * 24 * 2
           })
-          .then(async (res) => {
-            const { data } = res
-            if (data.success) {
-              this.$cookies.set('token', data.data.token, {
-                maxAge: 60 * 60 * 24 * 2
-              })
-              this.$cookies.set('jwt_token', data.data.jwt, {
-                maxAge: 60 * 60 * 24 * 2
-              })
-              const decode = jwtDecode(data.data.jwt)
-              await this.$store.commit('setToken', data.data.token)
-              await this.$store.commit('setJwt', data.data.jwt)
-              await this.$store.commit('setUserInfo', decode)
-              if (this.$store.state.userInfo.level <= 3) {
-                await this.$router.push({ name: 'admin-goods' })
-              } else {
-                await this.$router.push({ name: 'index' })
-              }
-            }
-            this.isLoading = false
+          this.$cookies.set('jwt_token', data.jwt, {
+            maxAge: 60 * 60 * 24 * 2
           })
-          .catch((err) => {
-            const { data } = err.response
-            if (data.message === 'email-not-verified') {
-              this.$toast.error('Email Not Verified', {
-                timeout: 2000
-              })
-            } else {
-              this.$toast.error('Failed Login', {
-                timeout: 2000
-              })
-            }
-            this.isLoading = false
-          })
+          await this.$store.dispatch('helper/setAuthState', data)
+          if (this.$store.state.userInfo.level <= 3) {
+            await this.$router.push({ name: 'admin-goods' })
+          } else {
+            await this.$router.push({ name: 'index' })
+          }
+        }
+        this.isLoading = false
       }
     }
   }

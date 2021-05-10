@@ -11,6 +11,7 @@
 
 <script>
 import jwtDecode from 'jwt-decode'
+import { goTo } from '~/lib/misc/helper'
 
 export default {
   mounted () {
@@ -26,20 +27,15 @@ export default {
         email,
         code
       }
-      this.$axios.post('/verification', payload).then((res) => {
-        const { data } = res
-        if (data.message === 'code-true') {
-          this.$router.push({ name: 'login' })
-        } else {
-          this.$toast.error('Wrong Code', {
-            timeout: 2000
-          })
-        }
-      }).catch(() => {
+      const res = this.$store.dispatch('api/auth/verification', payload)
+      const { data } = res
+      if (data.message === 'code-true') {
+        goTo('login')
+      } else {
         this.$toast.error('Wrong Code', {
           timeout: 2000
         })
-      })
+      }
     }
   }
 }

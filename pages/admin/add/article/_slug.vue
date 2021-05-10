@@ -88,15 +88,12 @@ export default {
     this.init()
   },
   methods: {
-    init () {
+    async init () {
       if (this.$route.params.slug !== 'add') {
         this.isLoading = true
-        this.$axios.get(`/article/${this.$route.params.slug}`).then((res) => {
-          const { data } = res
-          this.article = data.data
-        }).finally(() => {
-          this.isLoading = false
-        })
+        await this.$store.dispatch('api/article/getArticleById', this.$route.params.slug)
+        this.article = JSON.parse(JSON.stringify(this.$store.state.api.article.article))
+        this.isLoading = false
       }
     },
     handleClear () {

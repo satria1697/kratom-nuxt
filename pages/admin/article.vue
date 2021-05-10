@@ -60,6 +60,8 @@
 </template>
 
 <script>
+import { goTo } from '~/lib/misc/helper'
+
 export default {
   middleware: 'admin',
   data () {
@@ -78,22 +80,16 @@ export default {
       this.articles = this.$store.state.api.article.articles
       this.isLoading = false
     },
-    handleDelete (payload) {
-      this.$axios.delete(`/article/${payload}`, { jwt: this.$store.state.jwt }, {
-        headers: {
-          Authorization: `Bearer ${this.$store.state.token}`
-        }
-      }).then((res) => {
-        if (res.data.success) {
-          this.$toast.success('Article Deleted')
-          this.init()
-        }
-      }).catch(() => {
-        this.$toast.error('Article Not Deleted, something is wrong with server')
-      })
+    async handleDelete (id) {
+      const payload = { jwt: this.$store.state.jwt, id }
+      const res = await this.$store.dispatch('api/article/deleteArticle', payload)
+      if (res.data.success) {
+        this.$toast.success('Article Deleted')
+        await this.init()
+      }
     },
     goTo (payload, params) {
-      this.$router.push({ name: payload, params })
+      goTo(payload, params)
     }
   }
 }

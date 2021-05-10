@@ -14,14 +14,14 @@ import Footer from '~/components/footer'
 
 export default {
   components: { Footer },
-  created () {
-    const jwt = this.$cookies.get('jwt_token')
-    const token = this.$cookies.get('token')
-    if (jwt && token) {
-      const payload = jwtDecode(jwt)
-      this.$store.commit('setUserInfo', payload)
-      this.$store.commit('setToken', token)
-      this.$store.commit('setJwt', jwt)
+  async created () {
+    let payload = {
+      jwt: this.$cookies.get('jwt_token'),
+      token: this.$cookies.get('token')
+    }
+    if (payload.jwt && payload.token) {
+      payload = { ...payload, decode: jwtDecode(payload.jwt) }
+      await this.$store.dispatch('helper/setAuthState', payload)
     }
   }
 }

@@ -54,14 +54,12 @@
 
 <script>
 export default {
-  data () {
-    return {
-      cart: null
-    }
-  },
   computed: {
     token () {
       return this.$store.state.token
+    },
+    cart () {
+      return this.$store.state.api.goods.cart
     }
   },
   mounted () {
@@ -74,14 +72,7 @@ export default {
       const payload = {
         jwt: this.$store.state.jwt
       }
-      this.$axios.post('/goods/cart/find', payload, {
-        headers: {
-          Authorization: `Bearer ${this.$store.state.token}`
-        }
-      }).then((res) => {
-        const { data } = res
-        this.cart = data.data
-      })
+      this.$store.dispatch('api/goods/getGoodCart', payload)
     },
     changeTotal (data, payload) {
       if (payload === 'plus') {
@@ -101,27 +92,18 @@ export default {
     goTo (payload) {
       this.$router.push({ name: payload })
     },
-    handleCheckout () {
+    async handleCheckout () {
       const payload = {
         jwt: this.$store.state.jwt
       }
-      this.$axios.post('/goods/cart/checkout', payload, {
-        headers: {
-          Authorization: `Bearer ${this.$store.state.token}`
-        }
-      }).then((res) => {
-        console.log(res)
-      })
+      await this.$store.dispatch('api/goods/checkoutCart', payload)
     },
-    handleDelete (payload) {
-      this.$axios.delete(`/goods/cart/${payload.id}`, {
-        headers: {
-          Authorization: `Bearer ${this.$store.state.token}`
-        }
-      }).then(() => {
+    async handleDelete (payload) {
+      const res = await this.$store.dispatch('api/goods/deleteCart', payload)
+      if (res.data) {
         this.$toast.success('Cart item deleted')
         this.init()
-      })
+      }
     }
   }
 }

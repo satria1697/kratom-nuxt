@@ -56,6 +56,8 @@
 </template>
 
 <script>
+import { goTo } from '~/lib/misc/helper'
+
 export default {
   async asyncData ({ params, store }) {
     await store.dispatch('api/goods/getGoodById', params.id)
@@ -65,7 +67,7 @@ export default {
     return {
       isLoading: false,
       goods: null,
-      total: 0
+      total: 1
     }
   },
   computed: {
@@ -82,8 +84,8 @@ export default {
           this.total += 1
         }
       } else if (payload === 'minus') {
-        if (this.total <= 0) {
-          this.total = 0
+        if (this.total <= 1) {
+          this.total = 1
         } else {
           this.total -= 1
         }
@@ -99,21 +101,14 @@ export default {
           status: 2,
           jwt: this.$store.state.jwt
         }
-        this.$axios.post('/goods/cart', payload, {
-          headers: {
-            Authorization: `Bearer ${this.$store.state.token}`
-          }
-        }).then((res) => {
-          if (res.status === 200) {
-            this.goTo('cart')
-          }
-        })
+        const res = this.$store.dispatch('api/goods/postGoodCart', payload)
+        if (res.data) { this.goTo('cart') }
       } else {
         this.$toast.error('Total item cant empty')
       }
     },
     goTo (payload) {
-      this.$router.push({ name: payload })
+      goTo(payload)
     }
   }
 }
