@@ -11,7 +11,6 @@
 
 <script>
 import jwtDecode from 'jwt-decode'
-import { goTo } from '~/lib/misc/helper'
 
 export default {
   mounted () {
@@ -28,9 +27,8 @@ export default {
         code
       }
       const res = this.$store.dispatch('api/auth/verification', payload)
-      const { data } = res
-      if (data.message === 'code-true') {
-        goTo('login')
+      if (res.message === 'code-true') {
+        this.$router.push({ name: 'register-done' })
       } else {
         this.$toast.error('Wrong Code', {
           timeout: 2000

@@ -22,21 +22,21 @@
             <img class="w-6 lg:w-8" :src="require('../assets/svg/shopping-cart.svg')">
           </div>
           <div
-            v-if="token !== null && userInfo && userInfo.level < 3"
+            v-if="jwt !== null && userInfo && userInfo.level < 3"
             class="mr-3 lg:mr-6 cursor-pointer"
             @click="goTo('admin-goods')"
           >
             <img class="w-6 lg:w-8" :src="require('../assets/svg/profile-user.svg')">
           </div>
           <div
-            v-else-if="token !== null && userInfo && userInfo.level >= 3"
+            v-else-if="jwt !== null && userInfo && userInfo.level >= 3"
             class="mr-3 lg:mr-6 cursor-pointer"
             @click="goTo('profile')"
           >
             <img class="w-6 lg:w-8" :src="require('../assets/svg/profile-user.svg')">
           </div>
           <div
-            v-if="token === null"
+            v-if="jwt === null"
             class="mr-3 lg:mr-6 cursor-pointer"
             @click="goTo('login')"
           >
@@ -69,8 +69,8 @@ export default {
     userInfo () {
       return this.$store.state.userInfo
     },
-    token () {
-      return this.$store.state.token
+    jwt () {
+      return this.$store.state.jwt
     }
   },
   methods: {
@@ -84,28 +84,15 @@ export default {
     },
     async handleLogout () {
       this.isLoading = true
-      await this.$axios
-        .post('/logout', null, {
-          headers: {
-            Authorization: `Bearer ${this.$store.state.token}`
-          }
-        })
-        .then((res) => {
-          const { data } = res
-          if (data.success) {
-            this.$router.push({ name: 'index' })
-            this.$cookies.remove('token')
-            this.$cookies.remove('jwt_token')
-            this.$store.commit('setJwt', null)
-            this.$store.commit('setToken', null)
-            this.$store.commit('setUserInfo', null)
-          }
-          this.isLoading = false
-        })
-        .catch((err) => {
-          this.isLoading = false
-          console.log(err)
-        })
+      const res = await this.$store.dispatch('api/auth/logout')
+      if (res.success) {
+        this.$cookies.remove('jwt_token')
+        this.$store.commit('setJwt', null)
+        this.$store.commit('setToken', null)
+        this.$store.commit('setUserInfo', null)
+        this.$router.push({ name: 'index' })
+      }
+      this.isLoading = false
     }
   }
 }

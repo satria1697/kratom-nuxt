@@ -1,15 +1,11 @@
 export const state = () => ({
   userInfo: null,
-  token: null,
   jwt: null
 })
 
 export const mutations = {
   setUserInfo (state, payload) {
     state.userInfo = payload
-  },
-  setToken (state, payload) {
-    state.token = payload
   },
   setJwt (state, payload) {
     state.jwt = payload
@@ -18,6 +14,6 @@ export const mutations = {
 
 export const actions = {
   setHeader ({ state }) {
-    this.$axios.setHeader('Authorization', `Bearer ${state.token}`)
+    this.$axios.setHeader('Authorization', `Bearer ${state.jwt}`)
   }
 }

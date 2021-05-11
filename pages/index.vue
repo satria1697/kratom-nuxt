@@ -28,8 +28,6 @@
 </template>
 
 <script>
-import { goTo } from '~/lib/misc/helper'
-
 export default {
   async asyncData ({ store }) {
     await store.dispatch('api/goods/getGoodsData')
@@ -62,7 +60,7 @@ export default {
       this.selectedCategory = this.category[0]
     },
     goTo (id) {
-      goTo('detail-id', { id })
+      this.$router.push({ name: 'detail-id', params: { id } })
     },
     async getGoods () {
       const payload = { category: this.selectedCategory.id }

@@ -1,4 +1,4 @@
-import { login, register, verification } from '~/lib/misc/endpoints'
+import { login, logout, register, verification } from '~/lib/misc/endpoints'
 
 export const actions = {
   async register ({ commit }, payload) {
@@ -13,6 +13,12 @@ export const actions = {
   },
   async login ({ commit }, payload) {
     const res = await this.$axios.post(login(), payload)
+    const { data } = res
+    return data
+  },
+  async logout ({ dispatch }) {
+    dispatch('setHeader', null, { root: true })
+    const res = await this.$axios.post(logout())
     const { data } = res
     return data
   }

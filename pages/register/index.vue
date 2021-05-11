@@ -42,8 +42,6 @@
 </template>
 
 <script>
-import { goTo } from '~/lib/misc/helper'
-
 export default {
   data () {
     return {
@@ -69,12 +67,12 @@ export default {
         }
         const res = this.$store.dispatch('api/auth/register', payload)
         if (res) {
-          this.goTo('register/done')
+          this.goTo('register-done')
         }
       }
     },
     goTo (payload) {
-      goTo(payload)
+      this.$router.push({ name: payload })
     }
   }
 }

@@ -60,8 +60,6 @@
 </template>
 
 <script>
-import { goTo } from '~/lib/misc/helper'
-
 export default {
   middleware: 'admin',
   data () {
@@ -89,7 +87,7 @@ export default {
       }
     },
     goTo (payload, params) {
-      goTo(payload, params)
+      this.$router.push({ name: payload, params })
     }
   }
 }

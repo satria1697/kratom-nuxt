@@ -56,8 +56,6 @@
 </template>
 
 <script>
-import { goTo } from '~/lib/misc/helper'
-
 export default {
   async asyncData ({ params, store }) {
     await store.dispatch('api/goods/getGoodById', params.id)
@@ -108,7 +106,7 @@ export default {
       }
     },
     goTo (payload) {
-      goTo(payload)
+      this.$router.push({ name: payload })
     }
   }
 }
