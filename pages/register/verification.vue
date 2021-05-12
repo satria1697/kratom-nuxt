@@ -21,14 +21,15 @@ export default {
     this.handleVerification(email, code)
   },
   methods: {
-    handleVerification (email, code) {
+    async handleVerification (email, code) {
       const payload = {
         email,
         code
       }
-      const res = this.$store.dispatch('api/auth/verification', payload)
+      const res = await this.$store.dispatch('api/auth/verification', payload)
+      console.log(res)
       if (res.message === 'code-true') {
-        this.$router.push({ name: 'register-done' })
+        this.$router.push({ name: 'login' })
       } else {
         this.$toast.error('Wrong Code', {
           timeout: 2000

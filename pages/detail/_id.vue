@@ -59,7 +59,7 @@
 export default {
   async asyncData ({ params, store }) {
     await store.dispatch('api/goods/getGoodById', params.id)
-    return { goods: store.state.api.good.good }
+    return { goods: store.state.api.goods.good }
   },
   data () {
     return {
