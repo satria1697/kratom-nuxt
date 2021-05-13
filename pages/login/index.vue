@@ -60,17 +60,14 @@ export default {
         const res = await this.$store.dispatch('api/auth/login', payload)
         const { data } = res
         if (res.success) {
-          this.$cookies.set('token', data.token, {
-            maxAge: 60 * 60 * 24 * 2
-          })
           this.$cookies.set('jwt_token', data.jwt, {
             maxAge: 60 * 60 * 24 * 2
           })
           await this.$store.dispatch('helper/setAuthState', data)
           if (this.$store.state.userInfo.level <= 3) {
-            await this.$router.push({ name: 'admin-goods' })
+            this.$router.push({ name: 'admin-goods' })
           } else {
-            await this.$router.push({ name: 'index' })
+            this.$router.push({ name: 'index' })
           }
         }
         this.isLoading = false

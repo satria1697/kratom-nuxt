@@ -63,7 +63,10 @@ export default {
       this.$router.push({ name: 'detail-id', params: { id } })
     },
     async getGoods () {
-      const payload = { category: this.selectedCategory.id }
+      let payload = null
+      if (this.selectedCategory.id) {
+        payload = this.selectedCategory.id
+      }
       await this.$store.dispatch('api/goods/getGoodsData', payload)
     }
   }
