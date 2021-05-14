@@ -16,10 +16,9 @@ export default {
   components: { Footer },
   async created () {
     let payload = {
-      jwt: this.$cookies.get('jwt_token'),
-      token: this.$cookies.get('token')
+      jwt: this.$cookies.get('jwt_token')
     }
-    if (payload.jwt && payload.token) {
+    if (payload.jwt) {
       payload = { ...payload, decode: jwtDecode(payload.jwt) }
       await this.$store.dispatch('helper/setAuthState', payload)
     }

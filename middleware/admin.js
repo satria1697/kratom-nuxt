@@ -1,10 +1,12 @@
-export default function ({ store, redirect }) {
-  const userInfo = store.state.userInfo
-  const jwt = store.state.jwt
+import jwtDecode from 'jwt-decode'
+
+export default function ({ redirect, app }) {
+  const jwt = app.$cookies.get('jwt_token')
+  const decode = jwtDecode(jwt)
   if (!jwt) {
     return redirect({ name: 'login' })
   } else if (jwt) {
-    if (userInfo.level >= 3) {
+    if (decode.level >= 3) {
       return redirect({ name: 'index' })
     }
   }
