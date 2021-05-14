@@ -25,6 +25,7 @@ export const actions = {
     commit('setProfilesData', data)
   },
   async getProfileById ({ commit }, id) {
+    console.log('id', id)
     const res = await this.$axios.$get(profile(id))
     const { data } = res
     commit('setProfile', data)

@@ -20,68 +20,70 @@
       Loading Data
     </p>
     <template v-else>
-      <table class="w-11/12 mx-auto lg:w-full">
-        <thead class="text-left">
-          <tr class="border-b-2 text-lg">
-            <th class="w-1/12">
-              No
-            </th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Stock</th>
-            <th class="w-2/12">
-              Action
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="(item, index) in goods"
-            :key="index"
-            class="border-b hover:bg-main hover:text-white py-2"
-          >
-            <td>{{ item.id }}</td>
-            <td>{{ item.name }}</td>
-            <td>{{ item.category.name }}</td>
-            <td>{{ item.price }}</td>
-            <td>{{ item.stock }}</td>
-            <td>
-              <button
-                class="border border-yellow-400 rounded-md my-2 py-2 px-3 bg-yellow-400 hover:bg-white focus:outline-none hover:text-yellow-400"
-                @click="handleModal(item.id)"
-              >
-                Edit
-              </button>
-              <button
-                class="border border-red-700 rounded-md my-2 py-2 px-3 bg-red-700 hover:bg-white focus:outline-none hover:text-red-700"
-                @click="handleDelete(item.id)"
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <krt-datatable
+        :options="goodsMap"
+        :columns="columns"
+        @on-edit="handleModal"
+        @on-delete="handleDelete"
+      />
     </template>
   </div>
 </template>
 
 <script>
 import FormGoods from '~/components/admin/FormGoods'
+import KrtDatatable from '~/components/krt/Datatable'
 export default {
   components: {
+    KrtDatatable,
     FormGoods
   },
   middleware: 'admin',
   data () {
     return {
-      goods: [],
       modal: {
         goods: false
       },
       id: 0,
-      isLoading: false
+      isLoading: false,
+      columns: [
+        {
+          key: 'id',
+          name: 'ID'
+        },
+        {
+          key: 'name',
+          name: 'Name'
+        },
+        {
+          key: 'category',
+          name: 'Category'
+        },
+        {
+          key: 'price',
+          name: 'Price'
+        },
+        {
+          key: 'stock',
+          name: 'Stock'
+        }
+      ]
+    }
+  },
+  computed: {
+    goods () {
+      return this.$store.state.api.goods.goods
+    },
+    goodsMap () {
+      return this.goods.map((good) => {
+        return {
+          id: good.id,
+          name: good.name,
+          category: good.category.name,
+          price: good.price,
+          stock: good.stock
+        }
+      })
     }
   },
   created () {
@@ -91,12 +93,11 @@ export default {
     async init () {
       this.isLoading = true
       await this.$store.dispatch('api/goods/getGoodsData')
-      this.goods = this.$store.state.api.goods.goods
       this.isLoading = false
     },
     handleModal (payload) {
-      if (payload >= 0 && !this.modal.goods) {
-        this.id = payload
+      if (payload.id >= 0 && !this.modal.goods) {
+        this.id = payload.id
       }
       if (this.modal.goods) {
         this.init()

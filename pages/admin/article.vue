@@ -14,58 +14,58 @@
       </p>
     </div>
     <template v-else>
-      <table class="w-11/12 mx-auto lg:w-full">
-        <thead class="text-left">
-          <tr class="border-b-2 text-lg">
-            <th class="w-1/12">
-              No
-            </th>
-            <th>Name</th>
-            <th>Brief</th>
-            <th>Hide/Show</th>
-            <th class="w-2/12">
-              Action
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="(item, index) in articles"
-            :key="index"
-            class="border-b hover:bg-main hover:text-white py-2 cursor-pointer"
-          >
-            <td>{{ item.id }}</td>
-            <td>{{ item.title }}</td>
-            <td>{{ item.brief }}</td>
-            <td>{{ item.show ? "Show" : "Hide" }}</td>
-            <td>
-              <button
-                class="border border-yellow-400 rounded-md my-2 py-2 px-3 bg-yellow-400 hover:bg-white focus:outline-none hover:text-yellow-400"
-                @click="goTo('admin-add-article-slug', {slug: item.slug})"
-              >
-                Edit
-              </button>
-              <button
-                class="border border-red-700 rounded-md my-2 py-2 px-3 bg-red-700 hover:bg-white focus:outline-none hover:text-red-700"
-                @click="handleDelete(item.id)"
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <krt-datatable
+        :options="articleMap"
+        :columns="columns"
+        @on-edit="handleEdit"
+        @on-delete="handleDelete"
+      />
     </template>
   </div>
 </template>
 
 <script>
+import KrtDatatable from '~/components/krt/Datatable'
 export default {
+  components: { KrtDatatable },
   middleware: 'admin',
   data () {
     return {
-      articles: null,
+      columns: [
+        {
+          key: 'id',
+          name: 'ID'
+        },
+        {
+          key: 'title',
+          name: 'Title'
+        },
+        {
+          key: 'brief',
+          name: 'Brief Description'
+        },
+        {
+          key: 'show',
+          name: 'Article Show?'
+        }
+      ],
       isLoading: false
+    }
+  },
+  computed: {
+    articles () {
+      return this.$store.state.api.article.articles
+    },
+    articleMap () {
+      return this.articles.map((article) => {
+        return {
+          id: article.id,
+          title: article.title,
+          brief: article.brief,
+          show: article.show ? 'Show' : 'None',
+          slug: article.slug
+        }
+      })
     }
   },
   created () {
@@ -75,12 +75,11 @@ export default {
     async init () {
       this.isLoading = true
       await this.$store.dispatch('api/article/getArticles')
-      this.articles = this.$store.state.api.article.articles
       this.isLoading = false
     },
-    async handleDelete (id) {
-      const payload = { jwt: this.$store.state.jwt, id }
-      const res = await this.$store.dispatch('api/article/deleteArticle', payload)
+    async handleDelete (payload) {
+      const data = { jwt: this.$store.state.jwt, id: payload.id }
+      const res = await this.$store.dispatch('api/article/deleteArticle', data)
       if (res.data.success) {
         this.$toast.success('Article Deleted')
         await this.init()
@@ -88,6 +87,9 @@ export default {
     },
     goTo (payload, params) {
       this.$router.push({ name: payload, params })
+    },
+    handleEdit (payload) {
+      this.goTo('admin-add-article-slug', { slug: payload.slug })
     }
   }
 }

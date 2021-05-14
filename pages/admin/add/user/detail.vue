@@ -120,7 +120,7 @@ export default {
       await this.fetchLevelData()
     },
     async fetchUserData () {
-      await this.$store.dispatch('api/profile/getProfileById', this.$route.params.payload)
+      await this.$store.dispatch('api/profile/getProfileById', this.$route.params.id)
     },
     async fetchLevelData () {
       const payload = {

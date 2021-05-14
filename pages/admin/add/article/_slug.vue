@@ -41,7 +41,7 @@
           @change="handleImage"
         >
         <img
-          v-if="article.image !== ''"
+          v-if="article.image"
           :src="article.image"
           alt="article image"
         >
