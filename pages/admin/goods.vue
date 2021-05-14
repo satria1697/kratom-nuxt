@@ -3,7 +3,7 @@
     <form-goods
       v-if="modal.goods"
       :id="id"
-      @close-modal="handleModal(0)"
+      @close-modal="handleModal({id: 0})"
     />
     <p class="text-center text-5xl font-semibold">
       Goods Page
@@ -11,7 +11,7 @@
     <div class="flex justify-end mb-3">
       <button
         class="mr-3 lg:mr-0 mt-3 lg:mt-0 border border-main rounded-md py-2 px-3 hover:bg-main hover:text-white transition-colors"
-        @click="handleModal"
+        @click="handleModal({id: 0})"
       >
         Tambah Data
       </button>
