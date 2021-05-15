@@ -119,7 +119,10 @@ export default {
   },
   async created () {
     this.isLoading = true
-    await this.$store.dispatch('api/category/getCategory')
+    const payload = {
+      filter: 0
+    }
+    await this.$store.dispatch('api/category/getCategory', payload)
     this.categories = this.$store.state.api.category.category
     this.goods.category = this.categories[0]
     if (this.id > 0) {

@@ -26,7 +26,7 @@ export const actions = {
     return res.data
   },
   async getGoodsData ({ commit }, payload) {
-    const res = await this.$axios.$get(goods() + `?${qs.stringify({ category: payload })}`)
+    const res = await this.$axios.$get(goods() + `?${qs.stringify({ category: payload.category, filter: payload.filter })}`)
     const { data } = res
     commit('setGoodsData', data)
   },

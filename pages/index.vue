@@ -30,7 +30,11 @@
 <script>
 export default {
   async asyncData ({ store }) {
-    await store.dispatch('api/goods/getGoodsData')
+    const payload = {
+      filter: 1,
+      category: ''
+    }
+    await store.dispatch('api/goods/getGoodsData', payload)
   },
   data () {
     return {
@@ -52,7 +56,10 @@ export default {
   },
   methods: {
     async init () {
-      await this.$store.dispatch('api/category/getCategory')
+      const payload = {
+        filter: 1
+      }
+      await this.$store.dispatch('api/category/getCategory', payload)
       const res = this.$store.state.api.category.category
       res.forEach((data) => {
         this.category.push(data)
@@ -63,9 +70,14 @@ export default {
       this.$router.push({ name: 'detail-id', params: { id } })
     },
     async getGoods () {
-      let payload = null
+      let payload = {
+        filter: 1
+      }
       if (this.selectedCategory.id) {
-        payload = this.selectedCategory.id
+        payload = {
+          ...payload,
+          category: this.selectedCategory.id
+        }
       }
       await this.$store.dispatch('api/goods/getGoodsData', payload)
     }

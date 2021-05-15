@@ -94,7 +94,11 @@ export default {
   methods: {
     async init () {
       this.isLoading = true
-      await this.$store.dispatch('api/goods/getGoodsData')
+      const payload = {
+        category: '',
+        filter: 0
+      }
+      await this.$store.dispatch('api/goods/getGoodsData', payload)
       this.isLoading = false
     },
     handleModal (payload) {

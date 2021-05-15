@@ -39,7 +39,7 @@
             />
             <krt-button
               variant="danger"
-              text="Delete"
+              :text="deleteText"
               size="small"
               @onClick="handleDelete(item)"
             />
@@ -67,6 +67,10 @@ export default {
     columns: {
       type: Array,
       required: true
+    },
+    deleteText: {
+      type: String,
+      default: 'Delete'
     }
   },
   methods: {

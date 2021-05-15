@@ -1,3 +1,4 @@
+import qs from 'qs'
 import { category } from '~/lib/misc/endpoints'
 
 export const state = () => ({
@@ -15,8 +16,8 @@ export const mutations = {
 }
 
 export const actions = {
-  async getCategory ({ commit }) {
-    const res = await this.$axios.$get(category())
+  async getCategory ({ commit }, payload) {
+    const res = await this.$axios.$get(category() + `?${qs.stringify({ filter: payload.filter })}`)
     const { data } = res
     commit('setCategoriesData', data)
   },

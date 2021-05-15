@@ -16,8 +16,9 @@
     </div>
     <template v-else>
       <krt-datatable
-        :options="category"
+        :options="categoryMap"
         :columns="columns"
+        delete-text="show / unshow"
         @on-edit="handleModal"
         @on-delete="handleDelete"
       />
@@ -45,6 +46,10 @@ export default {
         {
           key: 'name',
           name: 'Category Name'
+        },
+        {
+          key: 'show',
+          name: 'Is Category Show?'
         }
       ],
       isLoading: false
@@ -53,6 +58,15 @@ export default {
   computed: {
     category () {
       return this.$store.state.api.category.category
+    },
+    categoryMap () {
+      return this.category.map((cate) => {
+        return {
+          id: cate.id,
+          name: cate.name,
+          show: cate.show === 1 ? 'Show' : 'Not Show'
+        }
+      })
     }
   },
   created () {
@@ -61,7 +75,10 @@ export default {
   methods: {
     async init () {
       this.isLoading = true
-      await this.$store.dispatch('api/category/getCategory')
+      const payload = {
+        filter: 0
+      }
+      await this.$store.dispatch('api/category/getCategory', payload)
       this.isLoading = false
     },
     async handleDelete (payload) {
