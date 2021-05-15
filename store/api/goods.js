@@ -35,7 +35,8 @@ export const actions = {
     const { data } = res
     commit('setGoodData', data)
   },
-  async deleteGoodById ({ commit }, id) {
+  async deleteGoodById ({ commit, dispatch }, id) {
+    dispatch('setHeader', null, { root: true })
     const res = await this.$axios.delete(goods(id))
     const { data } = res
     return data

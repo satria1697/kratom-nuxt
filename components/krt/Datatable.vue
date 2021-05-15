@@ -1,25 +1,36 @@
 <template>
   <div class="flex flex-col w-full">
     <span>{{ tableTitle }}</span>
-    <table class="w-11/12 mx-auto lg:w-full text-center">
+    <table class="w-11/12 mx-auto lg:w-full">
       <thead>
-        <tr class="border-b-2 text-lg">
-          <th v-for="(column, index) in columns" :key="index">
+        <tr class="border-b-4 border-main-dark text-lg bg-gray-300 text-center rounded-tr-md">
+          <th
+            v-for="(column, index) in columns"
+            :key="index"
+            class="py-1 border-r last:border-none border-main-dark"
+          >
             {{ column['name'] }}
           </th>
-          <th>Action</th>
+          <th class="w-1/12">
+            Action
+          </th>
         </tr>
       </thead>
       <tbody>
         <tr
           v-for="(item, index) in options"
           :key="index"
-          class="border-b hover:bg-main hover:text-white cursor-pointer"
+          class="border-b hover:bg-main hover:text-white"
         >
-          <td v-for="(column, idx) in columns" :key="idx" class="py-2">
+          <td
+            v-for="(column, idx) in columns"
+            :key="idx"
+            class="py-2 px-3 border-main-dark"
+            :class="column.tdClass ? column.tdClass : ''"
+          >
             {{ item[column['key']] }}
           </td>
-          <td class="flex items-center justify-center gap-x-4 py-1">
+          <td class="flex items-center justify-center gap-x-4 py-1 px-3 border-main-dark">
             <krt-button
               variant="warning"
               text="Edit"

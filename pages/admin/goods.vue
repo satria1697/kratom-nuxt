@@ -61,11 +61,13 @@ export default {
         },
         {
           key: 'price',
-          name: 'Price'
+          name: 'Price',
+          tdClass: 'text-center'
         },
         {
           key: 'stock',
-          name: 'Stock'
+          name: 'Stock',
+          tdClass: 'text-center'
         }
       ]
     }
@@ -80,7 +82,7 @@ export default {
           id: good.id,
           name: good.name,
           category: good.category.name,
-          price: good.price,
+          price: `$ ${good.price}`,
           stock: good.stock
         }
       })
