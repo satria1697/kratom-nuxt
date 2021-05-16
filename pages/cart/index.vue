@@ -1,6 +1,6 @@
 <template>
   <div v-if="!cart" class="flex justify-center items-center w-3/4 mx-auto">
-    <div v-if="!token" class="flex flex-col w-full">
+    <div v-if="!jwt" class="flex flex-col w-full">
       <span class="text-4xl font-semibold mb-3 mx-auto">Login to add cart</span>
       <krt-button text="Go To Login Page" @onClick="goTo('login')" />
     </div>
@@ -9,7 +9,7 @@
   <div v-else class="container mx-auto w-screen">
     <div class="flex flex-col w-3/4 mx-auto">
       <span class="text-4xl font-semibold mb-3">Cart list</span>
-      <div v-if="!cart.cart.length" class="flex justify-center items-center">
+      <div v-if="!cartLength" class="flex justify-center items-center">
         <span class="text-4xl">No Cart</span>
       </div>
       <div
@@ -45,7 +45,7 @@
         </div>
       </div>
       <div class="flex justify-end">
-        <krt-button v-if="cart.cart.length" text="Checkout" @onClick="handleCheckout" />
+        <krt-button v-if="cartLength" text="Checkout" @onClick="handleCheckout" />
         <krt-button v-else text="See Our Product" @onClick="goTo('index')" />
       </div>
     </div>
@@ -55,24 +55,27 @@
 <script>
 export default {
   computed: {
-    token () {
-      return this.$store.state.token
+    jwt () {
+      return this.$store.state.jwt
     },
     cart () {
       return this.$store.state.api.goods.cart
+    },
+    cartLength () {
+      if (this.cart.cart) {
+        return this.cart.cart.length
+      }
+      return 0
     }
   },
-  mounted () {
-    if (this.token) {
+  created () {
+    if (this.jwt) {
       this.init()
     }
   },
   methods: {
     init () {
-      const payload = {
-        jwt: this.$store.state.jwt
-      }
-      this.$store.dispatch('api/goods/getGoodCart', payload)
+      this.$store.dispatch('api/goods/getGoodCart')
     },
     changeTotal (data, payload) {
       if (payload === 'plus') {
@@ -93,10 +96,7 @@ export default {
       this.$router.push({ name: payload })
     },
     async handleCheckout () {
-      const payload = {
-        jwt: this.$store.state.jwt
-      }
-      await this.$store.dispatch('api/goods/checkoutCart', payload)
+      await this.$store.dispatch('api/goods/checkoutCart')
     },
     async handleDelete (payload) {
       const res = await this.$store.dispatch('api/goods/deleteCart', payload)

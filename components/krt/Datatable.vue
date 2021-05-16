@@ -11,7 +11,7 @@
           >
             {{ column['name'] }}
           </th>
-          <th class="w-1/12">
+          <th v-if="isAction" class="w-1/12">
             Action
           </th>
         </tr>
@@ -30,7 +30,7 @@
           >
             {{ item[column['key']] }}
           </td>
-          <td class="flex items-center justify-center gap-x-4 py-1 px-3 border-main-dark">
+          <td v-if="isAction" class="flex items-center justify-center gap-x-4 py-1 px-3 border-main-dark">
             <krt-button
               variant="warning"
               text="Edit"
@@ -71,6 +71,10 @@ export default {
     deleteText: {
       type: String,
       default: 'Delete'
+    },
+    isAction: {
+      type: Boolean,
+      default: true
     }
   },
   methods: {

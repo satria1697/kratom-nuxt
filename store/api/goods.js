@@ -47,15 +47,15 @@ export const actions = {
     const { data } = res
     return data
   },
-  async getGoodCart ({ dispatch, commit }, payload) {
+  async getGoodCart ({ dispatch, commit }) {
     dispatch('setHeader', null, { root: true })
-    const res = await this.$axios.post(cart('find'), payload)
+    const res = await this.$axios.post(cart('find'))
     const { data } = res
     commit('setCartData', data.data)
   },
-  async checkoutCart ({ dispatch }, payload) {
+  async checkoutCart ({ dispatch }) {
     dispatch('setHeader', null, { root: true })
-    const res = await this.$axios.post(cart('checkout'), payload)
+    const res = await this.$axios.post(cart('checkout'))
     const { data } = res
     return data
   },
