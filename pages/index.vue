@@ -12,7 +12,7 @@
         :key="idx"
         class="shadow-2xl mb-4 lg:mb-0 p-8 mx-auto w-3/4 lg:w-full flex flex-col rounded-lg bg-main hover:bg-main-light transition-colors"
       >
-        <div class="cursor-pointer" @click="goTo(item.id)">
+        <div class="cursor-pointer" @click="goTo('detail-id', {id: item.id})">
           <img
             :src="
               item.image ? item.image : 'https://dummyimage.com/600x400/000/fff'
@@ -67,9 +67,6 @@ export default {
         this.category.push(data)
       })
       this.selectedCategory = this.category[0]
-    },
-    goTo (id) {
-      this.$router.push({ name: 'detail-id', params: { id } })
     },
     async getGoods () {
       let payload = {

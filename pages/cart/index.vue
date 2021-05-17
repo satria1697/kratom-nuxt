@@ -53,11 +53,13 @@
 </template>
 
 <script>
+import common from '~/mixin/common'
+import KrtButton from '~/components/krt/Button'
+
 export default {
+  components: { KrtButton },
+  mixins: [common],
   computed: {
-    jwt () {
-      return this.$store.state.jwt
-    },
     cart () {
       return this.$store.state.api.goods.cart
     },
