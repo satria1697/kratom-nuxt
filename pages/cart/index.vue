@@ -59,6 +59,9 @@ import KrtButton from '~/components/krt/Button'
 export default {
   components: { KrtButton },
   mixins: [common],
+  head: {
+    title: 'Kratomedical Cart'
+  },
   computed: {
     cart () {
       return this.$store.state.api.goods.cart

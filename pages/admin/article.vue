@@ -52,6 +52,11 @@ export default {
       isLoading: false
     }
   },
+  head () {
+    return {
+      title: 'Admin | Article'
+    }
+  },
   computed: {
     articles () {
       return this.$store.state.api.article.articles

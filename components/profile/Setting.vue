@@ -35,7 +35,7 @@
     </div>
     <div class="flex w-full">
       <div class="flex mb-3">
-        <krt-button :text="isLoading ? 'Updating' : 'Update'" :is-loading="isLoading" @onClick="handleUpdate">
+        <krt-button :text="isLoading ? 'Updating' : 'Update'" :is-loading="isLoading" @on-click="handleUpdate">
           Update
         </krt-button>
       </div>

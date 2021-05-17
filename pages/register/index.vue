@@ -35,7 +35,7 @@
       <krt-button
         :text="isLoading ? 'Registering' : 'Register'"
         :is-loading="isLoading"
-        @onClick="onSubmit"
+        @on-click="onSubmit"
       />
     </div>
   </div>
@@ -51,6 +51,11 @@ export default {
         password: ''
       },
       isLoading: false
+    }
+  },
+  head () {
+    return {
+      title: 'Kratomedical | Register'
     }
   },
   methods: {

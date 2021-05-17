@@ -56,6 +56,11 @@ export default {
       ]
     }
   },
+  head () {
+    return {
+      title: 'Admin | Category'
+    }
+  },
   computed: {
     category () {
       return this.$store.state.api.category.category
@@ -83,7 +88,6 @@ export default {
       this.isLoading = false
     },
     async handleDelete (payload) {
-      console.log(payload)
       this.isLoading = true
       await this.$store.dispatch('api/category/deleteCategoryById', payload.id)
       await this.init()

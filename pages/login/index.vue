@@ -29,9 +29,9 @@
         clas-props="mb-3"
         :text="isLoading ? 'Logging in' : 'Login'"
         :is-loading="isLoading"
-        @onClick="handleLogin"
+        @on-click="handleLogin"
       />
-      <krt-button text="Register" @onClick="$router.push({name: 'register'})" />
+      <krt-button text="Register" @on-click="$router.push({name: 'register'})" />
     </div>
   </div>
 </template>
@@ -47,6 +47,11 @@ export default {
         password: ''
       },
       isLoading: false
+    }
+  },
+  head () {
+    return {
+      title: 'Kratomedical | Login'
     }
   },
   methods: {

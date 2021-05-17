@@ -43,6 +43,11 @@ export default {
       user: {}
     }
   },
+  head () {
+    return {
+      title: `Kratomedical | ${this.user.profile ? this.user.profile.name : ''}`
+    }
+  },
   computed: {
     userId () {
       return this.$store.state.userInfo.id

@@ -27,7 +27,6 @@ export default {
         code
       }
       const res = await this.$store.dispatch('api/auth/verification', payload)
-      console.log(res)
       if (res.message === 'code-true') {
         this.$router.push({ name: 'login' })
       } else {
