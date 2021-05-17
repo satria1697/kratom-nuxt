@@ -35,13 +35,13 @@
               variant="warning"
               text="Edit"
               size="small"
-              @onClick="handleEdit(item)"
+              @on-click="handleEdit(item)"
             />
             <krt-button
               variant="danger"
               :text="deleteText"
               size="small"
-              @onClick="handleDelete(item)"
+              @on-click="handleDelete(item)"
             />
           </td>
         </tr>

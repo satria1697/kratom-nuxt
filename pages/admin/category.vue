@@ -29,8 +29,10 @@
 <script>
 import KrtDatatable from '~/components/krt/Datatable'
 import FormCategory from '~/components/admin/FormCategory'
+import common from '~/mixin/common'
 export default {
   components: { KrtDatatable, FormCategory },
+  mixins: [common],
   middleware: 'admin',
   data () {
     return {
@@ -51,8 +53,7 @@ export default {
           key: 'show',
           name: 'Is Category Show?'
         }
-      ],
-      isLoading: false
+      ]
     }
   },
   computed: {
@@ -82,6 +83,7 @@ export default {
       this.isLoading = false
     },
     async handleDelete (payload) {
+      console.log(payload)
       this.isLoading = true
       await this.$store.dispatch('api/category/deleteCategoryById', payload.id)
       await this.init()
