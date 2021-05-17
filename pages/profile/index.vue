@@ -19,9 +19,11 @@
 import ProfileBar from '~/components/profile/Profile'
 import SettingBar from '~/components/profile/Setting'
 import VerificationBar from '~/components/profile/Verification'
+import common from '~/mixin/common'
 export default {
   name: 'ProfilePage',
   components: { VerificationBar, SettingBar, ProfileBar },
+  mixins: [common],
   data () {
     return {
       dataSidebar: [

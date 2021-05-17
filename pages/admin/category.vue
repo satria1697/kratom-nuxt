@@ -83,13 +83,9 @@ export default {
       this.isLoading = false
     },
     async handleDelete (payload) {
-      console.log(payload)
       this.isLoading = true
       await this.$store.dispatch('api/category/deleteCategoryById', payload.id)
       await this.init()
-    },
-    goTo (payload, params) {
-      this.$router.push({ name: payload, params })
     },
     handleModal (payload) {
       if (payload.id >= 0 && !this.modal.category) {

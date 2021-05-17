@@ -69,8 +69,10 @@
 <script>
 import SimpleMde from '~/components/SimpleMde'
 import { imgToBase64 } from '~/lib/misc/helper'
+import common from '~/mixin/common'
 export default {
   components: { SimpleMde },
+  mixins: [common],
   middleware: 'admin',
   data () {
     return {
@@ -80,8 +82,7 @@ export default {
         show: false,
         brief: '',
         image: ''
-      },
-      isLoading: false
+      }
     }
   },
   mounted () {

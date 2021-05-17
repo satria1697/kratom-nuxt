@@ -32,7 +32,7 @@
           <div class="flex mb-3">
             <krt-button
               text="-"
-              @onClick="changeTotal('minus')"
+              @on-click="changeTotal('minus')"
             />
             <input
               v-model="total"
@@ -42,11 +42,11 @@
             >
             <krt-button
               text="+"
-              @onClick="changeTotal('plus')"
+              @on-click="changeTotal('plus')"
             />
             <span class="my-auto ml-4">{{ goods.stock }} left</span>
           </div>
-          <krt-button text="Add to Cart" @onClick="sendCart()">
+          <krt-button text="Add to Cart" @on-click="sendCart()">
             Add to Cart
           </krt-button>
         </div>
@@ -56,21 +56,20 @@
 </template>
 
 <script>
+import common from '~/mixin/common'
+import KrtButton from '~/components/krt/Button'
+
 export default {
+  components: { KrtButton },
+  mixins: [common],
   async asyncData ({ params, store }) {
     await store.dispatch('api/goods/getGoodById', params.id)
     return { goods: store.state.api.goods.good }
   },
   data () {
     return {
-      isLoading: false,
       goods: null,
       total: 1
-    }
-  },
-  computed: {
-    jwtToken () {
-      return this.$store.state.jwt
     }
   },
   methods: {
@@ -90,7 +89,7 @@ export default {
       }
     },
     sendCart () {
-      if (!this.jwtToken) {
+      if (!this.jwt) {
         this.goTo('login')
       } else if (this.total) {
         const payload = {
@@ -104,9 +103,6 @@ export default {
       } else {
         this.$toast.error('Total item cant empty')
       }
-    },
-    goTo (payload) {
-      this.$router.push({ name: payload })
     }
   }
 }

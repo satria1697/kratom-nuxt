@@ -41,9 +41,11 @@
 
 <script>
 import KrtDatatable from '~/components/krt/Datatable'
+import common from '~/mixin/common'
 export default {
   name: 'ProfileBar',
   components: { KrtDatatable },
+  mixins: [common],
   props: {
     user: {
       type: Object,

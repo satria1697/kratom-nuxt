@@ -35,7 +35,7 @@
     </div>
     <div class="flex w-full">
       <div class="flex mb-3">
-        <krt-button :text="isLoading ? 'Updating' : 'Update'" :is-loading="isLoading" @onClick="handleUpdate">
+        <krt-button :text="isLoading ? 'Updating' : 'Update'" :is-loading="isLoading" @on-click="handleUpdate">
           Update
         </krt-button>
       </div>
@@ -44,8 +44,12 @@
 </template>
 
 <script>
+import KrtButton from '~/components/krt/Button'
+import common from '~/mixin/common'
 export default {
   name: 'SettingBar',
+  components: { KrtButton },
+  mixins: [common],
   props: {
     user: {
       type: Object,
@@ -60,8 +64,7 @@ export default {
         email: this.user.email || '',
         position: this.user.profile.position || '',
         password: ''
-      },
-      isLoading: false
+      }
     }
   },
   methods: {

@@ -2,7 +2,7 @@
   <div v-if="!cart" class="flex justify-center items-center w-3/4 mx-auto">
     <div v-if="!jwt" class="flex flex-col w-full">
       <span class="text-4xl font-semibold mb-3 mx-auto">Login to add cart</span>
-      <krt-button text="Go To Login Page" @onClick="goTo('login')" />
+      <krt-button text="Go To Login Page" @on-click="goTo('login')" />
     </div>
     <span v-else class="text-4xl animate-pulse">Loading your cart</span>
   </div>
@@ -28,7 +28,7 @@
           <div class="flex mt-auto">
             <krt-button
               text="-"
-              @onClick="changeTotal(opt, 'minus')"
+              @on-click="changeTotal(opt, 'minus')"
             />
             <input
               v-model="opt.buying"
@@ -38,15 +38,15 @@
             >
             <krt-button
               text="+"
-              @onClick="changeTotal(opt, 'plus')"
+              @on-click="changeTotal(opt, 'plus')"
             />
             <span class="my-auto ml-4">{{ opt.goods.stock }} left</span>
           </div>
         </div>
       </div>
       <div class="flex justify-end">
-        <krt-button v-if="cartLength" text="Checkout" @onClick="handleCheckout" />
-        <krt-button v-else text="See Our Product" @onClick="goTo('index')" />
+        <krt-button v-if="cartLength" text="Checkout" @on-click="handleCheckout" />
+        <krt-button v-else text="See Our Product" @on-click="goTo('index')" />
       </div>
     </div>
   </div>

@@ -19,9 +19,11 @@
 
 <script>
 import KrtDatatable from '~/components/krt/Datatable'
+import common from '~/mixin/common'
 export default {
   name: 'AdminGoods',
   components: { KrtDatatable },
+  mixins: [common],
   data () {
     return {
       isLoading: false,

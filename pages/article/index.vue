@@ -25,7 +25,9 @@
 
 <script>
 import dayjs from 'dayjs'
+import common from '~/mixin/common'
 export default {
+  mixins: [common],
   async asyncData ({ store }) {
     await store.dispatch('api/article/getArticles')
     return { articles: store.state.api.article.articles }
@@ -33,9 +35,6 @@ export default {
   methods: {
     convertTime (payload) {
       return dayjs(payload).format('dddd, DD/MMMM/YYYY HH:mm')
-    },
-    goTo (payload, params) {
-      this.$router.push({ name: payload, params })
     }
   }
 }

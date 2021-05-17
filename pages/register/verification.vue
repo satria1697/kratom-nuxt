@@ -1,21 +1,20 @@
 <template>
-  <div class="h-screen flex lg:items-center justify-center">
-    <div
-      class="flex flex-col border-2 max-w-xs rounded-md p-6 mx-10 lg:mx-0"
-      style="width: 100%; height: 100%; max-height: 150px"
-    >
-      <span class="animate-pulse text-center text-xl mt-6">Your Email is being verified... <br>Please wait</span>
-    </div>
-  </div>
+  <krt-box>
+    <span class="animate-pulse text-center text-xl mt-6">Your Email is being verified... <br>Please wait</span>
+  </krt-box>
 </template>
 
 <script>
 import jwtDecode from 'jwt-decode'
+import common from '~/mixin/common'
+import KrtBox from '~/components/krt/Box'
 
 export default {
+  name: 'Verification',
+  components: { KrtBox },
+  mixins: [common],
   mounted () {
-    const jwt = this.$route.query.key
-    const decode = jwtDecode(jwt)
+    const decode = jwtDecode(this.jwt)
     const email = decode.email
     const code = decode.code
     this.handleVerification(email, code)
@@ -27,7 +26,6 @@ export default {
         code
       }
       const res = await this.$store.dispatch('api/auth/verification', payload)
-      console.log(res)
       if (res.message === 'code-true') {
         this.$router.push({ name: 'login' })
       } else {

@@ -17,8 +17,11 @@
 
 <script>
 import MarkdownIt from 'markdown-it'
+import common from '~/mixin/common'
 const md = new MarkdownIt()
 export default {
+  name: 'ArticleSlug',
+  mixins: [common],
   async asyncData ({ params, store }) {
     await store.dispatch('api/article/getArticleById', params.slug)
     return { article: store.state.api.article.article }

@@ -93,7 +93,10 @@
 </template>
 
 <script>
+import common from '~/mixin/common'
+
 export default {
+  mixins: [common],
   computed: {
     level () {
       return this.$store.state.api.profile.level

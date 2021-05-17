@@ -58,9 +58,13 @@
 
 <script>
 import { imgToBase64 } from '~/lib/misc/helper'
+import KrtButton from '~/components/krt/Button'
+import common from '~/mixin/common'
 
 export default {
   name: 'VerificationBar',
+  components: { KrtButton },
+  mixins: [common],
   props: {
     user: {
       type: Object,

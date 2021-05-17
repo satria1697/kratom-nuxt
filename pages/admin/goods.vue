@@ -33,11 +33,13 @@
 <script>
 import FormGoods from '~/components/admin/FormGoods'
 import KrtDatatable from '~/components/krt/Datatable'
+import common from '~/mixin/common'
 export default {
   components: {
     KrtDatatable,
     FormGoods
   },
+  mixins: [common],
   middleware: 'admin',
   data () {
     return {
@@ -45,7 +47,6 @@ export default {
         goods: false
       },
       id: 0,
-      isLoading: false,
       columns: [
         {
           key: 'id',

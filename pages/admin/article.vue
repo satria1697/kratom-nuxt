@@ -26,8 +26,10 @@
 
 <script>
 import KrtDatatable from '~/components/krt/Datatable'
+import common from '~/mixin/common'
 export default {
   components: { KrtDatatable },
+  mixins: [common],
   middleware: 'admin',
   data () {
     return {
@@ -48,8 +50,7 @@ export default {
           key: 'show',
           name: 'Article Show?'
         }
-      ],
-      isLoading: false
+      ]
     }
   },
   computed: {
@@ -84,9 +85,6 @@ export default {
         this.$toast.success('Article Deleted')
         await this.init()
       }
-    },
-    goTo (payload, params) {
-      this.$router.push({ name: payload, params })
     },
     handleEdit (payload) {
       this.goTo('admin-add-article-slug', { slug: payload.slug })

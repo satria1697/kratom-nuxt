@@ -56,21 +56,20 @@
 </template>
 
 <script>
+import common from '~/mixin/common'
+
 export default {
+  mixins: [common],
   data () {
     return {
       dropdown: {
         user: false
-      },
-      isLoading: false
+      }
     }
   },
   computed: {
     userInfo () {
       return this.$store.state.userInfo
-    },
-    jwt () {
-      return this.$store.state.jwt
     }
   },
   methods: {
