@@ -46,6 +46,11 @@ export default {
       }
     }
   },
+  head () {
+    return {
+      title: 'Kratomedical | Login'
+    }
+  },
   methods: {
     async handleLogin () {
       this.isLoading = true

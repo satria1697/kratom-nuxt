@@ -76,7 +76,6 @@ export default {
       this.$router.push({ name: 'admin-add-user-detail', params: { id: payload.id } })
     },
     handleDelete (payload) {
-      console.log(payload)
     }
   }
 }

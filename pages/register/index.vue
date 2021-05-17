@@ -52,6 +52,11 @@ export default {
       }
     }
   },
+  head () {
+    return {
+      title: 'Kratomedical | Register'
+    }
+  },
   methods: {
     onSubmit () {
       this.isLoading = true

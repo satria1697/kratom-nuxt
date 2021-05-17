@@ -56,6 +56,11 @@ export default {
       ]
     }
   },
+  head () {
+    return {
+      title: 'Admin | Category'
+    }
+  },
   computed: {
     category () {
       return this.$store.state.api.category.category

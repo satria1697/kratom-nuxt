@@ -31,6 +31,11 @@ export default {
       article: null
     }
   },
+  head () {
+    return {
+      title: `${this.article.title} | Kratomedical`
+    }
+  },
   methods: {
     mark (payload) {
       return md.render(payload)

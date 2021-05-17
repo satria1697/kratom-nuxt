@@ -73,6 +73,11 @@ export default {
       ]
     }
   },
+  head () {
+    return {
+      title: 'Admin | Goods'
+    }
+  },
   computed: {
     goods () {
       return this.$store.state.api.goods.goods

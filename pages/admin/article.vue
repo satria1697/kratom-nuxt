@@ -53,6 +53,11 @@ export default {
       ]
     }
   },
+  head () {
+    return {
+      title: 'Admin | Article'
+    }
+  },
   computed: {
     articles () {
       return this.$store.state.api.article.articles

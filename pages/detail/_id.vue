@@ -72,6 +72,21 @@ export default {
       total: 1
     }
   },
+  head () {
+    return {
+      title: ` ${this.goods.name} | Kratomedical`,
+      meta: [
+        {
+          content: `${this.goods.description}`
+        }
+      ]
+    }
+  },
+  computed: {
+    jwtToken () {
+      return this.$store.state.jwt
+    }
+  },
   methods: {
     changeTotal (payload) {
       if (payload === 'plus') {
