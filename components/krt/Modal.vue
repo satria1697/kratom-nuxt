@@ -4,7 +4,7 @@
       class="h-screen w-screen z-40 top-0 left-0 fixed overflow-auto"
       style="background-color: rgba(0, 0, 0, 0.2)"
     >
-      <div class="z-50 flex items-center max-w-lg mx-auto h-full">
+      <div class="z-50 flex items-center max-w-lg h-full mx-3 lg:mx-auto">
         <div v-if="isLoading" class="bg-white py-10 px-10 w-full">
           <span class="animate-pulse">Loading Data</span>
         </div>
