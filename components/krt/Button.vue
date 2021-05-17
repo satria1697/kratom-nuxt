@@ -37,27 +37,23 @@ export default {
   computed: {
     btnClass () {
       let btnClass = ''
+
       if (this.size === 'medium') {
         btnClass += 'py-2 px-3 '
-      }
-      if (this.size === 'small') {
+      } else if (this.size === 'small') {
         btnClass += 'py-1 px-2 '
-      }
-      if (this.size === 'big') {
+      } else if (this.size === 'big') {
         btnClass += 'py-3 px-4 '
       }
+
       if (this.isLoading) {
         btnClass += 'disabled:bg-gray-200 disabled:opacity-50 disabled:text-main cursor-default '
-      } else {
-        if (this.variant === 'primary') {
-          btnClass += 'hover:bg-white hover:text-main text-white bg-main border-main '
-        }
-        if (this.variant === 'danger') {
-          btnClass += 'hover:bg-white hover:text-red-700 text-white bg-red-700 border-red-700 '
-        }
-        if (this.variant === 'warning') {
-          btnClass += 'hover:bg-white hover:text-yellow-400 text-white bg-yellow-400 border-yellow-400 '
-        }
+      } else if (this.variant === 'primary') {
+        btnClass += 'hover:bg-white hover:text-main text-white bg-main border-main '
+      } else if (this.variant === 'danger') {
+        btnClass += 'hover:bg-white hover:text-red-700 text-white bg-red-700 border-red-700 '
+      } else if (this.variant === 'warning') {
+        btnClass += 'hover:bg-white hover:text-yellow-400 text-white bg-yellow-400 border-yellow-400 '
       }
       btnClass += this.clasProps
       return btnClass
