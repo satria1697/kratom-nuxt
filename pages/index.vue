@@ -28,7 +28,10 @@
 </template>
 
 <script>
+import common from '~/mixin/common'
+
 export default {
+  mixins: [common],
   async asyncData ({ store }) {
     const payload = {
       filter: 1,
@@ -42,8 +45,7 @@ export default {
         id: 0,
         name: 'All'
       }],
-      selectedCategory: null,
-      isLoading: false
+      selectedCategory: null
     }
   },
   computed: {

@@ -28,6 +28,10 @@ export default {
     size: {
       type: String,
       default: 'medium'
+    },
+    clasProps: {
+      type: String,
+      default: ''
     }
   },
   computed: {
@@ -55,12 +59,13 @@ export default {
           btnClass += 'hover:bg-white hover:text-yellow-400 text-white bg-yellow-400 border-yellow-400 '
         }
       }
+      btnClass += this.clasProps
       return btnClass
     }
   },
   methods: {
     handleClick () {
-      this.$emit('onClick')
+      this.$emit('on-click')
     }
   }
 }

@@ -26,6 +26,7 @@
         @keyup.enter="handleLogin"
       >
       <krt-button
+        clas-props="mb-3"
         :text="isLoading ? 'Logging in' : 'Login'"
         :is-loading="isLoading"
         @onClick="handleLogin"
@@ -36,7 +37,9 @@
 </template>
 
 <script>
+import KrtButton from '~/components/krt/Button'
 export default {
+  components: { KrtButton },
   data () {
     return {
       login: {
