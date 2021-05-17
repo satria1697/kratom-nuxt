@@ -45,6 +45,9 @@ export default {
       ]
     }
   },
+  head: {
+    title: 'Admin | User'
+  },
   computed: {
     users () {
       return this.$store.state.api.profile.profiles

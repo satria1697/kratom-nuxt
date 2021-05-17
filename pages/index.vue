@@ -48,6 +48,16 @@ export default {
       selectedCategory: null
     }
   },
+  head: {
+    title: 'Kratomedical',
+    meta: [
+      {
+        hid: 'All you can get',
+        name: 'All you can get',
+        content: 'Hompage of kratomedical'
+      }
+    ]
+  },
   computed: {
     goods () {
       return this.$store.state.api.goods.goods
