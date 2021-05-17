@@ -38,6 +38,7 @@
               @on-click="handleEdit(item)"
             />
             <krt-button
+              v-if="isDelete"
               variant="danger"
               :text="deleteText"
               size="small"
@@ -73,6 +74,10 @@ export default {
       default: 'Delete'
     },
     isAction: {
+      type: Boolean,
+      default: true
+    },
+    isDelete: {
       type: Boolean,
       default: true
     }

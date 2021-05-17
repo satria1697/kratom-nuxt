@@ -10,8 +10,8 @@
       <krt-datatable
         :options="usersMap"
         :columns="columns"
+        :is-delete="false"
         @on-edit="handleEdit"
-        @on-delete="handleDelete"
       />
     </template>
   </div>
@@ -74,8 +74,6 @@ export default {
     },
     handleEdit (payload) {
       this.$router.push({ name: 'admin-add-user-detail', params: { id: payload.id } })
-    },
-    handleDelete (payload) {
     }
   }
 }
