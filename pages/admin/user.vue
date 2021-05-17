@@ -43,6 +43,10 @@ export default {
         {
           key: 'company',
           name: 'Company'
+        },
+        {
+          key: 'blocked',
+          name: 'isBlocked'
         }
       ]
     }
@@ -60,7 +64,8 @@ export default {
           id: user.id,
           name: user.name,
           email: user.email,
-          company: user.profile.company ? user.profile.company : '-'
+          company: user.profile.company ? user.profile.company : '-',
+          blocked: user.level_id > 8 ? 'blocked' : 'not blocked'
         }
       })
     }
