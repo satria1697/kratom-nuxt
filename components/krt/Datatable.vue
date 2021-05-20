@@ -1,6 +1,15 @@
 <template>
   <div class="flex flex-col w-full">
     <span>{{ tableTitle }}</span>
+    <div class="flex justify-between w-11/12 mx-auto mb-2">
+      <krt-input
+        v-model="find"
+      />
+      <krt-button
+        text="Tambah Data"
+        @on-click="$emit('on-add-data')"
+      />
+    </div>
     <table class="w-11/12 mx-auto lg:w-full">
       <thead>
         <tr class="border-b-4 border-main-dark text-lg bg-gray-300 text-center rounded-tr-md">
@@ -80,6 +89,11 @@ export default {
     isDelete: {
       type: Boolean,
       default: true
+    }
+  },
+  data () {
+    return {
+      find: ''
     }
   },
   methods: {

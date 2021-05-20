@@ -51,8 +51,14 @@ export default {
     }
   },
   computed: {
+    userInfo () {
+      return this.$store.state.userInfo
+    },
     userId () {
-      return this.$store.state.userInfo.id
+      if (this.userInfo) {
+        return this.userInfo.id
+      }
+      return 0
     }
   },
   async mounted () {

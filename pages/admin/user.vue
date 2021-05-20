@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <p class="text-center text-5xl font-semibold">
+    <p class="text-center text-5xl font-semibold mb-4">
       User Page
     </p>
     <p v-if="isLoading" class="text-lg animate-pulse">

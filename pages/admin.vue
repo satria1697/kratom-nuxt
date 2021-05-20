@@ -13,6 +13,9 @@
       <nuxt-link class="mr-3 hover:bg-main border-transparent py-2 px-3 transition-all hover:text-white" :class="/(category)/.test($route.name) ? 'border-main border-b-4 pb-1': ''" :to="{name: 'admin-category'}">
         Category
       </nuxt-link>
+      <nuxt-link class="mr-3 hover:bg-main border-transparent py-2 px-3 transition-all hover:text-white" :class="/(cart)/.test($route.name) ? 'border-main border-b-4 pb-1': ''" :to="{name: 'admin-cart'}">
+        Cart
+      </nuxt-link>
     </div>
     <NuxtChild />
   </div>

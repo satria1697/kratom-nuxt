@@ -8,14 +8,6 @@
     <p class="text-center text-5xl font-semibold">
       Goods Page
     </p>
-    <div class="flex justify-end mb-3">
-      <button
-        class="mr-3 lg:mr-0 mt-3 lg:mt-0 border border-main rounded-md py-2 px-3 hover:bg-main hover:text-white transition-colors"
-        @click="handleModal({id: 0})"
-      >
-        Tambah Data
-      </button>
-    </div>
     <p v-if="isLoading" class="text-lg animate-pulse">
       Loading Data
     </p>
@@ -25,6 +17,7 @@
         :columns="columns"
         @on-edit="handleModal"
         @on-delete="handleDelete"
+        @on-add-data="handleModal({id: 0})"
       />
     </template>
   </div>

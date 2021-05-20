@@ -6,14 +6,14 @@
     </div>
     <template v-else>
       <div class="flex w-full mb-3">
-        <div class="flex flex-col w-1/3">
-          <span>Name</span>
-          <span>{{ user.profile.name || '-' }}</span>
-        </div>
-        <div class="flex flex-col w-1/3">
-          <span>Email</span>
-          <span>{{ user.email || '-' }}</span>
-        </div>
+        <krt-detail
+          title-text="Name"
+          :text="user.profile.name || '-'"
+        />
+        <krt-detail
+          title-text="Email"
+          :text="user.email || '-'"
+        />
         <div class="flex flex-col w-1/3">
           <span>Level</span>
           <select
@@ -31,18 +31,18 @@
         </div>
       </div>
       <div class="flex">
-        <div class="flex flex-col mb-3 w-1/2">
-          <span>Company</span>
-          <span>{{ user.profile.company || '-' }}</span>
-        </div>
-        <div class="flex flex-col mb-3 w-1/2">
-          <span>Position</span>
-          <span>{{ user.profile.position || '-' }}</span>
-        </div>
-        <div class="flex flex-col mb-3 w-1/2">
-          <span>Company ID</span>
-          <span>{{ user.profile.company_id || '-' }}</span>
-        </div>
+        <krt-detail
+          title-text="Company"
+          :text="user.profile.company || '-'"
+        />
+        <krt-detail
+          title-text="Company"
+          :text="user.profile.position || '-'"
+        />
+        <krt-detail
+          title-text="Company"
+          :text="user.profile.company_id || '-'"
+        />
       </div>
       <div class="flex">
         <div class="flex flex-col mb-3 w-1/2">

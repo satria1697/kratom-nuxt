@@ -6,24 +6,24 @@
     <template v-else>
       <span class="text-2xl font-semibold mb-3">Profile</span>
       <div class="flex gap-x-10 w-5/6">
-        <div class="flex flex-col mb-3 w-1/2">
-          <span>Name</span>
-          <span>{{ user.profile.name || '-' }}</span>
-        </div>
-        <div class="flex flex-col mb-3 w-1/2">
-          <span>Company</span>
-          <span>{{ user.profile.company || '-' }}</span>
-        </div>
+        <krt-detail
+          title-text="Name"
+          :text="user.profile.name || '-'"
+        />
+        <krt-detail
+          title-text="Company"
+          :text="user.profile.company || '-'"
+        />
       </div>
       <div class="flex gap-x-10 w-5/6">
-        <div class="flex flex-col mb-3 w-1/2">
-          <span>Email</span>
-          <span>{{ user.email || '-' }}</span>
-        </div>
-        <div class="flex flex-col mb-3 w-1/2">
-          <span>Position</span>
-          <span>{{ user.profile.position || '-' }}</span>
-        </div>
+        <krt-detail
+          title-text="Email"
+          :text="user.email || '-'"
+        />
+        <krt-detail
+          title-text="Company"
+          :text="user.profile.position || '-'"
+        />
       </div>
       <div class="flex gap-x-10 w-5/6 flex-col">
         <span class="text-xl font-semibold mb-3">Transaction History</span>

@@ -4,11 +4,6 @@
     <p class="text-center text-5xl font-semibold">
       Category Page
     </p>
-    <div class="flex justify-end">
-      <button class="my-3 lg:mt-0 mr-3 lg:mr-0 border border-main rounded-md py-2 px-3 hover:bg-main hover:text-white transition-colors" @click="handleModal({id:0})">
-        Tambah Data
-      </button>
-    </div>
     <div v-if="isLoading">
       <p class="animate-pulse text-lg">
         Loading data
