@@ -13,7 +13,8 @@ module.exports = {
   plugins: [
     'jest',
     'unicorn',
-    'vue'
+    'vue',
+    'only-warn'
   ],
   settings: {
     'import/resolver': {
