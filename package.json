@@ -32,7 +32,7 @@
     "@nuxtjs/tailwindcss": "^4.1.0",
     "@tailwindcss/jit": "^0.1.18",
     "axios": "^0.21.1",
-    "eslint": "^7.25.0",
+    "eslint": "^7.27.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-only-warn": "^1.0.2",
     "eslint-plugin-prettier": "^3.4.0",
