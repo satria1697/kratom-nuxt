@@ -5,6 +5,7 @@
       :value="value"
       :type="inputType"
       class="py-2 px-3 border w-full rounded-md"
+      :placeholder="placeholder"
       @input="handleInput"
     >
     <span v-if="subText" class="text-sm text-gray-600 mt-4">{{ subText }}</span>
@@ -17,7 +18,7 @@ export default {
   props: {
     textTitle: {
       type: String,
-      required: true
+      default: ''
     },
     inputType: {
       type: String,
@@ -30,11 +31,30 @@ export default {
     subText: {
       type: String,
       default: ''
+    },
+    placeholder: {
+      type: String,
+      default: ''
+    },
+    wait: {
+      type: Number,
+      default: 0
+    }
+  },
+  data () {
+    return {
+      awaitSearch: false
     }
   },
   methods: {
     handleInput (event) {
-      this.$emit('input', event.target.value)
+      if (!this.awaitSearch) {
+        setTimeout(() => {
+          this.$emit('input', event.target.value)
+          this.awaitSearch = false
+        }, this.wait)
+      }
+      this.awaitSearch = true
     }
   }
 }

@@ -17,7 +17,9 @@ export const mutations = {
 
 export const actions = {
   async getCategory ({ commit }, payload) {
-    const res = await this.$axios.$get(category() + `?${qs.stringify({ filter: payload.filter })}`)
+    const res = await this.$axios.$get(category(), {
+      params: payload
+    })
     const { data } = res
     commit('setCategoriesData', data)
   },

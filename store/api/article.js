@@ -1,3 +1,4 @@
+import qs from 'qs'
 import { article } from '~/lib/misc/endpoints'
 
 export const state = () => ({
@@ -15,10 +16,12 @@ export const mutations = {
 }
 
 export const actions = {
-  async getArticles ({ commit }) {
-    const res = await this.$axios.$get(article())
+  async getArticles ({ commit }, payload) {
+    const res = await this.$axios.get(article(), {
+      params: payload
+    })
     const { data } = res
-    commit('setArticlesData', data)
+    commit('setArticlesData', data.data)
   },
   async getArticleById ({ commit }, id) {
     const res = await this.$axios.$get(article(id))

@@ -19,8 +19,10 @@ export const mutations = {
 }
 
 export const actions = {
-  async getProfiles ({ commit }) {
-    const res = await this.$axios.$get(profile())
+  async getProfiles ({ commit }, payload) {
+    const res = await this.$axios.$get(profile(), {
+      params: payload
+    })
     const { data } = res
     commit('setProfilesData', data)
   },

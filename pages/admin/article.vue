@@ -12,8 +12,10 @@
       <krt-datatable
         :options="articleMap"
         :columns="columns"
+        :query="query"
         @on-edit="handleEdit"
         @on-delete="handleDelete"
+        @data-changed="handleDataChanged"
       />
     </template>
   </div>
@@ -45,7 +47,10 @@ export default {
           key: 'show',
           name: 'Article Show?'
         }
-      ]
+      ],
+      query: {
+        search: ''
+      }
     }
   },
   head () {
@@ -58,24 +63,27 @@ export default {
       return this.$store.state.api.article.articles
     },
     articleMap () {
-      return this.articles.map((article) => {
-        return {
-          id: article.id,
-          title: article.title,
-          brief: article.brief,
-          show: article.show ? 'Show' : 'None',
-          slug: article.slug
-        }
-      })
+      if (this.articles) {
+        return this.articles.map((article) => {
+          return {
+            id: article.id,
+            title: article.title,
+            brief: article.brief,
+            show: article.show ? 'Show' : 'None',
+            slug: article.slug
+          }
+        })
+      }
+      return []
     }
   },
   created () {
+    this.isLoading = true
     this.init()
   },
   methods: {
     async init () {
-      this.isLoading = true
-      await this.$store.dispatch('api/article/getArticles')
+      await this.$store.dispatch('api/article/getArticles', this.query)
       this.isLoading = false
     },
     async handleDelete (payload) {
@@ -83,11 +91,17 @@ export default {
       const res = await this.$store.dispatch('api/article/deleteArticle', data)
       if (res.data.success) {
         this.$toast.success('Article Deleted')
+
+        this.isLoading = true
         await this.init()
       }
     },
     handleEdit (payload) {
       this.goTo('admin-add-article-slug', { slug: payload.slug })
+    },
+    async handleDataChanged (payload) {
+      this.query = payload
+      await this.init()
     }
   }
 }

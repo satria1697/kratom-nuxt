@@ -1,4 +1,3 @@
-import qs from 'qs'
 import { cart, goods } from '~/lib/misc/endpoints'
 
 export const state = () => ({
@@ -26,7 +25,9 @@ export const actions = {
     return res.data
   },
   async getGoodsData ({ commit }, payload) {
-    const res = await this.$axios.$get(goods() + `?${qs.stringify({ category: payload.category, filter: payload.filter })}`)
+    const res = await this.$axios.$get(goods(), {
+      params: payload
+    })
     const { data } = res
     commit('setGoodsData', data)
   },

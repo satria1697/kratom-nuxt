@@ -8,10 +8,12 @@
     </p>
     <template v-else>
       <krt-datatable
+        :query="query"
         :options="usersMap"
         :columns="columns"
         :is-delete="false"
         @on-edit="handleEdit"
+        @data-changed="handleDataChange"
       />
     </template>
   </div>
@@ -48,7 +50,10 @@ export default {
           key: 'blocked',
           name: 'isBlocked'
         }
-      ]
+      ],
+      query: {
+        search: ''
+      }
     }
   },
   head: {
@@ -71,14 +76,20 @@ export default {
     }
   },
   mounted () {
+    this.isLoading = true
     this.init()
   },
   methods: {
     async init () {
-      await this.$store.dispatch('api/profile/getProfiles')
+      await this.$store.dispatch('api/profile/getProfiles', this.query)
+      this.isLoading = false
     },
     handleEdit (payload) {
       this.$router.push({ name: 'admin-add-user-detail', params: { id: payload.id } })
+    },
+    handleDataChange (payload) {
+      this.query = payload
+      this.init()
     }
   }
 }

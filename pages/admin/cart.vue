@@ -1,7 +1,8 @@
 <template>
   <div class="container mx-auto">
+    <form-cart-modal v-if="modal.cart" :id="modal.id" @close-modal="handleModal" />
     <p class="text-center text-5xl font-semibold">
-      Article Page
+      Cart Page
     </p>
     <div v-if="isLoading">
       <p class="animate-pulse text-lg">
@@ -10,10 +11,11 @@
     </div>
     <template v-else>
       <krt-datatable
-        :options="articleMap"
+        :query="query"
+        :options="cartsMap"
         :columns="columns"
-        @on-edit="handleEdit"
-        @on-delete="handleDelete"
+        :is-delete="false"
+        @on-edit="handleModal"
       />
     </template>
   </div>
@@ -22,8 +24,9 @@
 <script>
 import KrtDatatable from '~/components/krt/Datatable'
 import common from '~/mixin/common'
+import FormCartModal from '~/components/admin/FormCart'
 export default {
-  components: { KrtDatatable },
+  components: { FormCartModal, KrtDatatable },
   mixins: [common],
   middleware: 'admin',
   data () {
@@ -34,60 +37,76 @@ export default {
           name: 'ID'
         },
         {
-          key: 'title',
-          name: 'Title'
+          key: 'name',
+          name: 'Goods Name'
         },
         {
-          key: 'brief',
-          name: 'Brief Description'
+          key: 'user',
+          name: 'User Name'
         },
         {
-          key: 'show',
-          name: 'Article Show?'
+          key: 'email',
+          name: 'User Email'
+        },
+        {
+          key: 'status',
+          name: 'Goods Status'
+        },
+        {
+          key: 'buying',
+          name: 'Goods buy'
         }
-      ]
+      ],
+      query: {
+        search: ''
+      },
+      modal: {
+        cart: false,
+        id: -1
+      }
     }
   },
   head () {
     return {
-      title: 'Admin | Article'
+      title: 'Admin | Cart'
     }
   },
   computed: {
-    articles () {
-      return this.$store.state.api.article.articles
+    carts () {
+      return this.$store.state.api.cart.carts
     },
-    articleMap () {
-      return this.articles.map((article) => {
+    cartsMap () {
+      return this.carts.map((cart) => {
         return {
-          id: article.id,
-          title: article.title,
-          brief: article.brief,
-          show: article.show ? 'Show' : 'None',
-          slug: article.slug
+          id: cart.id,
+          name: cart.goods.name,
+          user: cart.user.name,
+          email: cart.user.email,
+          status: cart.status.description,
+          buying: cart.buying
         }
       })
     }
   },
   created () {
+    this.isLoading = true
     this.init()
   },
   methods: {
     async init () {
-      this.isLoading = true
-      await this.$store.dispatch('api/article/getArticles')
+      await this.$store.dispatch('api/cart/getCarts', this.query)
       this.isLoading = false
     },
-    async handleDelete (payload) {
-      const data = { jwt: this.$store.state.jwt, id: payload.id }
-      const res = await this.$store.dispatch('api/article/deleteArticle', data)
-      if (res.data.success) {
-        this.$toast.success('Article Deleted')
+    async handleModal (payload) {
+      if (this.modal.cart === false) {
+        this.modal.id = payload.id
+        this.modal.cart = true
+      } else {
+        this.modal.id = -1
+        this.modal.cart = false
+        this.isLoading = true
         await this.init()
       }
-    },
-    handleEdit (payload) {
-      this.goTo('admin-add-article-slug', { slug: payload.slug })
     }
   }
 }

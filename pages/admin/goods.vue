@@ -13,11 +13,13 @@
     </p>
     <template v-else>
       <krt-datatable
+        :query="query"
         :options="goodsMap"
         :columns="columns"
         @on-edit="handleModal"
         @on-delete="handleDelete"
         @on-add-data="handleModal({id: 0})"
+        @data-changed="handleDataChange"
       />
     </template>
   </div>
@@ -63,7 +65,12 @@ export default {
           name: 'Stock',
           tdClass: 'text-center'
         }
-      ]
+      ],
+      query: {
+        category: '',
+        filter: 0,
+        search: ''
+      }
     }
   },
   head () {
@@ -76,28 +83,27 @@ export default {
       return this.$store.state.api.goods.goods
     },
     goodsMap () {
-      return this.goods.map((good) => {
-        return {
-          id: good.id,
-          name: good.name,
-          category: good.category.name,
-          price: `$ ${good.price}`,
-          stock: good.stock
-        }
-      })
+      if (this.goods) {
+        return this.goods.map((good) => {
+          return {
+            id: good.id,
+            name: good.name,
+            category: good.category.name,
+            price: `$ ${good.price}`,
+            stock: good.stock
+          }
+        })
+      }
+      return []
     }
   },
   created () {
+    this.isLoading = true
     this.init()
   },
   methods: {
     async init () {
-      this.isLoading = true
-      const payload = {
-        category: '',
-        filter: 0
-      }
-      await this.$store.dispatch('api/goods/getGoodsData', payload)
+      await this.$store.dispatch('api/goods/getGoodsData', this.query)
       this.isLoading = false
     },
     handleModal (payload) {
@@ -105,6 +111,7 @@ export default {
         this.id = payload.id
       }
       if (this.modal.goods) {
+        this.isLoading = true
         this.init()
       }
       this.modal.goods = !this.modal.goods
@@ -116,6 +123,10 @@ export default {
       } else {
         this.$toast.error('Something went wrong')
       }
+    },
+    handleDataChange (payload) {
+      this.query = payload
+      this.init()
     }
   }
 }

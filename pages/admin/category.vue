@@ -13,9 +13,11 @@
       <krt-datatable
         :options="categoryMap"
         :columns="columns"
+        :query="query"
         delete-text="show / unshow"
         @on-edit="handleModal"
         @on-delete="handleDelete"
+        @data-changed="handleDataChanged"
       />
     </template>
   </div>
@@ -48,7 +50,11 @@ export default {
           key: 'show',
           name: 'Is Category Show?'
         }
-      ]
+      ],
+      query: {
+        filter: 0,
+        search: ''
+      }
     }
   },
   head () {
@@ -61,13 +67,16 @@ export default {
       return this.$store.state.api.category.category
     },
     categoryMap () {
-      return this.category.map((cate) => {
-        return {
-          id: cate.id,
-          name: cate.name,
-          show: cate.show === 1 ? 'Show' : 'Not Show'
-        }
-      })
+      if (this.category) {
+        return this.category.map((cate) => {
+          return {
+            id: cate.id,
+            name: cate.name,
+            show: cate.show === 1 ? 'Show' : 'Not Show'
+          }
+        })
+      }
+      return []
     }
   },
   created () {
@@ -75,11 +84,7 @@ export default {
   },
   methods: {
     async init () {
-      this.isLoading = true
-      const payload = {
-        filter: 0
-      }
-      await this.$store.dispatch('api/category/getCategory', payload)
+      await this.$store.dispatch('api/category/getCategory', this.query)
       this.isLoading = false
     },
     async handleDelete (payload) {
@@ -92,9 +97,14 @@ export default {
         this.id = payload.id
       }
       if (this.modal.category) {
+        this.isLoading = true
         this.init()
       }
       this.modal.category = !this.modal.category
+    },
+    handleDataChanged (payload) {
+      this.query = payload
+      this.init()
     }
   }
 }
