@@ -11,7 +11,7 @@ let https = false
 // Production Environment
 if (ENV_DEV === false) {
   port = 8000 // make sure this port is open on your server you can do that via WHM or talk to you hosting company
-  host = 'globalindo-intl.com'
+  host = 'dev.globalindo-intl.com'
   https = {
     key: fs.readFileSync(path.resolve(__dirname,
       './../ssl/keys/b2bdb_441fb_effbc1fd560bd5f6e7f4185a62d7cb1f.key')),
