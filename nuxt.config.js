@@ -14,9 +14,9 @@ if (ENV_DEV === false) {
   host = 'globalindo-intl.com'
   https = {
     key: fs.readFileSync(path.resolve(__dirname,
-      './../../ssl/keys/b2bdb_441fb_effbc1fd560bd5f6e7f4185a62d7cb1f.key')),
+      './../ssl/keys/b2bdb_441fb_effbc1fd560bd5f6e7f4185a62d7cb1f.key')),
     cert: fs.readFileSync(path.resolve(__dirname,
-      './../../ssl/certs/dev_globalindo_intl_com_b2bdb_441fb_1655574006_231d89da600a077764581fedd8cc58dc.crt'))
+      './../ssl/certs/dev_globalindo_intl_com_b2bdb_441fb_1655574006_231d89da600a077764581fedd8cc58dc.crt'))
   }
 }
 
