@@ -1,3 +1,25 @@
+const fs = require('fs')
+const path = require('path')
+
+const ENV_DEV = false
+
+// Development Environment
+let port = 3000
+let host = 'localhost'
+let https = false
+
+// Production Environment
+if (ENV_DEV === false) {
+  port = 8000 // make sure this port is open on your server you can do that via WHM or talk to you hosting company
+  host = 'globalindo-intl.com'
+  https = {
+    key: fs.readFileSync(path.resolve(__dirname,
+      './../../ssl/keys/<ssl-key-file-name>.key')),
+    cert: fs.readFileSync(path.resolve(__dirname,
+      './../../ssl/certs/<ssl-crt-file-name>.crt'))
+  }
+}
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -62,9 +84,12 @@ export default {
       ]
     }
   },
-  // server: {
-  //  host: '192.168.100.140'
-  // },
+  server: {
+    port,
+    host,
+    timing: false,
+    https
+  },
   env: {
     JWT_SECRET: 'bvMp8EzdcXZjUn0f5K3vOCblCL6xoRk4'
   },
