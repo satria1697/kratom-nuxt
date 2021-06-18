@@ -28,12 +28,12 @@
       <div class="flex gap-x-10 w-5/6 flex-col">
         <span class="text-xl font-semibold mb-3">Transaction History</span>
         <span v-if="!cartMap">Data is Loading</span>
-        <krt-datatable
-          v-else
-          :options="cartMap"
-          :columns="columns"
-          :is-action="false"
-        />
+        <!--        <krt-datatable-->
+        <!--          v-else-->
+        <!--          :options="cartMap"-->
+        <!--          :columns="columns"-->
+        <!--          :is-action="false"-->
+        <!--        />-->
       </div>
     </template>
   </div>
