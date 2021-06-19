@@ -10,15 +10,15 @@ module.exports = {
   ],
   deploy: {
     production: {
-      user: 'node',
+      user: 'global10',
       // Multi host is possible, just by passing IPs/hostname as an array
-      host: ['212.83.163.1', '212.83.163.2', '212.83.163.3'],
+      host: ['50.116.26.186'],
       // Branch
       ref: 'origin/master',
       // Git repository to clone
-      repo: 'git@github.com:repo.git',
+      repo: 'git@github.com:satria1697/kratom-nuxt.git',
       // Path of the application on target servers
-      path: '/var/www/production',
+      path: '/home/global10/public_html',
       // Can be used to give options in the format used in the configura-
       // tion file.  This is useful for specifying options for which there
       // is no separate command-line flag, see 'man ssh'
@@ -37,7 +37,7 @@ module.exports = {
       // Can be multiple commands separated by the character ";"
       'pre-deploy-local': "echo 'This is a local executed command'",
       // Commands to be executed on the server after the repo has been cloned
-      'post-deploy': 'npm install && pm2 startOrRestart ecosystem.json --env production'
+      'post-deploy': 'yarn install && pm2 startOrRestart ecosystem.json'
       // Environment variables that must be injected in all applications on this env
     }
   }
