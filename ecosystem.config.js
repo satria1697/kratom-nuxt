@@ -12,7 +12,7 @@ module.exports = {
     production: {
       user: 'global10',
       // Multi host is possible, just by passing IPs/hostname as an array
-      host: ['50.116.26.186'],
+      host: ['globalindo-intl.com'],
       // Branch
       ref: 'origin/master',
       // Git repository to clone
