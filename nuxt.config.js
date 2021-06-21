@@ -40,12 +40,7 @@ export default {
     prefix: 'https://api.globalindo-intl.com/api',
     post: {
       'content-type': 'application/x-www-form-urlencoded'
-    },
-    proxy: true
-  },
-
-  proxy: {
-    '/api/': 'https://api.globalindo-intl.com/api'
+    }
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
