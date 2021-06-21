@@ -37,7 +37,7 @@ export default {
   ],
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'https://api.globalindo-intl.com/api',
+    prefix: 'https://api.globalindo-intl.com/api',
     post: {
       'content-type': 'application/x-www-form-urlencoded'
     },
