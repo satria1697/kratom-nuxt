@@ -37,7 +37,6 @@ export default {
   ],
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'https://api.globalindo-intl.com/api',
     post: {
       'content-type': 'application/x-www-form-urlencoded'
     },
@@ -45,7 +44,7 @@ export default {
   },
 
   proxy: {
-    '/api/': 'https://api.globalindo-intl.com'
+    '/api/': 'https://api.globalindo-intl.com/api'
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
