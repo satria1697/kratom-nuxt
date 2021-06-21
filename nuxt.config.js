@@ -34,8 +34,13 @@ export default {
     ['vue-toastification/nuxt', {
 
       draggable: false
-    }]
+    }],
+    '@nuxtjs/gtm'
   ],
+
+  gtm: {
+    id: 'GTM-WRLJDSG'
+  },
 
   googleAnalytics: {
     id: 'G-Y3Y4BZ1NB8'
