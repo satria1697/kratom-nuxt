@@ -22,12 +22,6 @@ export default {
       payload = { ...payload, decode: jwtDecode(payload.jwt) }
       await this.$store.dispatch('helper/setAuthState', payload)
     }
-  },
-  meta: [
-    {
-      name: 'google-site-verification',
-      content: 'y_mQmOasDwj_QspDIRLfMMXL63et1XE8t9uI0sNx-iU'
-    }
-  ]
+  }
 }
 </script>
