@@ -1,4 +1,3 @@
-import qs from 'qs'
 import { category } from '~/lib/misc/endpoints'
 
 export const state = () => ({
@@ -17,11 +16,11 @@ export const mutations = {
 
 export const actions = {
   async getCategory ({ commit }, payload) {
-    const res = await this.$axios.$get(category(), {
+    const res = await this.$axios.get(category(), {
       params: payload
     })
     const { data } = res
-    commit('setCategoriesData', data)
+    commit('setCategoriesData', data.data)
   },
   async getCategoryById ({ commit, dispatch }, id) {
     dispatch('setHeader', null, { root: true })

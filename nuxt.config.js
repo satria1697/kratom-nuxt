@@ -23,7 +23,8 @@ export default {
   buildModules: [
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/tailwindcss
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/google-analytics'
   ],
 
   modules: [
@@ -35,9 +36,15 @@ export default {
       draggable: false
     }]
   ],
+
+  googleAnalytics: {
+    id: '276426894'
+  },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     baseUrl: 'https://api.globalindo-intl.com/api',
+    // baseUrl: 'http://192.168.100.85:8000/api',
     post: {
       'content-type': 'application/x-www-form-urlencoded'
     }
