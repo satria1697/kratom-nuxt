@@ -43,6 +43,6 @@
     "fs": "^0.0.1-security",
     "path": "^0.12.7",
     "postcss": "^8.2.14",
-    "prettier": "^2.2.1"
+    "prettier": "^2.3.1"
   }
 }
