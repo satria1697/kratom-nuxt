@@ -35,7 +35,8 @@ export default {
 
       draggable: false
     }],
-    '@nuxtjs/gtm'
+    '@nuxtjs/gtm',
+    '@nuxtjs/sitemap'
   ],
 
   gtm: {
@@ -44,6 +45,12 @@ export default {
 
   googleAnalytics: {
     id: 'G-Y3Y4BZ1NB8'
+  },
+
+  sitemap: {
+    exclude: [
+      '/admin/**'
+    ]
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
