@@ -48,6 +48,7 @@ export default {
   },
 
   sitemap: {
+    hostname: 'https://globalindo-intl.com',
     exclude: [
       '/admin/**'
     ]
