@@ -50,12 +50,12 @@ export default {
   },
   head () {
     return {
-      title: 'Kratomedical',
+      title: 'GlobalIndo International',
       meta: [
         {
-          hid: 'All you can get',
-          name: 'All you can get',
-          content: 'Hompage of kratomedical'
+          hid: 'Coffee to hype up ur life',
+          name: 'Coffee to hype up ur life',
+          content: 'Homepage of Globalindo Intl'
         }
       ]
     }
