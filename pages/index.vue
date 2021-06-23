@@ -53,8 +53,8 @@ export default {
       title: 'GlobalIndo International',
       meta: [
         {
-          hid: 'Coffee to hype up ur life',
-          name: 'Coffee to hype up ur life',
+          hid: 'description',
+          name: 'description',
           content: 'Homepage of Globalindo Intl'
         }
       ]

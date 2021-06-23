@@ -59,8 +59,17 @@ import KrtButton from '~/components/krt/Button'
 export default {
   components: { KrtButton },
   mixins: [common],
-  head: {
-    title: 'Kratomedical Cart'
+  head () {
+    return {
+      title: 'GlobalIndo International | Cart',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Cart Page of GlobalIndo Intl'
+        }
+      ]
+    }
   },
   computed: {
     cart () {

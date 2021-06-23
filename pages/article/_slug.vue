@@ -33,7 +33,14 @@ export default {
   },
   head () {
     return {
-      title: `${this.article.title} | Kratomedical`
+      title: `${this.article.title} | GlobalIndo International`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.article.text
+        }
+      ]
     }
   },
   methods: {

@@ -48,7 +48,7 @@ export default {
   },
   head () {
     return {
-      title: 'Kratomedical | Login'
+      title: 'GlobalIndo International'
     }
   },
   methods: {

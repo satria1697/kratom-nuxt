@@ -47,7 +47,14 @@ export default {
   },
   head () {
     return {
-      title: `Kratomedical | ${this.user.profile ? this.user.profile.name : ''}`
+      title: `GlobalIndo International | ${this.user.profile ? this.user.profile.name : ''}`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `GlobalIndo International | ${this.user.profile ? this.user.profile.name : ''}`
+        }
+      ]
     }
   },
   computed: {
