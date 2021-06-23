@@ -54,7 +54,7 @@ export default {
   },
   head () {
     return {
-      title: 'Kratomedical | Register'
+      title: 'GlobalIndo International | Register'
     }
   },
   methods: {

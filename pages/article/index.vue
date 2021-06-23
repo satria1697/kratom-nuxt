@@ -34,7 +34,14 @@ export default {
   },
   head () {
     return {
-      title: 'Kratomedical | Blog'
+      title: 'GlobalIndo International | Blog',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Blog Page of GlobalIndon International'
+        }
+      ]
     }
   },
   methods: {

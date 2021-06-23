@@ -74,9 +74,11 @@ export default {
   },
   head () {
     return {
-      title: ` ${this.goods.name} | Kratomedical`,
+      title: ` ${this.goods.name} | GlobalIndo International`,
       meta: [
         {
+          hid: 'description',
+          name: 'description',
           content: `${this.goods.description}`
         }
       ]
