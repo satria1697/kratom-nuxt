@@ -53,9 +53,9 @@ export default {
       title: 'GlobalIndo International',
       meta: [
         {
-          hid: 'Coffee to hype up ur life',
-          name: 'Coffee to hype up ur life',
-          content: 'Homepage of Globalindo Intl'
+          hid: 'description',
+          name: 'description',
+          content: 'Homepage of CV Indo Global International - Exporter from Indonesia'
         }
       ]
     }
