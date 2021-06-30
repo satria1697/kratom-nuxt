@@ -3,7 +3,7 @@
     <div class="container mx-auto flex h-[50px]">
       <div class="my-auto flex items-center">
         <div class="ml-2 cursor-pointer mr-5" @click="goTo('index')">
-          <span class="text-green-700" style="font-family: 'Eczar'">
+          <span class="text-green-700 text-lg" style="font-family: 'Eczar'">
             GLOBALINDO INTL
           </span>
         </div>
