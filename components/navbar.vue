@@ -2,8 +2,10 @@
   <div class="border-b-2 mb-3">
     <div class="container mx-auto flex h-[50px]">
       <div class="my-auto flex items-center">
-        <div class="ml-2 cursor-pointer mr-3" @click="goTo('index')">
-          <img class="w-48" :src="require('~/assets/png/LogoType.png')" alt="logo">
+        <div class="ml-2 cursor-pointer mr-5" @click="goTo('index')">
+          <span class="text-green-700 text-lg" style="font-family: 'Eczar'">
+            GLOBALINDO INTL
+          </span>
         </div>
         <div class="cursor-pointer hover:border-b-2 hover:border-main mr-3 hidden lg:block" @click="goTo('index')">
           <span class="lg:text-xl font-semibold">Home</span>
@@ -96,3 +98,6 @@ export default {
   }
 }
 </script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Eczar:wght@800&display=swap');
+</style>
