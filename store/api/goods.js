@@ -20,7 +20,6 @@ export const mutations = {
 
 export const actions = {
   async postGoods ({ commit, dispatch }, payload) {
-    dispatch('setHeader', null, { root: true })
     const res = await this.$axios.post(goods(payload.id), payload)
     return res.data
   },
@@ -37,31 +36,26 @@ export const actions = {
     commit('setGoodData', data)
   },
   async deleteGoodById ({ commit, dispatch }, id) {
-    dispatch('setHeader', null, { root: true })
     const res = await this.$axios.delete(goods(id))
     const { data } = res
     return data
   },
   async postGoodCart ({ dispatch }, payload) {
-    dispatch('setHeader', null, { root: true })
     const res = await this.$axios.post(cart(), payload)
     const { data } = res
     return data
   },
   async getGoodCart ({ dispatch, commit }) {
-    dispatch('setHeader', null, { root: true })
     const res = await this.$axios.post(cart('find'))
     const { data } = res
     commit('setCartData', data.data)
   },
   async checkoutCart ({ dispatch }) {
-    dispatch('setHeader', null, { root: true })
     const res = await this.$axios.post(cart('checkout'))
     const { data } = res
     return data
   },
   async deleteCart ({ dispatch }, payload) {
-    dispatch('setHeader', null, { root: true })
     const res = await this.$axios.post(cart(payload))
     const { data } = res
     return data

@@ -17,7 +17,6 @@ export const actions = {
     return data
   },
   async logout ({ dispatch }) {
-    dispatch('setHeader', null, { root: true })
     const res = await this.$axios.post(logout())
     const { data } = res
     return data

@@ -16,7 +16,6 @@ export const mutations = {
 
 export const actions = {
   async getCarts ({ commit, dispatch }, payload) {
-    dispatch('setHeader', null, { root: true })
     const res = await this.$axios.get(cart(), {
       params: payload
     })
@@ -29,7 +28,6 @@ export const actions = {
     commit('setStatusData', data.data)
   },
   async getCartById ({ commit, dispatch }, payload) {
-    dispatch('setHeader', null, { root: true })
     const res = await this.$axios.post(cartV(), {
       id: payload
     })
@@ -37,7 +35,6 @@ export const actions = {
     return data.data
   },
   async updateCartStatus ({ commit, dispatch }, payload) {
-    dispatch('setHeader', null, { root: true })
     const res = await this.$axios.post(cartV('update'), payload)
     const { data } = res
     return data

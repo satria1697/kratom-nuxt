@@ -23,18 +23,15 @@ export const actions = {
     commit('setCategoriesData', data.data)
   },
   async getCategoryById ({ commit, dispatch }, id) {
-    dispatch('setHeader', null, { root: true })
     const res = await this.$axios.$get(category(id))
     const { data } = res
     commit('setCategoryData', data)
   },
   async postCategory ({ commit, dispatch }, payload) {
-    dispatch('setHeader', null, { root: true })
     const res = await this.$axios.post(category(payload.id), payload)
     return res.data
   },
   async deleteCategoryById ({ commit, dispatch }, id) {
-    dispatch('setHeader', null, { root: true })
     const res = await this.$axios.delete(category(id))
     const { data } = res
     return data
