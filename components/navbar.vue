@@ -4,7 +4,7 @@
       <div class="my-auto flex items-center">
         <div class="ml-2 cursor-pointer mr-5" @click="goTo('index')">
           <span class="text-green-700 text-lg" style="font-family: 'Eczar'">
-            GLOBALINDO INTL
+            GLOBALINDO INTL {{ $t('hello') }}
           </span>
         </div>
         <div class="cursor-pointer hover:border-b-2 hover:border-main mr-3 hidden lg:block" @click="goTo('index')">
@@ -16,6 +16,13 @@
       </div>
 
       <div class="flex ml-auto my-auto">
+        <div class="mr-3">
+          <select class="py-1 px-8 rounded-md" @change="handleChangeLanguage">
+            <option v-for="(local, index) in availableLocales" :key="index" :value="local.code">
+              {{ local.name }}
+            </option>
+          </select>
+        </div>
         <div v-if="isLoading">
           <span class="animate-pulse">Loading...</span>
         </div>
@@ -72,6 +79,9 @@ export default {
   computed: {
     userInfo () {
       return this.$store.state.userInfo
+    },
+    availableLocales () {
+      return this.$i18n.locales
     }
   },
   methods: {
@@ -94,6 +104,11 @@ export default {
         this.$router.push({ name: 'index' })
       }
       this.isLoading = false
+    },
+    handleChangeLanguage (event) {
+      console.log(event.target.value)
+      this.$i18n.setLocaleCookie(event.target.value)
+      this.$router.replace(this.switchLocalePath(event.target.value))
     }
   }
 }

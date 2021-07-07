@@ -39,9 +39,21 @@ export default {
 
       draggable: false
     }],
+    [
+      'nuxt-i18n'
+    ],
     '@nuxtjs/gtm',
     '@nuxtjs/sitemap'
   ],
+
+  i18n: {
+    locales: [{ code: 'en', iso: 'en-US', file: 'en.json', name: 'English' }, { code: 'id', iso: 'id-ID', file: 'id.json', name: 'Indonesia' }],
+    defaultLocale: 'en',
+    langDir: '~/locale/',
+    vueI18n: {
+      fallbackLocale: 'en'
+    }
+  },
 
   gtm: {
     id: 'GTM-WRLJDSG'

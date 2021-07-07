@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <span class="text-4xl ml-3 lg:ml-0">Article List</span>
+    <span class="text-4xl ml-3 lg:ml-0">{{ $t('article.articleTitle') }}</span>
     <div
       v-for="(item, idx) in articles"
       :key="idx"
