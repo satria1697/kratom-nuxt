@@ -7,7 +7,7 @@
       >
         <div class="z-50 flex items-center max-w-lg h-full mx-3 lg:mx-auto">
           <div v-if="isLoading" class="bg-white py-10 px-10 w-full">
-            <span class="animate-pulse">Loading Data</span>
+            <span class="animate-pulse">{{ $t('goods.loadingGoods') }}</span>
           </div>
           <div
             v-else

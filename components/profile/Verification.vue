@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col border rounded-md p-3">
-    <span class="text-2xl font-semibold mb-3">Verification</span>
+    <span class="text-2xl font-semibold mb-3">{{ $t('profile.verification') }}</span>
     <div class="flex gap-x-10 w-3/4">
       <div class="flex flex-col mb-3 w-1/2">
         <div class="flex mb-3">
@@ -16,7 +16,7 @@
               <img :src="require('../../assets/svg/upload.svg')" alt="upload">
             </div>
             <div class="ml-9 my-auto">
-              <span>Company Card</span>
+              <span>{{ $t('profile.companyCard') }}</span>
             </div>
           </div>
         </div>
@@ -47,12 +47,12 @@
     </div>
     <div class="flex gap-x-10 w-3/4">
       <div class="flex flex-col mb-3 w-1/2">
-        <span>Company ID</span>
+        <span>{{ $t('profile.companyId') }}</span>
         <input v-model="verification.company_id" class="rounded-md" type="text">
       </div>
       <div class="w-1/2" />
     </div>
-    <krt-button text="Submit" @on-click="handleUpload" />
+    <krt-button text="$t('button.submit')" @on-click="handleUpload" />
   </div>
 </template>
 

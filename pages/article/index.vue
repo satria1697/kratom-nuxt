@@ -15,7 +15,7 @@
           <span class="text-3xl font-semibold">
             {{ item.title }}
           </span>
-          <span class="text-gray-500 text-sm">Created at {{ convertTime(item.created_at) }}</span>
+          <span class="text-gray-500 text-sm">{{ $t('article.createdAt') }} {{ convertTime(item.created_at) }}</span>
         </div>
         <span class="mx-10 text-xl font-helvetica">{{ item.brief }}</span>
       </div>

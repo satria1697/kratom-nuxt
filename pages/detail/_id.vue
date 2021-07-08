@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto w-screen">
     <div v-if="isLoading && !goods" class="mx-auto">
-      <span class="animate-pulse">Loading Data</span>
+      <span class="animate-pulse">{{ $t('goods.loadingGoods') }}</span>
     </div>
     <div v-else-if="goods" class="flex flex-col lg:flex-row">
       <div class="w-11/12 mx-auto lg:w-1/2 mb-3 lg:mb-0">
@@ -28,7 +28,7 @@
         <span class="font-semibold text-lg">{{ goods.brief }}</span>
         <span class="text-lg">{{ goods.description }}</span>
         <div class="border-2 rounded-md py-3 px-4">
-          <span class="font-semibold text-xl">Set Amount</span>
+          <span class="font-semibold text-xl">{{ $t('goods.setAmount') }}</span>
           <div class="flex mb-3">
             <krt-button
               text="-"
@@ -46,8 +46,8 @@
             />
             <span class="my-auto ml-4">{{ goods.stock }} left</span>
           </div>
-          <krt-button text="Add to Cart" @on-click="sendCart()">
-            Add to Cart
+          <krt-button :text="$t('button.addToCart')" @on-click="sendCart()">
+            {{ $t('goods.addToCart') }}
           </krt-button>
         </div>
       </div>

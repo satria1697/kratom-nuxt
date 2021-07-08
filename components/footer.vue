@@ -3,7 +3,7 @@
     <div class="flex flex-col lg:flex-row mt-8 mb-3 mx-3">
       <div class="w-full lg:w-3/4 bg-green-800 flex flex-col justify-center p-8 text-white rounded-lg shadow-lg">
         <p class="mb-6 text-sm ">
-          Homepage of CV Indo Global International - Exporter from Indonesia
+          {{ $t('footer.footerTitle') }}
         </p>
         <p class="mt-auto">
           &copy; {{ year }} - globalindo-int.com
@@ -17,7 +17,7 @@
             GLOBALINDO INTL
           </h1>
         </div>
-        <span>Phone: +62 812-1000-785</span>
+        <span>{{ $t('footer.phone') }}: +62 812-1000-785</span>
         <span>Email: aaron@globalindo-intl.com</span>
       </div>
     </div>

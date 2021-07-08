@@ -1,13 +1,13 @@
 <template>
   <krt-box>
     <div class="flex justify-between">
-      <span class="text-3xl mb-3">Register</span>
+      <span class="text-3xl mb-3">{{ $t('register.register') }}</span>
       <span
         class="hover:underline cursor-pointer"
         @click="$router.push({ name: 'login' })"
-      >Back to login</span>
+      >{{ $t('register.backToLogin') }}</span>
     </div>
-    <span class="mb-1">Name</span>
+    <span class="mb-1">{{ $t('register.name') }}</span>
     <input
       v-model="register.name"
       class="rounded-md mb-3"

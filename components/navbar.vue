@@ -4,7 +4,7 @@
       <div class="my-auto flex items-center">
         <div class="ml-2 cursor-pointer mr-5" @click="goTo('index')">
           <span class="text-green-700 text-lg" style="font-family: 'Eczar'">
-            GLOBALINDO INTL {{ $t('hello') }}
+            GLOBALINDO INTL
           </span>
         </div>
         <div class="cursor-pointer hover:border-b-2 hover:border-main mr-3 hidden lg:block" @click="goTo('index')">

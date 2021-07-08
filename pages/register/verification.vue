@@ -1,6 +1,6 @@
 <template>
   <krt-box>
-    <span class="animate-pulse text-center text-xl mt-6">Your Email is being verified... <br>Please wait</span>
+    <span class="animate-pulse text-center text-xl mt-6">{{ $t('register.verification') }} <br>{{ $t('register.wait') }}</span>
   </krt-box>
 </template>
 

@@ -3,11 +3,11 @@
     <span class="text-2xl font-semibold mb-3">Setting</span>
     <div class="flex gap-x-10 w-3/4">
       <div class="flex flex-col mb-3 w-1/2">
-        <span>Name</span>
+        <span>{{ $t('profile.profileName') }}</span>
         <input v-model="profile.name" class="rounded-md" type="text">
       </div>
       <div class="flex flex-col mb-3 w-1/2">
-        <span>Company</span>
+        <span>{{ $t('profile.profileCompany') }}</span>
         <input v-model="profile.company" class="rounded-md" type="text">
       </div>
     </div>
@@ -22,7 +22,7 @@
         >
       </div>
       <div class="flex flex-col mb-3 w-1/2">
-        <span>Position</span>
+        <span>{{ $t('profile.profilePosition') }}</span>
         <input v-model="profile.position" class="rounded-md" type="text">
       </div>
     </div>

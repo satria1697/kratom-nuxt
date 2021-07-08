@@ -1,6 +1,49 @@
 {
-  "hello": "Hello World",
   "article": {
-    "articleTitle": "Article List"
+    "articleTitle": "Article List",
+    "createdAt": "Created at "
+  },
+  "cart": {
+    "cartTitle": "Cart List",
+    "loginCart": "Login to add your cart",
+    "loadingCart": "Loading your cart",
+    "noCart": "No Cart"
+  },
+  "goods": {
+    "loadingGoods": "Loading data",
+    "setAmount": "Set Amount",
+    "addToCart": "Add to Cart"
+  },
+  "login": {
+    "login": "Login",
+    "back": "Back"
+  },
+  "register": {
+    "register": "Register",
+    "backToLogin": "Back to login",
+    "name": "Name",
+    "verification": "Your Email is being verified...",
+    "wait": "Please wait"
+  },
+  "profile": {
+    "profileTitle": "Profile",
+    "transaction": "Transaction History",
+    "profileName": "Name",
+    "profileCompany": "Company",
+    "profilePosition": "Position",
+    "companyCard": "Company Card",
+    "companyId": "Company ID",
+    "verification": "Verification"
+  },
+  "footer": {
+    "footerTitle": "Homepage of CV Indo Global International - Exporter from Indonesia",
+    "phone": "Phone"
+  },
+  "button": {
+    "submit": "Submit",
+    "seeOurProduct": "See Our Product",
+    "goToLoginPage": "Go To Login Page",
+    "addToCart": "Add to Cart",
+    "register": "Register"
   }
 }

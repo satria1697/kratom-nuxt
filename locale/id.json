@@ -1,6 +1,49 @@
 {
-  "hello": "Halo Dunia",
   "article": {
-    "articleTitle": "List Artikel"
+    "articleTitle": "Daftar Artikel",
+    "createdAt": "Dibuat pada "
+  },
+  "cart": {
+    "cartTitle": "Daftar Keranjang",
+    "loginCart": "Masuk untuk menambahkan ke keranjang",
+    "loadingCart": "Memuat keranjang",
+    "noCart": "Keranjang kosong"
+  },
+  "goods": {
+    "loadingGoods": "Memuat data",
+    "setAmount": "Atur Jumlah",
+    "addToCart": "Tambahkan ke Keranjang"
+  },
+  "login": {
+    "login": "Masuk",
+    "back": "Kembali"
+  },
+  "register": {
+    "register": "Daftar",
+    "backToLogin": "Kembali ke halaman masuk",
+    "name": "Nama",
+    "verification": "Email kamu sedang diverifikasi...",
+    "wait": "Mohon tunggu"
+  },
+  "profile": {
+    "profileTitle": "Profil",
+    "transaction": "Riwayat Transaksi",
+    "profileName": "Nama",
+    "profileCompany": "Perusahaan",
+    "profilePosition": "Jabatan",
+    "companyCard": "Kartu Perusahaan",
+    "companyId": "ID Perusahaan",
+    "verification": "Verifikasi"
+  },
+  "footer": {
+    "footerTitle": "Halaman utama dari CV Indo Global International - Eksportir dari Indonesia",
+    "phone": "Telepon"
+  },
+  "button": {
+    "submit": "Kirim",
+    "seeOurProduct": "Lihat Produk",
+    "goToLoginPage": "Ke Halaman Login",
+    "addToCart": "Tambahkan ke Keranjang",
+    "register": "Daftar"
   }
 }

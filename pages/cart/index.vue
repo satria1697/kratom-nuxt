@@ -1,16 +1,16 @@
 <template>
   <div v-if="!cart" class="flex justify-center items-center w-3/4 mx-auto">
     <div v-if="!jwt" class="flex flex-col w-full">
-      <span class="text-4xl font-semibold mb-3 mx-auto">Login to add cart</span>
-      <krt-button text="Go To Login Page" @on-click="goTo('login')" />
+      <span class="text-4xl font-semibold mb-3 mx-auto">{{ $t('cart.loginCart') }}</span>
+      <krt-button :text="$t('button.goToLoginPage')" @on-click="goTo('login')" />
     </div>
-    <span v-else class="text-4xl animate-pulse">Loading your cart</span>
+    <span v-else class="text-4xl animate-pulse">{{ $t('cart.loadingCart') }}</span>
   </div>
   <div v-else class="container mx-auto w-screen">
     <div class="flex flex-col w-3/4 mx-auto">
-      <span class="text-4xl font-semibold mb-3">Cart list</span>
+      <span class="text-4xl font-semibold mb-3">{{ $t('cart.cartTitle') }}</span>
       <div v-if="!cartLength" class="flex justify-center items-center">
-        <span class="text-4xl">No Cart</span>
+        <span class="text-4xl">{{ $t('cart.noCart') }}</span>
       </div>
       <div
         v-for="(opt, idx) in cart.cart"
@@ -46,7 +46,7 @@
       </div>
       <div class="flex justify-end">
         <krt-button v-if="cartLength" text="Checkout" @on-click="handleCheckout" />
-        <krt-button v-else text="See Our Product" @on-click="goTo('index')" />
+        <krt-button v-else :text="$t('button.seeOurProduct')" @on-click="goTo('index')" />
       </div>
     </div>
   </div>
