@@ -1,10 +1,7 @@
 <template>
   <div class="container w-screen mx-auto">
     <div class="text-center">
-      <img class="mx-auto mb-2 lg:w-1/4 w-2/3" alt="Logo-image" :src="require('../assets/jpg/FINAL.jpg')">
-      <h1 class="text-green-700 text-xl" style="font-family: 'Eczar'">
-        GLOBALINDO INTL
-      </h1>
+      <img class="mx-auto mb-2 lg:w-1/4 w-2/3" alt="Logo-image" :src="require('../assets/jpg/logo.jpg')">
     </div>
     <select v-model="selectedCategory" class="rounded-md mb-3" @change="getGoods">
       <option v-for="(item, index) in category" :key="index" :value="item">

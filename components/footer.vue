@@ -12,10 +12,7 @@
       <div class="w-full lg:w-1/4 bg-white p-8 flex flex-col">
         <span>Contact Info</span>
         <div class="text-center">
-          <img :src="require('../assets/jpg/FINAL.jpg')" alt="kratom-logo">
-          <h1 class="text-green-700 text-xl" style="font-family: 'Eczar'">
-            GLOBALINDO INTL
-          </h1>
+          <img :src="require('../assets/jpg/logo.jpg')" alt="kratom-logo">
         </div>
         <span>{{ $t('footer.phone') }}: +62 812-1000-785</span>
         <span>Email: aaron@globalindo-intl.com</span>
