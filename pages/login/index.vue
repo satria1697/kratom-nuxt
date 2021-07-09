@@ -4,7 +4,7 @@
       <span class="text-3xl mb-3">{{ $t('login.login') }}</span>
       <span
         class="hover:underline cursor-pointer"
-        @click="$router.push({ name: 'index' })"
+        @click="$router.push(this.localePath({ name: 'index' }))"
       >{{ $t('login.back') }}</span>
     </div>
     <span class="mb-1">Email</span>
@@ -27,7 +27,7 @@
       :is-loading="isLoading"
       @on-click="handleLogin"
     />
-    <krt-button :text="$t('button.register')" @on-click="$router.push({name: 'register'})" />
+    <krt-button :text="$t('button.register')" @on-click="$router.push(this.localePath({name: 'register'}))" />
   </krt-box>
 </template>
 

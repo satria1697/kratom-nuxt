@@ -4,7 +4,7 @@
       <span class="text-3xl mb-3">{{ $t('register.register') }}</span>
       <span
         class="hover:underline cursor-pointer"
-        @click="$router.push({ name: 'login' })"
+        @click="$router.push(this.localePath({ name: 'login' }))"
       >{{ $t('register.backToLogin') }}</span>
     </div>
     <span class="mb-1">{{ $t('register.name') }}</span>

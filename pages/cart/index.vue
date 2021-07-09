@@ -107,7 +107,7 @@ export default {
       }
     },
     goTo (payload) {
-      this.$router.push({ name: payload })
+      this.$router.push(this.localePath({ name: payload }))
     },
     async handleCheckout () {
       await this.$store.dispatch('api/goods/checkoutCart')

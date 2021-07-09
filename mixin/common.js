@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     goTo (payload, params) {
-      this.$router.push({ name: payload, params })
+      this.$router.push(this.localePath({ name: payload, params }))
     }
   }
 }

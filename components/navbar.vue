@@ -84,7 +84,7 @@ export default {
   },
   methods: {
     goTo (payload) {
-      this.$router.push({ name: payload })
+      this.$router.push(this.localePath({ name: payload }))
     },
     openDropdown (payload) {
       if (payload === 'user') {
@@ -99,7 +99,7 @@ export default {
         this.$store.commit('setJwt', null)
         this.$store.commit('setToken', null)
         this.$store.commit('setUserInfo', null)
-        this.$router.push({ name: 'index' })
+        this.$router.push(this.localePath({ name: 'index' }))
       }
       this.isLoading = false
     },
