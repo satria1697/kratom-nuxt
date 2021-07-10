@@ -5,12 +5,12 @@
         <img :src="article.image ? article.image : 'https://dummyimage.com/600x400/000/fff'" alt="article image">
       </div>
       <p class="text-5xl font-semibold text-center mb-2">
-        {{ article.title }}
+        {{ langState === "en" ? article.title : article.title_id }}
       </p>
       <p class="text-lg text-gray-500 text-center mb-2">
-        {{ article.brief }}
+        {{ langState === "en" ? article.brief : article.brief_id }}
       </p>
-      <div id="article-html" v-html="mark(article.text)" />
+      <div id="article-html" v-html="mark(langState === 'en' ? article.text : article.text_id)" />
     </template>
   </div>
 </template>
@@ -36,8 +36,8 @@ export default {
       title: `${this.article.title} | GlobalIndo International`,
       meta: [
         {
-          hid: 'description',
-          name: 'description',
+          hid: 'og:description',
+          name: 'og:description',
           content: this.article.text
         }
       ]

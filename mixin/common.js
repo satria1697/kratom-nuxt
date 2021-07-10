@@ -7,6 +7,9 @@ export default {
   computed: {
     jwt () {
       return this.$store.state.jwt
+    },
+    langState () {
+      return this.$i18n.locale
     }
   },
   methods: {

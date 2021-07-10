@@ -21,10 +21,10 @@
         <img class="w-full lg:w-1/6" :src="opt.goods.image ? opt.goods.image : 'https://dummyimage.com/600x400/000/fff'" :alt="opt.goods.name">
         <div class="w-full lg:w-2/3 flex flex-col ml-3">
           <div>
-            <span class="text-2xl font-semibold">{{ opt.goods.name }}</span>
+            <span class="text-2xl font-semibold">{{ langState === "en" ? opt.goods.name : opt.goods.name_id }}</span>
             <span class="opacity-0 group-hover:opacity-100 group-hover:bg-red-600 border group-hover:border-red-600 rounded-lg text-white group-hover:px-4 cursor-pointer" @click="handleDelete(opt)">Delete</span>
           </div>
-          <span>{{ opt.goods.description }}</span>
+          <span>{{ langState === "en" ? opt.goods.description : opt.goods.description_id }}</span>
           <div class="flex mt-auto">
             <krt-button
               text="-"

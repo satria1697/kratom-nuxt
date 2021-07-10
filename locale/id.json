@@ -23,7 +23,8 @@
     "backToLogin": "Kembali ke halaman masuk",
     "name": "Nama",
     "verification": "Email kamu sedang diverifikasi...",
-    "wait": "Mohon tunggu"
+    "wait": "Mohon tunggu",
+    "doneRegister": "Registrasi akunmu sudah selesai, silahkan cek email untuk verifikasi."
   },
   "profile": {
     "profileTitle": "Profil",
@@ -45,5 +46,8 @@
     "goToLoginPage": "Ke Halaman Login",
     "addToCart": "Tambahkan ke Keranjang",
     "register": "Daftar"
+  },
+  "general": {
+    "all": "Semua"
   }
 }

@@ -13,11 +13,11 @@
       <div class="flex flex-col w-full">
         <div class="flex flex-col lg:flex-row justify-between mb-2">
           <span class="text-3xl font-semibold">
-            {{ item.title }}
+            {{ langState === "en" ? item.title : item.title_id }}
           </span>
           <span class="text-gray-500 text-sm">{{ $t('article.createdAt') }} {{ convertTime(item.created_at) }}</span>
         </div>
-        <span class="mx-10 text-xl font-helvetica">{{ item.brief }}</span>
+        <span class="mx-10 text-xl font-helvetica">{{ langState === "en" ? item.title : item.title_id }}</span>
       </div>
     </div>
   </div>

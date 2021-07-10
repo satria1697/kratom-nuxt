@@ -11,22 +11,22 @@
               ? goods.image
               : 'https://dummyimage.com/600x400/000/fff'
           "
-          :alt="goods.name"
+          :alt="langState === 'en'? goods.name: goods.name_id"
         >
       </div>
       <div
         class="flex flex-col mx-auto lg:mx-3 w-11/12 lg:w-1/2 p-4 h-full"
       >
         <div class="flex justify-between">
-          <span class="text-3xl text-main font-bold">{{ goods.name }}</span>
+          <span class="text-3xl text-main font-bold">{{ langState === "en" ? goods.name : goods.name_id }}</span>
           <div class="text-md bg-main rounded-full px-2 flex">
             <span class="text-white my-auto items-center">{{ goods.category.name }}</span>
           </div>
         </div>
 
         <span class="text-2xl">USD {{ goods.price }}</span>
-        <span class="font-semibold text-lg">{{ goods.brief }}</span>
-        <span class="text-lg">{{ goods.description }}</span>
+        <span class="font-semibold text-lg">{{ langState === "en" ? goods.brief : goods.brief_id }}</span>
+        <span class="text-lg">{{ langState === "en" ? goods.description : goods.description_id }}</span>
         <div class="border-2 rounded-md py-3 px-4">
           <span class="font-semibold text-xl">{{ $t('goods.setAmount') }}</span>
           <div class="flex mb-3">
@@ -77,16 +77,11 @@ export default {
       title: ` ${this.goods.name} | GlobalIndo International`,
       meta: [
         {
-          hid: 'description',
-          name: 'description',
+          hid: 'og:description',
+          name: 'og:description',
           content: `${this.goods.description}`
         }
       ]
-    }
-  },
-  computed: {
-    jwtToken () {
-      return this.$store.state.jwt
     }
   },
   methods: {

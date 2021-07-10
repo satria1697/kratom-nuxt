@@ -23,7 +23,8 @@
     "backToLogin": "Back to login",
     "name": "Name",
     "verification": "Your Email is being verified...",
-    "wait": "Please wait"
+    "wait": "Please wait",
+    "doneRegister": "Your Registration is complete, please check your email to verification."
   },
   "profile": {
     "profileTitle": "Profile",
@@ -45,5 +46,8 @@
     "goToLoginPage": "Go To Login Page",
     "addToCart": "Add to Cart",
     "register": "Register"
+  },
+  "general": {
+    "all": "All"
   }
 }

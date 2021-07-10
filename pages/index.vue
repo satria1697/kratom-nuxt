@@ -5,7 +5,7 @@
     </div>
     <select v-model="selectedCategory" class="rounded-md mb-3" @change="getGoods">
       <option v-for="(item, index) in category" :key="index" :value="item">
-        {{ item.name }}
+        {{ langState === "en" ? item.name : item.name_id }}
       </option>
     </select>
     <div class="grid lg:grid-cols-4 lg:gap-10 lg:flex-row mx-auto w-full">
@@ -22,7 +22,7 @@
             :alt="item.name"
           >
         </div>
-        <span class="mx-auto text-white text-2xl mt-auto">{{ item.name }}</span>
+        <span class="mx-auto text-white text-2xl mt-auto">{{ langState === "en" ? item.name : item.name_id }}</span>
         <span class="mx-auto font-semibold">USD {{ item.price }}</span>
       </div>
     </div>
@@ -45,7 +45,8 @@ export default {
     return {
       category: [{
         id: 0,
-        name: 'All'
+        name: 'All',
+        name_id: 'Semua'
       }],
       selectedCategory: null
     }
@@ -55,8 +56,8 @@ export default {
       title: 'GlobalIndo International',
       meta: [
         {
-          hid: 'description',
-          name: 'description',
+          hid: 'og:description',
+          name: 'og:description',
           content: 'Homepage of CV Indo Global International - Exporter from Indonesia'
         }
       ]

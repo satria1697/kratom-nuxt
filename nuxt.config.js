@@ -8,8 +8,8 @@ export default {
       { hid: 'description', name: 'description', content: 'GlobalIndo Intl' },
       { hid: 'og:url', name: 'og:url', content: 'https://globalindo-intl.com' },
       { hid: 'og:type', name: 'og:type', content: 'website' },
-      { hid: 'og:title', name: 'og:title', content: 'GlobalIndo Intl' },
-      { hid: 'og:description', name: 'og:description', content: 'GlobalIndo Intl' }
+      { hid: 'og:title', name: 'og:title', content: 'Globalindo Intl' },
+      { hid: 'og:description', name: 'og:description', content: 'Globalindo Intl' }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }]
   },
