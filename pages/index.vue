@@ -34,12 +34,13 @@
         <krt-box class=" bg-main-light mx-0">
           <span class="text-white">Check our store <krt-click-here word="here" @on-click="handleClickHere('store')" /></span>
         </krt-box>
->>>>>>> fb269eebc441864b3828b53cca4d95c726858cf4
       </div>
       <section class="text-gray-700 body-font border-t border-gray-200">
         <div class="container px-5 py-24 mx-auto">
           <div class="flex flex-col text-center w-full mb-20">
-            <h1 class="sm:text-3xl text-4xl font-light title-font mb-4 text-gray-800">Our Team</h1>
+            <h1 class="sm:text-3xl text-4xl font-light title-font mb-4 text-gray-800">
+              Our Team
+            </h1>
             <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them.</p>
           </div>
           <div class="flex flex-wrap -m-2">

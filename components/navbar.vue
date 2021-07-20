@@ -45,35 +45,6 @@
           <span v-else class="lg:text-xl font-semibold">{{ item.name }}</span>
         </div>
       </div>
-
-      <div class="flex ml-auto my-auto">
-        <div v-if="!isMobile" class="mr-3">
-          <select class="py-1 px-8 rounded-md" @change="handleChangeLanguage">
-            <option v-for="(local, index) in availableLocales" :key="index" :value="local.code">
-              {{ local.name }}
-            </option>
-          </select>
-        </div>
-        <div v-else class="mr-3 border border-main px-2 rounded-md uppercase" @click="handleChangeLanguage(availableLocal)">
-          {{ availableLocal.code }}
-        </div>
-        <div v-if="isLoading">
-          <span class="animate-pulse">Loading...</span>
->>>>>>> fb269eebc441864b3828b53cca4d95c726858cf4
-        </div>
-        <div class="cursor-pointer hover:border-b-2 hover:border-main hidden lg:block pb-4 px-5 text-gray-500 hover:text-black" @click="goTo('index')">
-          <span class="lg:text-xl font-light tracking-wider">News</span>
-        </div>
-        <div class="cursor-pointer hover:border-b-2 hover:border-main pb-4 px-5 text-gray-500 hover:text-black" @click="goTo('article')">
-          <span class="lg:text-xl font-light tracking-wider">About Us</span>
-        </div>
-        <div class="cursor-pointer hover:border-b-2 hover:border-main hidden lg:block pb-4 px-5 text-gray-500 hover:text-black" @click="goTo('index')">
-          <span class="lg:text-xl font-light tracking-wider">Contact</span>
-        </div>
-        <div class="cursor-pointer hover:border-b-2 hover:border-main pb-4 px-5 text-gray-500 hover:text-black" @click="goTo('article')">
-          <span class="lg:text-xl font-light tracking-wider">Faq</span>
-        </div>
-      </div>
     </div>
   </div>
 </template>
