@@ -1,6 +1,59 @@
 <template>
-  <div class="border-b-2 mb-3">
-    <div class="container mx-auto flex h-[70px]">
+  <div class="border-b-2">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-3 justify-items-stretch mt-3 items-center">
+        <div>
+        </div>
+        <div class="ml-2 cursor-pointer mr-5 justify-self-center" @click="goTo('index')">
+          <img class="w-44" :src="require('~/assets/jpg/logo.jpg')" alt="logo">
+        </div>
+        <div class="mr-3 justify-self-end flex">
+          <div v-if="isLoading">
+            <span class="animate-pulse">Loading...</span>
+          </div>
+          <div v-else class="flex my-auto">
+            <div class="mr-3 lg:mr-6 cursor-pointer text-gray-500 hover:text-black" @click="goTo('cart')">
+              Cart
+              <!-- <img class="w-6 lg:w-8" :src="require('../assets/svg/shopping-cart.svg')"> -->
+            </div>
+            <div
+              v-if="jwt !== null && userInfo && userInfo.level >= 3"
+              class="mr-3 lg:mr-6 cursor-pointer text-gray-500 hover:text-black"
+              @click="goTo('profile')"
+            >
+              Profile
+              <!-- <img class="w-6 lg:w-8" :src="require('../assets/svg/profile-user.svg')"> -->
+            </div>
+            <div
+              v-if="jwt === null"
+              class="mr-3 lg:mr-6 cursor-pointer text-gray-500 hover:text-black"
+              @click="goTo('login')"
+            >
+              Login
+              <!-- <img class="w-6 lg:w-8" :src="require('../assets/svg/enter.svg')"> -->
+            </div>
+            <div
+              v-else
+              class="mr-3 lg:mr-6 cursor-pointer"
+              @click="handleLogout"
+            >
+              <img class="w-6 lg:w-8" :src="require('../assets/svg/logout.svg')">
+            </div>
+          </div>
+          <div v-if="!isMobile" class="mr-3">
+            <select class="py-1 px-8 rounded-md" @change="handleChangeLanguage">
+              <option v-for="(local, index) in availableLocales" :key="index" :value="local.code">
+                {{ local.name }}
+              </option>
+            </select>
+          </div>
+          <div v-else class="mr-3 border border-main px-2 rounded-md uppercase" @click="handleChangeLanguage(availableLocal)">
+            {{ availableLocal.code }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container mx-auto flex mt-7">
       <div v-if="isMobile" class="relative ml-2 my-auto flex flex-col items-center gap-x-4">
         <div class="w-6" @click="handleNavbarState">
           <img :src="require('~/assets/svg/hamburger-menu.svg')">
@@ -28,12 +81,12 @@
           </transition>
         </krt-blur>
       </div>
-      <div v-else class="my-auto flex items-center gap-x-4">
+      <div v-else class="my-auto mx-auto flex items-center gap-x-4">
         <div
           v-for="(item, index) in navbar.data"
           :key="index"
-          class="cursor-pointer"
-          :class="{'hover:border-b-2 hover:border-main': !item.img, 'border-b-2 border-main': item.route === $route.name.split('__')[0]}"
+          class="cursor-pointer hidden lg:block pb-4 px-5 text-gray-500"
+          :class="{'hover:border-b-2 hover:border-black hover:text-black': !item.img, 'border-b-2 border-black text-black': item.route === $route.name.split('__')[0]}"
           @click="goTo(item.route)"
         >
           <img
@@ -42,7 +95,7 @@
             :src="item.img"
             :alt="item.name"
           >
-          <span v-else class="lg:text-xl font-semibold">{{ item.name }}</span>
+          <span v-else class="lg:text-xl font-light tracking-wider">{{ item.name }}</span>
         </div>
       </div>
     </div>
@@ -52,7 +105,6 @@
 <script>
 import common from '~/mixin/common'
 import KrtBlur from '~/components/krt/simple/Blur'
-
 export default {
   components: { KrtBlur },
   mixins: [common],
@@ -66,7 +118,7 @@ export default {
         data: [
           {
             name: 'Home',
-            img: require('~/assets/jpg/logo.jpg'),
+            img: '',
             route: 'index'
           }, {
             name: 'News',
