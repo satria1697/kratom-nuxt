@@ -1,5 +1,5 @@
 {
-  "name": "kato-nuxt",
+  "name": "globalindo-international",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -8,7 +8,7 @@
     "start": "nuxt start",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore . --fix",
     "generate": "nuxt generate",
-    "deploy": "pm2 start --name nuxt-krato"
+    "deploy": "pm2 start --name globalindo-international"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
@@ -32,6 +32,8 @@
     "vue-toastification": "^1.7.11"
   },
   "devDependencies": {
+    "@nuxt/types": "~2.15.0",
+    "@nuxtjs/device": "^2.1.0",
     "@nuxtjs/eslint-config": "^6.0.0",
     "@nuxtjs/google-analytics": "^2.4.0",
     "@nuxtjs/tailwindcss": "^4.1.2",

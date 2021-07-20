@@ -1,17 +1,18 @@
 <template>
-  <krt-box>
+  <krt-box-middle>
     <span class="animate-pulse text-center text-xl mt-6">{{ $t('register.verification') }} <br>{{ $t('register.wait') }}</span>
-  </krt-box>
+  </krt-box-middle>
 </template>
 
 <script>
 import jwtDecode from 'jwt-decode'
 import common from '~/mixin/common'
-import KrtBox from '~/components/krt/Box'
+import KrtBox from '~/components/krt/simple/Box'
+import KrtBoxMiddle from '~/components/krt/fusion/BoxMiddle'
 
 export default {
   name: 'Verification',
-  components: { KrtBox },
+  components: { KrtBoxMiddle },
   mixins: [common],
   mounted () {
     const decode = jwtDecode(this.jwt)

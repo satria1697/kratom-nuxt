@@ -5,13 +5,20 @@ module.exports = {
     extend: {
       colors: {
         main: {
-          light: '#B8B67A',
-          DEFAULT: '#74723e',
-          dark: '#424124'
-        }
+          light: '#187BDB',
+          DEFAULT: '#185ADB',
+          dark: '#1838DB'
+        },
+        secondary: {
+          light: '#16DB74',
+          DEFAULT: '#15DB95',
+          dark: '#16DBB8'
+        },
+        black: '#0A1931'
       },
       fontFamily: {
-        helvetica: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif']
+        helvetica: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+        avenir: ['Avenir']
       }
     }
   },

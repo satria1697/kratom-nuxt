@@ -10,6 +10,9 @@ export default {
     },
     langState () {
       return this.$i18n.locale
+    },
+    isMobile () {
+      return this.$device.isMobile
     }
   },
   methods: {
