@@ -1,10 +1,10 @@
 <template>
-  <krt-box>
+  <krt-box-middle>
     <div class="flex justify-between">
       <span class="text-3xl mb-3">{{ $t('login.login') }}</span>
       <span
         class="hover:underline cursor-pointer"
-        @click="$router.push(this.localePath({ name: 'index' }))"
+        @click="$router.push(localePath({ name: 'index' }))"
       >{{ $t('login.back') }}</span>
     </div>
     <span class="mb-1">Email</span>
@@ -27,16 +27,17 @@
       :is-loading="isLoading"
       @on-click="handleLogin"
     />
-    <krt-button :text="$t('button.register')" @on-click="$router.push(this.localePath({name: 'register'}))" />
-  </krt-box>
+    <krt-button :text="$t('button.register')" @on-click="$router.push(localePath({name: 'register'}))" />
+  </krt-box-middle>
 </template>
 
 <script>
 import KrtButton from '~/components/krt/Button'
 import common from '~/mixin/common'
-import KrtBox from '~/components/krt/Box'
+import KrtBoxMiddle from '~/components/krt/fusion/BoxMiddle'
+
 export default {
-  components: { KrtBox, KrtButton },
+  components: { KrtBoxMiddle, KrtButton },
   mixins: [common],
   data () {
     return {

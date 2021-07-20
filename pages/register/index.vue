@@ -1,5 +1,5 @@
 <template>
-  <krt-box>
+  <krt-box-middle>
     <div class="flex justify-between">
       <span class="text-3xl mb-3">{{ $t('register.register') }}</span>
       <span
@@ -33,15 +33,16 @@
       :is-loading="isLoading"
       @on-click="onSubmit"
     />
-  </krt-box>
+  </krt-box-middle>
 </template>
 
 <script>
 import KrtButton from '~/components/krt/Button'
 import common from '~/mixin/common'
-import KrtBox from '~/components/krt/Box'
+import KrtBoxMiddle from '~/components/krt/fusion/BoxMiddle'
+
 export default {
-  components: { KrtBox, KrtButton },
+  components: { KrtBoxMiddle, KrtButton },
   mixins: [common],
   data () {
     return {

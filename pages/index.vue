@@ -1,54 +1,59 @@
 <template>
-  <div class="container w-screen mx-auto">
+  <div class="container px-8 2xl:mx-auto w-screen">
     <div class="text-center">
-      <img class="mx-auto mb-2 lg:w-1/4 w-2/3" alt="Logo-image" :src="require('../assets/jpg/logo.jpg')">
+      <img class="mx-auto mb-2 lg:w-1/4 w-2/3" alt="Logo-image" :src="require('~/assets/jpg/logo.jpg')">
     </div>
-    <select v-model="selectedCategory" class="rounded-md mb-3" @change="getGoods">
-      <option v-for="(item, index) in category" :key="index" :value="item">
-        {{ langState === "en" ? item.name : item.name_id }}
-      </option>
-    </select>
-    <div class="grid lg:grid-cols-4 lg:gap-10 lg:flex-row mx-auto w-full">
-      <div
-        v-for="(item, idx) in goods"
-        :key="idx"
-        class="shadow-2xl mb-4 lg:mb-0 p-8 mx-auto w-3/4 lg:w-full flex flex-col rounded-lg bg-main hover:bg-main-light transition-colors"
-      >
-        <div class="cursor-pointer" @click="goTo('detail-id', {id: item.id})">
-          <img
-            :src="
-              item.image ? item.image : 'https://dummyimage.com/600x400/000/fff'
-            "
-            :alt="item.name"
-          >
+    <div class="mb-5">
+      <span class="text-2xl 2xl:text-4xl font-semibold text-main">Welcome to globalindo, what do you need? we can provide it.</span>
+    </div>
+    <div class="flex flex-col 2xl:flex-row mb-6">
+      <div class="2xl:w-2/3 flex flex-col">
+        <div :class="{ 'border-2 border-main p-2 rounded-md' : isMobile}" @click="handleShow('who')">
+          <span class="text-3xl font-semibold">Who are we?</span>
         </div>
-        <span class="mx-auto text-white text-2xl mt-auto">{{ langState === "en" ? item.name : item.name_id }}</span>
-        <span class="mx-auto font-semibold">USD {{ item.price }}</span>
+        <transition name="fade">
+          <span v-if="isShow.who" class="2xl:p-8 pb-0 text-xl">Etiam nec nisi blandit, pulvinar mauris finibus, pulvinar felis. Nulla euismod quam sit amet lectus varius finibus. Vestibulum tincidunt enim in libero pretium, sit amet tincidunt erat volutpat. Nullam blandit molestie arcu, ut eleifend orci. Sed euismod laoreet rhoncus. Nunc laoreet pharetra sem, sed vulputate mi maximus eget. Aenean id metus sit amet metus elementum varius. Nam at felis id nibh imperdiet porta quis ut justo. Sed scelerisque consequat magna ut ultrices. Suspendisse sit amet nunc diam. Sed accumsan nibh a porta ornare. Suspendisse quis lorem sed lectus feugiat feugiat. Aenean accumsan scelerisque bibendum.</span>
+        </transition>
+      </div>
+      <div v-if="isShow.who" class="2xl:w-1/3 mt-auto">
+        <krt-box class="bg-main-light mx-0">
+          <span class="text-white">Want to know more about us? <krt-click-here @on-click="handleClickHere('about-us')" /></span>
+        </krt-box>
+      </div>
+    </div>
+    <div class="flex flex-col 2xl:flex-row 2xl:mb-6">
+      <div class="2xl:w-2/3 flex flex-col">
+        <div :class="{ 'border-2 border-main p-2 rounded-md' : isMobile}" @click="handleShow('sell')">
+          <span class="text-3xl font-semibold">What we sell?</span>
+        </div>
+        <transition name="fade">
+          <span v-if="isShow.sell" class="2xl:p-8 pb-0 text-xl">Etiam nec nisi blandit, pulvinar mauris finibus, pulvinar felis. Nulla euismod quam sit amet lectus varius finibus. Vestibulum tincidunt enim in libero pretium, sit amet tincidunt erat volutpat. Nullam blandit molestie arcu, ut eleifend orci. Sed euismod laoreet rhoncus. Nunc laoreet pharetra sem, sed vulputate mi maximus eget. Aenean id metus sit amet metus elementum varius. Nam at felis id nibh imperdiet porta quis ut justo. Sed scelerisque consequat magna ut ultrices. Suspendisse sit amet nunc diam. Sed accumsan nibh a porta ornare. Suspendisse quis lorem sed lectus feugiat feugiat. Aenean accumsan scelerisque bibendum.</span>
+        </transition>
+      </div>
+      <div v-if="isShow.sell" class="2xl:w-1/3 mt-auto">
+        <krt-box class=" bg-main-light mx-0">
+          <span class="text-white">Check our store <krt-click-here word="here" @on-click="handleClickHere('store')" /></span>
+        </krt-box>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import KrtClickHere from '~/components/krt/simple/ClickHere'
+import KrtBox from '~/components/krt/simple/Box'
 import common from '~/mixin/common'
 
 export default {
+  name: 'Home',
+  components: { KrtBox, KrtClickHere },
   mixins: [common],
-  async asyncData ({ store }) {
-    const payload = {
-      filter: 1,
-      category: ''
-    }
-    await store.dispatch('api/goods/getGoodsData', payload)
-  },
   data () {
     return {
-      category: [{
-        id: 0,
-        name: 'All',
-        name_id: 'Semua'
-      }],
-      selectedCategory: null
+      isShow: {
+        who: false,
+        sell: false
+      }
     }
   },
   head () {
@@ -63,38 +68,28 @@ export default {
       ]
     }
   },
-  computed: {
-    goods () {
-      return this.$store.state.api.goods.goods
+  mounted () {
+    if (!this.isMobile) {
+      this.isShow.who = true
+      this.isShow.sell = true
     }
   },
-  created () {
-    this.init()
-  },
   methods: {
-    async init () {
-      const payload = {
-        filter: 1
-      }
-      await this.$store.dispatch('api/category/getCategory', payload)
-      const res = this.$store.state.api.category.category
-      res.forEach((data) => {
-        this.category.push(data)
-      })
-      this.selectedCategory = this.category[0]
+    handleClickHere (where) {
+      this.goTo(where)
     },
-    async getGoods () {
-      let payload = {
-        filter: 1
-      }
-      if (this.selectedCategory.id) {
-        payload = {
-          ...payload,
-          category: this.selectedCategory.id
-        }
-      }
-      await this.$store.dispatch('api/goods/getGoodsData', payload)
+    handleShow (where) {
+      this.isShow[where] = !this.isShow[where]
     }
   }
 }
 </script>
+
+<style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+</style>

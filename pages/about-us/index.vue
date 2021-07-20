@@ -1,8 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <span class="text-5xl">Who we are?</span>
-    <span>Sekumpulan anak muda yang </span>
-    <span>About us</span>
+    <span class="text-5xl">Who are we?</span>
   </div>
 </template>
 

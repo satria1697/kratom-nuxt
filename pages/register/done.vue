@@ -1,5 +1,5 @@
 <template>
-  <krt-box>
+  <krt-box-middle>
     <div class="flex flex-col justify-between mt-8">
       <div><span class="text-lg">{{ $t('register.doneRegister') }}</span></div>
       <div class="py-2 ml-auto">
@@ -9,15 +9,15 @@
         >Back to login</span>
       </div>
     </div>
-  </krt-box>
+  </krt-box-middle>
 </template>
 
 <script>
 import common from '~/mixin/common'
-import KrtBox from '~/components/krt/Box'
+import KrtBoxMiddle from '~/components/krt/fusion/BoxMiddle'
 
 export default {
-  components: { KrtBox },
+  components: { KrtBoxMiddle },
   mixins: [common]
 }
 </script>
