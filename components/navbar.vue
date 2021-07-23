@@ -2,8 +2,7 @@
   <div class="border-b-2 flex flex-row-reverse md:block py-3 md:py-0">
     <div class="container mx-auto">
       <div class="grid sm:grid-cols-3 justify-items-stretch mt-0 md:mt-3 items-center">
-        <div>
-        </div>
+        <div />
         <div class="ml-2 cursor-pointer mr-5 justify-self-center sm:block hidden" @click="goTo('index')">
           <img class="w-44" :src="require('~/assets/jpg/logo.jpg')" alt="logo">
         </div>
@@ -13,7 +12,9 @@
           </div>
           <div v-else class="flex my-auto items-center">
             <div class="mr-3 lg:mr-6 cursor-pointer text-gray-500 hover:text-black" @click="goTo('cart')">
-              <h1 class="sm:block hidden">Cart</h1>
+              <h1 class="sm:block hidden">
+                Cart
+              </h1>
               <img class="w-6 lg:w-8 block md:hidden" :src="require('../assets/svg/shopping-cart.svg')">
             </div>
             <div
@@ -21,7 +22,9 @@
               class="mr-3 lg:mr-6 cursor-pointer text-gray-500 hover:text-black"
               @click="goTo('profile')"
             >
-              <h1 class="sm:block hidden">Profile</h1>
+              <h1 class="sm:block hidden">
+                Profile
+              </h1>
               <img class="w-6 lg:w-8 block md:hidden" :src="require('../assets/svg/profile-user.svg')">
             </div>
             <div
@@ -60,8 +63,13 @@
         </div>
         <krt-blur v-if="navbar.state">
           <transition name="fade">
-            <div class="bg-white h-screen pt-6 px-4">
-              <span class="text-4xl" @click="handleNavbarState">&times;</span>
+            <div class="bg-white h-screen w-screen pt-6 px-4">
+              <div class="flex justify-between">
+                <div class="ml-2">
+                  <img class="w-44" :src="require('~/assets/jpg/logo.jpg')" alt="logo">
+                </div>
+                <span class="text-4xl" @click="handleNavbarState">&times;</span>
+              </div>
               <div
                 v-for="(item, index) in navbar.data"
                 :key="index"
