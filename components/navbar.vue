@@ -1,28 +1,28 @@
 <template>
-  <div class="border-b-2">
+  <div class="border-b-2 flex flex-row-reverse md:block py-3 md:py-0">
     <div class="container mx-auto">
-      <div class="grid grid-cols-3 justify-items-stretch mt-3 items-center">
+      <div class="grid sm:grid-cols-3 justify-items-stretch mt-0 md:mt-3 items-center">
         <div>
         </div>
-        <div class="ml-2 cursor-pointer mr-5 justify-self-center" @click="goTo('index')">
+        <div class="ml-2 cursor-pointer mr-5 justify-self-center sm:block hidden" @click="goTo('index')">
           <img class="w-44" :src="require('~/assets/jpg/logo.jpg')" alt="logo">
         </div>
         <div class="mr-3 justify-self-end flex">
           <div v-if="isLoading">
             <span class="animate-pulse">Loading...</span>
           </div>
-          <div v-else class="flex my-auto">
+          <div v-else class="flex my-auto items-center">
             <div class="mr-3 lg:mr-6 cursor-pointer text-gray-500 hover:text-black" @click="goTo('cart')">
-              Cart
-              <!-- <img class="w-6 lg:w-8" :src="require('../assets/svg/shopping-cart.svg')"> -->
+              <h1 class="sm:block hidden">Cart</h1>
+              <img class="w-6 lg:w-8 block md:hidden" :src="require('../assets/svg/shopping-cart.svg')">
             </div>
             <div
               v-if="jwt !== null && userInfo && userInfo.level >= 3"
               class="mr-3 lg:mr-6 cursor-pointer text-gray-500 hover:text-black"
               @click="goTo('profile')"
             >
-              Profile
-              <!-- <img class="w-6 lg:w-8" :src="require('../assets/svg/profile-user.svg')"> -->
+              <h1 class="sm:block hidden">Profile</h1>
+              <img class="w-6 lg:w-8 block md:hidden" :src="require('../assets/svg/profile-user.svg')">
             </div>
             <div
               v-if="jwt === null"
@@ -53,7 +53,7 @@
         </div>
       </div>
     </div>
-    <div class="container mx-auto flex mt-7">
+    <div class="container mx-auto flex sm:mt-7">
       <div v-if="isMobile" class="relative ml-2 my-auto flex flex-col items-center gap-x-4">
         <div class="w-6" @click="handleNavbarState">
           <img :src="require('~/assets/svg/hamburger-menu.svg')">

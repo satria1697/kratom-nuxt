@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto">
+  <div class="container mx-auto pt-5 sm:pt-10">
     <template v-if="article && article.show">
       <div class="max-w-[600px] mx-5 lg:mx-auto mb-3">
         <img :src="article.image ? article.image : 'https://dummyimage.com/600x400/000/fff'" alt="article image">

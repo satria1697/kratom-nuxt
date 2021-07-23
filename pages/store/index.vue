@@ -1,15 +1,17 @@
 <template>
-  <div class="container w-screen mx-auto pt-10 pb-10">
-    <select v-model="selectedCategory" class="rounded-md mb-3" @change="getGoods">
-      <option v-for="(item, index) in category" :key="index" :value="item">
-        {{ langState === "en" ? item.name : item.name_id }}
-      </option>
-    </select>
-    <div class="grid lg:grid-cols-4 lg:gap-10 lg:flex-row mx-auto w-full">
+  <div class="container w-screen mx-auto pt-5 sm:pt-10 pb-10">
+    <div class="ml-6 sm:ml-0">
+      <select v-model="selectedCategory" class="rounded-md mb-3" @change="getGoods">
+        <option v-for="(item, index) in category" :key="index" :value="item">
+          {{ langState === "en" ? item.name : item.name_id }}
+        </option>
+      </select>
+    </div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 lg:gap-10 lg:flex-row mx-auto w-full">
       <div
         v-for="(item, idx) in goods"
         :key="idx"
-        class="mb-4 lg:mb-0 p-8 mx-auto w-3/4 lg:w-full flex flex-col bg-white hover:bg-main transition-colors group"
+        class="mb-2 md:mb-4 lg:mb-0 p-2 md:p-8 mx-auto w-3/4 lg:w-full flex flex-col bg-white hover:bg-main transition-colors group"
       >
         <div class="cursor-pointer" @click="goTo('detail-id', {id: item.id})">
           <img

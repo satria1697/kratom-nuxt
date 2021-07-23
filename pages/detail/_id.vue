@@ -26,7 +26,7 @@
         <span class="text-2xl text-gray-700 font-light tracking-wider pt-2">USD {{ goods.price }}</span>
         <div class="pt-2 border-b-2 pb-3 border-gray-300">
           <span class="font-medium text-xl text-gray-500">{{ $t('goods.setAmount') }}</span>
-          <div class="grid grid-cols-4 mb-3 justify-center flex">
+          <div class="grid grid-cols-3 sm:grid-cols-4 mb-3 justify-center flex">
             <div>
               <krt-button
               text="-"
@@ -34,7 +34,7 @@
               />
               <input
                 v-model="total"
-                class="focus:outline-none px-2 py-1 w-[50px] h-[42px]"
+                class="focus:outline-none px-2 py-1 w-[45px] sm:w-[50px] h-[42px]"
                 type="number"
                 @change="changeTotal"
               >
@@ -43,7 +43,7 @@
                 @on-click="changeTotal('plus')"
               />
             </div>
-            <krt-button :text="$t('button.addToCart')" @on-click="sendCart()" class="col-span-3">
+            <krt-button :text="$t('button.addToCart')" @on-click="sendCart()" class="col-span-2 sm:col-span-3">
             {{ $t('goods.addToCart') }}
             </krt-button>
           </div>

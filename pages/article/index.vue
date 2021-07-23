@@ -12,13 +12,12 @@
       </div>
       <div class="flex flex-col w-full col-span-3 ml-3">
         <div class="flex flex-col lg:flex-row justify-between mb-2">
-          <span class="text-3xl font-light text-main tracking-wide">
+          <span class="text-xl sm:text-3xl font-light text-main tracking-wide">
             {{ langState === "en" ? item.title : item.title_id }}
           </span>
-          <span class="text-gray-500 text-sm">{{ $t('article.createdAt') }} {{ convertTime(item.created_at) }}</span>
+          <span class="text-gray-500 text-xs sm:text-sm">{{ convertTime(item.created_at) }}</span>
         </div>
-        <span class="text-md text-gray-700">{{ langState === "en" ? item.title : item.title_id }}</span>
-        <p id="detail" class="pt-3 text-gray-900 text-xl font-light">{{item.text}}</p>
+        <p id="detail" class="pt-0 sm:pt-3 text-gray-900 text-md sm:text-xl font-light">{{item.text}}</p>
       </div>
     </div>
   </div>

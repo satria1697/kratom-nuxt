@@ -15,7 +15,7 @@
           >
           <div class="carousel-item absolute opacity-0" style="height:70vh;">
             <div class="block h-full w-full text-center">
-              <img src="../assets/jpg/image.jpeg" class="object-contain" alt="Image">
+              <img src="../assets/jpg/image.jpeg" class="sm:object-contain object-cover" alt="Image">
             </div>
           </div>
           <label for="carousel-3" class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
@@ -115,12 +115,12 @@
             </div>
           </div>
           <div class="p-3 flex justify-center box relative">
-            <img src="@/assets/jpg/team.jpeg" alt="" class="absolute object-cover w-3/4 bottom-4 right-2">
+            <img src="@/assets/jpg/team.jpeg" alt="" class="absolute object-cover w-3/4 -bottom-2 md:bottom-4 right-2">
           </div>
         </div>
         <div class="grid grid-cols-2 2xl:flex-row 2xl:mb-6 pt-20">
           <div class="p-3 flex justify-center box relative">
-            <img src="@/assets/jpg/team.jpeg" alt="" class="absolute object-cover w-3/4 bottom-4 left-2">
+            <img src="@/assets/jpg/team.jpeg" alt="" class="absolute object-cover w-3/4 -bottom-2 md:bottom-4 left-2">
           </div>
           <div>
             <div class="2xl:w-2/3 flex flex-col">
@@ -253,7 +253,7 @@ export default {
   },
   computed: {
     goods () {
-      return this.$store.state.api.goods.goods.slice(0, 8)
+      return !this.isMobile ? this.$store.state.api.goods.goods.slice(0, 8) : this.$store.state.api.goods.goods.slice(0, 4)
     }
   },
   created () {
@@ -342,4 +342,13 @@ export default {
   background-color: blue;
   opacity: 10%;
   }
+@media only screen and (max-width: 768px) {
+  .box::before {
+    content: "";
+    height: 100px;
+    width: 160px;
+    background-color: blue;
+    opacity: 10%;
+    }
+}
 </style>
