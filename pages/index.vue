@@ -1,5 +1,5 @@
 <template>
-  <div class="container 2xl:mx-auto">
+  <div class="container">
     <div class="w-screen">
       <div class="row">
         <div class="col-sm mt-3 mt-sm-0">
@@ -13,7 +13,7 @@
         </div>
       </div>
     </div>
-    <div class="w-screen">
+    <div class="w-screen 2xl:mx-auto">
       <div class="container mx-auto pt-20 pb-20">
         <h1 class="text-gray-800 text-center text-4xl font-light mb-5">
           Produk
@@ -40,13 +40,13 @@
           <krt-button class="big" text="See All Products" />
         </div>
       </div>
-      <div class="container mx-auto pt-20 pb-20 border-t">
+      <div class="container px-2 lg:mx-auto py-20 border-t">
         <div class="mb-5">
           <span class="text-2xl 2xl:text-4xl font-semibold text-main">Welcome to globalindo, what do you need? we can provide it.</span>
         </div>
-        <div class="grid grid-cols-2 2xl:flex-row mb-6">
+        <div class="grid grid-cols-1 xl:grid-cols-2 mb-6">
           <div>
-            <div class="2xl:w-2/3 flex flex-col">
+            <div class="flex flex-col">
               <div :class="{ 'border-2 border-main p-2 rounded-md' : isMobile}" @click="handleShow('who')">
                 <span class="text-3xl font-semibold">Who are we?</span>
               </div>
@@ -54,22 +54,22 @@
                 <span v-if="isShow.who" class="2xl:p-8 pb-0 text-xl">Etiam nec nisi blandit, pulvinar mauris finibus, pulvinar felis. Nulla euismod quam sit amet lectus varius finibus. Vestibulum tincidunt enim in libero pretium, sit amet tincidunt erat volutpat. Nullam blandit molestie arcu, ut eleifend orci. Sed euismod laoreet rhoncus. Nunc laoreet pharetra sem, sed vulputate mi maximus eget. Aenean id metus sit amet metus elementum varius. Nam at felis id nibh imperdiet porta quis ut justo. Sed scelerisque consequat magna ut ultrices. Suspendisse sit amet nunc diam. Sed accumsan nibh a porta ornare. Suspendisse quis lorem sed lectus feugiat feugiat. Aenean accumsan scelerisque bibendum.</span>
               </transition>
             </div>
-            <div v-if="isShow.who" class="2xl:w-1/3 mt-auto">
+            <div v-if="isShow.who" class="mt-auto">
               <krt-box class="bg-main-light mx-0">
                 <span class="text-white">Want to know more about us? <krt-click-here-button @on-click="handleClickHere('about-us')" /></span>
               </krt-box>
             </div>
           </div>
-          <div class="p-3 flex justify-center box relative">
+          <div v-if="!isMobile" class="p-3 flex justify-center box relative">
             <img src="@/assets/jpg/team.jpeg" alt="" class="absolute object-cover w-3/4 -bottom-2 md:bottom-4 right-2">
           </div>
         </div>
-        <div class="grid grid-cols-2 2xl:flex-row 2xl:mb-6 pt-20">
-          <div class="p-3 flex justify-center box relative">
+        <div class="grid grid-cols-1 xl:grid-cols-2 xl:mb-6 pt-20">
+          <div v-if="!isMobile" class="p-3 flex justify-center box relative">
             <img src="@/assets/jpg/team.jpeg" alt="" class="absolute object-cover w-3/4 -bottom-2 md:bottom-4 left-2">
           </div>
           <div>
-            <div class="2xl:w-2/3 flex flex-col">
+            <div class="flex flex-col">
               <div :class="{ 'border-2 border-main p-2 rounded-md' : isMobile}" @click="handleShow('sell')">
                 <span class="text-3xl font-semibold">What we sell?</span>
               </div>
@@ -77,7 +77,7 @@
                 <span v-if="isShow.sell" class="2xl:p-8 pb-0 text-xl">Etiam nec nisi blandit, pulvinar mauris finibus, pulvinar felis. Nulla euismod quam sit amet lectus varius finibus. Vestibulum tincidunt enim in libero pretium, sit amet tincidunt erat volutpat. Nullam blandit molestie arcu, ut eleifend orci. Sed euismod laoreet rhoncus. Nunc laoreet pharetra sem, sed vulputate mi maximus eget. Aenean id metus sit amet metus elementum varius. Nam at felis id nibh imperdiet porta quis ut justo. Sed scelerisque consequat magna ut ultrices. Suspendisse sit amet nunc diam. Sed accumsan nibh a porta ornare. Suspendisse quis lorem sed lectus feugiat feugiat. Aenean accumsan scelerisque bibendum.</span>
               </transition>
             </div>
-            <div v-if="isShow.sell" class="2xl:w-1/3 mt-auto">
+            <div v-if="isShow.sell" class="mt-auto">
               <krt-box class=" bg-main-light mx-0">
                 <span class="text-white">Check our store <krt-click-here-button word="here" @on-click="handleClickHere('store')" /></span>
               </krt-box>
@@ -216,7 +216,7 @@ export default {
       this.goTo(where)
     },
     handleShow (where) {
-      this.isShow[where] = !this.isShow[where]
+      if (this.isMobile) { this.isShow[where] = !this.isShow[where] }
     },
     async init () {
       const payload = {
