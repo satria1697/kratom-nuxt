@@ -29,6 +29,7 @@
     "nuxt-i18n": "^6.27.2",
     "qs": "^6.10.1",
     "simplemde": "^1.11.2",
+    "vue-carousel": "^0.18.0",
     "vue-toastification": "^1.7.11"
   },
   "devDependencies": {
