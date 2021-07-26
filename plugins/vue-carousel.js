@@ -1,4 +1,4 @@
 import Vue from 'vue'
-import VueCarousel from 'vue-carousel'
+import VueSlickCarousel from 'vue-slick-carousel'
 
-Vue.use(VueCarousel)
+Vue.compile(VueSlickCarousel)

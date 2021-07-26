@@ -4,11 +4,17 @@
       <div class="row">
         <div class="col-sm mt-3 mt-sm-0">
           <client-only>
-            <vue-carousel indicator-trigger="hover">
-              <div class="example-slide">Slide 1</div>
-              <div class="example-slide">Slide 1</div>
-              <div class="example-slide">Slide 1</div>
-            </vue-carousel>
+            <vue-slick-carousel indicator-trigger="hover">
+              <div class="example-slide">
+                Slide 1
+              </div>
+              <div class="example-slide">
+                Slide 1
+              </div>
+              <div class="example-slide">
+                Slide 1
+              </div>
+            </vue-slick-carousel>
           </client-only>
         </div>
       </div>
@@ -156,13 +162,17 @@
 </template>
 
 <script>
+import VueSlickCarousel from 'vue-slick-carousel'
 import KrtClickHereButton from '~/components/krt/simple/ClickHere'
 import KrtBox from '~/components/krt/simple/Box'
 import common from '~/mixin/common'
 import KrtButton from '~/components/krt/Button.vue'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css' // optional style for arrow and dots
+
 export default {
   name: 'Home',
-  components: { KrtBox, KrtClickHereButton, KrtButton },
+  components: { KrtBox, KrtClickHereButton, KrtButton, VueSlickCarousel },
   mixins: [common],
   async asyncData ({ store }) {
     const payload = {
