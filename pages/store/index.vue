@@ -1,15 +1,17 @@
 <template>
-  <div class="container w-screen mx-auto">
-    <select v-model="selectedCategory" class="rounded-md mb-3" @change="getGoods">
-      <option v-for="(item, index) in category" :key="index" :value="item">
-        {{ langState === "en" ? item.name : item.name_id }}
-      </option>
-    </select>
-    <div class="grid lg:grid-cols-4 lg:gap-10 lg:flex-row mx-auto w-full">
+  <div class="container w-screen mx-auto pt-5 sm:pt-10 pb-10">
+    <div class="ml-6 sm:ml-0">
+      <select v-model="selectedCategory" class="rounded-md mb-3" @change="getGoods">
+        <option v-for="(item, index) in category" :key="index" :value="item">
+          {{ langState === "en" ? item.name : item.name_id }}
+        </option>
+      </select>
+    </div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 lg:gap-10 lg:flex-row mx-auto w-full">
       <div
         v-for="(item, idx) in goods"
         :key="idx"
-        class="shadow-2xl mb-4 lg:mb-0 p-8 mx-auto w-3/4 lg:w-full flex flex-col rounded-lg bg-main hover:bg-main-light transition-colors"
+        class="mb-2 md:mb-4 lg:mb-0 p-2 md:p-8 mx-auto w-3/4 lg:w-full flex flex-col bg-white hover:bg-main transition-colors group"
       >
         <div class="cursor-pointer" @click="goTo('detail-id', {id: item.id})">
           <img
@@ -19,8 +21,8 @@
             :alt="item.name"
           >
         </div>
-        <span class="mx-auto text-white text-2xl mt-auto">{{ langState === "en" ? item.name : item.name_id }}</span>
-        <span class="mx-auto font-semibold">USD {{ item.price }}</span>
+        <span class="mx-auto text-main text-2xl mt-auto tracking-wider font-light group-hover:text-white mt-3">{{ langState === "en" ? item.name : item.name_id }}</span>
+        <span class="mx-auto text-gray-400 font-thin tracking-widest group-hover:text-white">USD {{ item.price }}</span>
       </div>
     </div>
   </div>

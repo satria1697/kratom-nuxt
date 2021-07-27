@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-screen">
+  <div class="flex flex-col h-screen overflow-x-hidden">
     <div style="flex: 1 0 auto">
       <navbar />
       <nuxt />

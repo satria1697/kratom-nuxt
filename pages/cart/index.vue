@@ -6,46 +6,57 @@
     </div>
     <span v-else class="text-4xl animate-pulse">{{ $t('cart.loadingCart') }}</span>
   </div>
-  <div v-else class="container mx-auto w-screen">
+  <div v-else class="pt-10">
     <div class="flex flex-col w-3/4 mx-auto">
-      <span class="text-4xl font-semibold mb-3">{{ $t('cart.cartTitle') }}</span>
+      <h1 class="text-gray-800 text-center text-4xl font-light ml-3 lg:ml-0 text-center pb-4">{{ $t('cart.cartTitle') }}</h1>
       <div v-if="!cartLength" class="flex justify-center items-center">
         <span class="text-4xl">{{ $t('cart.noCart') }}</span>
       </div>
-      <div
+      <div v-else class="border-b-2 border-gray-200 grid grid-cols-5 justify-items-stretch mt-5">
+        <h3 class="col-span-3 text-gray-500 text-xl font-light">Produk</h3>
+        <h3 class="text-gray-500 text-xl font-light justify-self-center">Quantity</h3>
+        <h3 class="text-gray-500 text-xl font-light justify-self-end">Total</h3>
+      </div>
+      <div v-if="cartLength" class="">
+        <div
         v-for="(opt, idx) in cart.cart"
-        v-else
         :key="idx"
-        class="group mb-3 flex lg:flex-row flex-col border-2 border-main rounded-lg p-14"
-      >
-        <img class="w-full lg:w-1/6" :src="opt.goods.image ? opt.goods.image : 'https://dummyimage.com/600x400/000/fff'" :alt="opt.goods.name">
-        <div class="w-full lg:w-2/3 flex flex-col ml-3">
-          <div>
-            <span class="text-2xl font-semibold">{{ langState === "en" ? opt.goods.name : opt.goods.name_id }}</span>
-            <span class="opacity-0 group-hover:opacity-100 group-hover:bg-red-600 border group-hover:border-red-600 rounded-lg text-white group-hover:px-4 cursor-pointer" @click="handleDelete(opt)">Delete</span>
+        class="group grid grid-cols-5 py-3 border-b-2 border-gray-200 items-center justify-items-center flex"
+        >
+          <div class="col-span-3 flex">
+            <img class="w-1/3 mr-3" :src="opt.goods.image ? opt.goods.image : 'https://dummyimage.com/600x400/000/fff'" :alt="opt.goods.name">
+            <div>
+              <span class="text-main text-2xl mt-auto tracking-wider font-light">{{ langState === "en" ? opt.goods.name : opt.goods.name_id }}</span>
+              <span class="opacity-0 group-hover:opacity-100 group-hover:bg-red-600 border group-hover:border-red-600 rounded-lg text-white group-hover:px-4 cursor-pointer" @click="handleDelete(opt)">Delete</span>
+              <div class="2xl:p-8 pb-0 leading-relaxed text-base text-gray-500">{{ langState === "en" ? opt.goods.description : opt.goods.description_id }}</div>
+            </div>
           </div>
-          <span>{{ langState === "en" ? opt.goods.description : opt.goods.description_id }}</span>
-          <div class="flex mt-auto">
-            <krt-button
-              text="-"
-              @on-click="changeTotal(opt, 'minus')"
-            />
-            <input
-              v-model="opt.buying"
-              class="focus:outline-none p-0.5 w-[50px] h-[42px]"
-              type="number"
-              @change="changeTotal"
-            >
-            <krt-button
-              text="+"
-              @on-click="changeTotal(opt, 'plus')"
-            />
-            <span class="my-auto ml-4">{{ opt.goods.stock }} left</span>
+          <div class="w-full lg:w-2/3 flex flex-col ml-3">
+            <div class="mt-auto mb-2">
+              <krt-button
+                text="-"
+                @on-click="changeTotal(opt, 'minus')"
+              />
+              <input
+                v-model="opt.buying"
+                class="focus:outline-none p-0.5 w-[50px] h-[42px] mx-2"
+                type="number"
+                @change="changeTotal"
+              >
+              <krt-button
+                text="+"
+                @on-click="changeTotal(opt, 'plus')"
+              />
+            </div>
+            <h3 class="my-auto text-center text-gray-500 text-base">{{ opt.goods.stock }} left</h3>
+          </div>
+          <div class="justify-self-end">
+            <h3 class="my-auto text-gray-500 text-3xl">{{opt.goods.price}}</h3>
           </div>
         </div>
       </div>
-      <div class="flex justify-end">
-        <krt-button v-if="cartLength" text="Checkout" @on-click="handleCheckout" />
+      <div class="flex justify-end pt-5">
+        <krt-button v-if="cartLength" text="Checkout" @on-click="handleCheckout" class="big"/>
         <krt-button v-else :text="$t('button.seeOurProduct')" @on-click="goTo('index')" />
       </div>
     </div>
