@@ -11,7 +11,7 @@ export default {
       { hid: 'og:title', name: 'og:title', content: 'Globalindo Intl' },
       { hid: 'og:description', name: 'og:description', content: 'Globalindo Intl' }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
