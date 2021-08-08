@@ -200,8 +200,7 @@ export default {
         {
           hid: 'og:description',
           name: 'og:description',
-          content: 'Homepage of CV Indo Global International - Exporter from Indonesia',
-          image: '/assets/jpg/logo.jpg'
+          content: 'Homepage of CV Indo Global International - Exporter from Indonesia'
         }
       ]
     }

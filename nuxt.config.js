@@ -9,7 +9,13 @@ export default {
       { hid: 'og:url', name: 'og:url', content: 'https://globalindo-intl.com' },
       { hid: 'og:type', name: 'og:type', content: 'website' },
       { hid: 'og:title', name: 'og:title', content: 'Globalindo Intl' },
-      { hid: 'og:description', name: 'og:description', content: 'Globalindo Intl' }
+      { hid: 'og:description', name: 'og:description', content: 'Globalindo Intl' },
+      { hid: 'og:image', name: 'og:image', content: '/logo.jpg' },
+      { hid: 'twitter:url', name: 'twitter:url', content: 'https://globalindo-intl.com' },
+      { hid: 'twitter:type', name: 'twitter:type', content: 'website' },
+      { hid: 'twitter:title', name: 'twitter:title', content: 'Globalindo Intl' },
+      { hid: 'twitter:description', name: 'twitter:description', content: 'Globalindo Intl' },
+      { hid: 'twitter:image', name: 'twitter:image', content: '/logo.jpg' }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
