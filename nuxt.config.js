@@ -5,7 +5,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'GlobalIndo Intl' },
+      { hid: 'description', name: 'description', content: 'Homepage of CV Indo Global International - Exporter from Indonesia. Contact: aaron@globalindo-intl.com' },
       { hid: 'og:url', name: 'og:url', content: 'https://globalindo-intl.com' },
       { hid: 'og:type', name: 'og:type', content: 'website' },
       { hid: 'og:title', name: 'og:title', content: 'Globalindo Intl' },
